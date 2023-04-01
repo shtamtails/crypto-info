@@ -1,6 +1,7 @@
 export const getDefaultClassName = (props: any, defaultClassname?: string[]) => {
   const classNames: string[] = [];
   defaultClassname && Object.assign(classNames, defaultClassname);
+  props.className && classNames.push(props.className);
   props.pl && classNames.push(`padding-left-${props.pl}`);
   props.pr && classNames.push(`padding-right-${props.pr}`);
   props.pt && classNames.push(`padding-top-${props.pt}`);

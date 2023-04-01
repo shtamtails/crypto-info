@@ -7,6 +7,9 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:active {
     transform: translateY(-2px);
   }

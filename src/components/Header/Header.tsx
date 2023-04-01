@@ -14,7 +14,12 @@ export const Header: React.FC = () => {
         <img src="https://coincap.io/static/logos/black.svg" />
       </div>
       <div className="header_links">
-        <Button variant="regular">My Portfolio</Button>
+        <Button variant="regular" className="header_links-button">
+          My Portfolio
+        </Button>
+        <Button variant="regular" className="header_links-icon">
+          +
+        </Button>
       </div>
     </header>
   );

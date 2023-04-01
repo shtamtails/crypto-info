@@ -6,8 +6,8 @@ export const PortfolioElement = () => {
       </div>
       <div className="header_portfolio_element-name">Bitcoin</div>
       <div className="header_portfolio_element-value">1234,56$</div>
-      <div className="header_portfolio_element-priceChange">+12,34$</div>
-      <div className="header_portfolio_element-percentChange">(+1,80%)</div>
+      <div className="header_portfolio_element-price-change">+12,34$</div>
+      <div className="header_portfolio_element-percent-change">(+1,80%)</div>
     </div>
   );
 };

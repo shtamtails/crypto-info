@@ -24,7 +24,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       <td className="crypto-list_element-supply text-center">{supply}</td>
       <td className="crypto-list_element-volume text-center">{volume}</td>
       <td className="crypto-list_element-change text-center">{changePercent}</td>
-      <td className="crypto-list_element-change text-center">
+      <td className="crypto-list_element-action text-center">
         <Button variant="regular">+</Button>
       </td>
     </tr>
