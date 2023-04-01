@@ -1,0 +1,45 @@
+@import "../../style/colors.scss";
+
+.header {
+  width: 100%;
+  padding: 8px 16px;
+  background-color: $header-bg-color;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  &_portfolio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &_element {
+      display: flex;
+      align-items: center;
+      margin: 4px 0px;
+      font-size: 0.95rem;
+      > div {
+        margin-right: 4px;
+      }
+      &-logo {
+        display: flex;
+        align-items: center;
+        img {
+          height: 20px;
+          width: auto;
+        }
+      }
+    }
+  }
+  &_logo {
+    img {
+      height: 40px;
+      width: auto;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &_links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
