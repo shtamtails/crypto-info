@@ -1,4 +1,6 @@
-export const PortfolioElement = () => {
+import { PortfolioElementProps } from "./IHeader";
+
+export const PortfolioElement: React.FC<PortfolioElementProps> = (props) => {
   return (
     <div className="header_portfolio_element">
       <div className="header_portfolio_element-logo">

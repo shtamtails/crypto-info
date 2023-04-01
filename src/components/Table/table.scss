@@ -1,0 +1,15 @@
+@import "../../style/colors.scss";
+
+table {
+  margin: 16px auto;
+  border-radius: 8px;
+  border-spacing: 0;
+  background-color: $gray-1;
+  th,
+  td {
+    padding: 12px;
+  }
+  td {
+    background-color: $gray-0;
+  }
+}

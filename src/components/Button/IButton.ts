@@ -5,4 +5,5 @@ export interface ButtonProps extends Sizing {
   fullWidth?: boolean;
   variant?: "regular" | "outline";
   className?: string;
+  onClick?: () => any;
 }
