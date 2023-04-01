@@ -8,4 +8,6 @@ export interface Sizing {
   mr?: sizes;
   mt?: sizes;
   mb?: sizes;
+  width?: number | string;
+  height?: number | string;
 }
