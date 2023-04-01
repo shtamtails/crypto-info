@@ -1,0 +1,27 @@
+$baseSpacingUnit: 8;
+$spacingScales: (
+  xs: 0.25,
+  sm: 0.5,
+  md: 1,
+  lg: 1.5,
+  xl: 2,
+);
+
+@function calculate-spacing($multiplier, $base-unit: $baseSpacingUnit) {
+  $result: $multiplier * $base-unit;
+  @return #{$result}px;
+}
+
+@each $prop in (padding, margin) {
+  @each $dir in (top, right, bottom, left) {
+    @each $scale, $multiplier in $spacingScales {
+      .#{$prop}-#{$dir}-#{$scale} {
+        #{$prop}-#{$dir}: calculate-spacing($multiplier);
+      }
+    }
+  }
+}
+
+.fullwidth {
+  width: 100%;
+}

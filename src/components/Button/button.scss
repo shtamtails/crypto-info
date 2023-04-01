@@ -2,5 +2,29 @@
 
 button {
   border: none;
-  padding: 4px 12px;
+  padding: 0px 1.125rem;
+  height: 2.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  &:active {
+    transform: translateY(-2px);
+  }
+}
+
+.button-regular {
+  color: #228be6;
+  background-color: $button-regular;
+  &:hover {
+    background-color: $button-regular-hover;
+  }
+}
+
+.button-outline {
+  color: #228be6;
+  background-color: transparent;
+  border: 2px solid $button-outline;
+  &:hover {
+    background-color: $button-outline-hover;
+  }
 }

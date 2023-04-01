@@ -1,3 +1,4 @@
+import { Button } from "../Button/Button";
 import { PortfolioElement } from "./PortfolioElement";
 import "./header.scss";
 
@@ -13,7 +14,7 @@ export const Header: React.FC = () => {
         <img src="https://coincap.io/static/logos/black.svg" />
       </div>
       <div className="header_links">
-        <button>Portfolio</button>
+        <Button variant="regular">Portfolio</Button>
       </div>
     </header>
   );
