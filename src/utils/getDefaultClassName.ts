@@ -9,6 +9,7 @@ export const getDefaultClassName = (props: any, defaultClassname?: string[]) => 
   props.mr && classNames.push(`margin-right-${props.mr}`);
   props.mt && classNames.push(`margin-top-${props.mt}`);
   props.mb && classNames.push(`margin-bottom-${props.mb}`);
+  props.radius && classNames.push(`border-radius-${props.radius}`);
   props.fullWidth && classNames.push(`fullwidth`);
   return classNames.join(" ");
 };

@@ -10,4 +10,5 @@ export interface Sizing {
   mb?: sizes;
   width?: number | string;
   height?: number | string;
+  radius?: sizes;
 }

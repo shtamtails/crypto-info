@@ -12,7 +12,7 @@ $spacingScales: (
   @return #{$result}px;
 }
 
-@each $prop in (padding, margin) {
+@each $prop in (padding, margin, border-radius) {
   @each $dir in (top, right, bottom, left) {
     @each $scale, $multiplier in $spacingScales {
       .#{$prop}-#{$dir}-#{$scale} {
