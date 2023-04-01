@@ -1,3 +1,4 @@
+import { Button } from "../Button/Button";
 import { CryptoListElementProps } from "./ICryptoList";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
@@ -23,6 +24,9 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       <td className="crypto-list_element-supply text-center">{supply}</td>
       <td className="crypto-list_element-volume text-center">{volume}</td>
       <td className="crypto-list_element-change text-center">{changePercent}</td>
+      <td className="crypto-list_element-change text-center">
+        <Button variant="regular">+</Button>
+      </td>
     </tr>
   );
 };

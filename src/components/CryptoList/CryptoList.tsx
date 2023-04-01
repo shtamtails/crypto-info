@@ -16,6 +16,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
           <th className="text-center th-supply">Supply</th>
           <th className="text-center th-volume">Volume (24Hr)</th>
           <th className="text-center th-change">Change (24Hr)</th>
+          <th className="text-center th-action">Action</th>
         </tr>
       </thead>
       <tbody>
