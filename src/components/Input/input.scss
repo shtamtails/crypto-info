@@ -1,17 +1,28 @@
 @import "../../style/colors.scss";
 
 .input_container {
+  &-label {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
   .input {
     position: relative;
     &-icon {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      top: 0;
+      opacity: 1;
+      transition: all 0.3s ease;
       left: 12px;
       color: $input-placeholder;
     }
     &-with-icon {
-      padding-left: 32px;
+      padding-left: 36px;
     }
   }
   input {
@@ -19,16 +30,23 @@
     padding: 8px;
     border: 1px solid $gray-3;
     border-radius: 4px;
+    transition: all 0.3s ease;
+
     &:focus {
       outline: none;
+      transition: all 0.3s ease;
       border: 1px solid $input-focus-outline;
+      padding-left: 16px;
     }
     &::placeholder {
       color: $input-placeholder;
     }
-  }
-  &-label {
-    font-size: 0.9rem;
-    margin-bottom: 4px;
+    &:focus + .input-icon {
+      transition: all 0.3s ease;
+
+      opacity: 0;
+      left: 0;
+      transition: all 0.3s ease;
+    }
   }
 }

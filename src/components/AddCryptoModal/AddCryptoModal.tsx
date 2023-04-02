@@ -4,6 +4,8 @@ import { Input } from "../Input/Input";
 import { Modal } from "../Modal/Modal";
 import { AddCryptoModalProps } from "./IAddCryptoModal";
 import "./addCryptoModal.scss";
+import { BiBitcoin } from "react-icons/bi";
+import { AiFillAccountBook } from "react-icons/ai";
 
 export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisible }) => {
   const [amount, setAmount] = useState<string>("");
@@ -15,7 +17,17 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisi
 
   return (
     <Modal visible={visible} setVisible={setVisible} title="Add crypto" className="add-crypto-modal">
-      <div className="add-crypto-modal-select">q</div>
+      <div className="add-crypto-modal-select">
+        <Input
+          ref={amountRef}
+          fullWidth
+          value={amount}
+          setValue={setAmount}
+          label="Amount"
+          placeholder="Amount"
+          icon={<AiFillAccountBook />}
+        />
+      </div>
       <div className="add-crypto-modal-amount-input">
         <Input
           ref={amountRef}
