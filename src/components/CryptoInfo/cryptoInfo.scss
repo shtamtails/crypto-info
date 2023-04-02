@@ -1,0 +1,114 @@
+@import "../../style/colors.scss";
+
+.crypto-info {
+  width: 1100px;
+  margin: 0 auto;
+  background-color: $gray-0;
+  padding: 36px;
+  margin-top: 36px;
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-crypto {
+      display: flex;
+      align-items: center;
+      &-icon {
+        display: flex;
+        align-items: center;
+        margin-right: 24px;
+        img {
+          height: 50px;
+          width: auto;
+        }
+      }
+      &-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50px;
+        &-name {
+        }
+        &-date {
+        }
+      }
+      &-main {
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+      }
+    }
+    &-stats {
+      gap: 24px;
+      display: flex;
+      &-col {
+        display: flex;
+        flex-direction: column;
+        height: 50px;
+        justify-content: space-between;
+        &-row {
+          span {
+            color: $dark-2;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+  &_body {
+    margin-top: 50px;
+    width: 100%;
+    height: 300px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .crypto-info {
+    width: 100%;
+  }
+}
+
+@media (max-width: 850px) {
+  .crypto-info_marketcap-volume {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .crypto-info {
+    padding: 36px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .crypto-info_high-low {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .crypto-info_header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    &-crypto {
+      margin-bottom: 24px;
+      &-icon {
+        display: flex;
+      }
+    }
+  }
+  .crypto-info_header-stats {
+    flex-direction: column;
+    width: 100%;
+  }
+  .crypto-info_high-low {
+    display: flex;
+  }
+  .crypto-info_marketcap-volume {
+    display: flex;
+  }
+  .crypto-info_add-button {
+    width: 100%;
+  }
+}
