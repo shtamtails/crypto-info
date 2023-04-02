@@ -22,6 +22,14 @@ $spacingScales: (
   }
 }
 
+@each $prop in (border-radius) {
+  @each $scale, $multiplier in $spacingScales {
+    .#{$prop}-#{$scale} {
+      #{$prop}: calculate-spacing($multiplier);
+    }
+  }
+}
+
 .fullwidth {
   width: 100%;
 }
