@@ -1,3 +1,5 @@
+import { CSSProperties } from "react";
+
 type sizes = "xs" | "sm" | "md" | "lg" | "xl";
 export interface defaultProps {
   pl?: sizes;
@@ -12,5 +14,6 @@ export interface defaultProps {
   height?: number | string;
   radius?: sizes;
   fullWidth?: boolean;
-  style?: { [key: string]: string };
+  style?: CSSProperties | undefined;
+  className?: string;
 }

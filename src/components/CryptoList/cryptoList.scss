@@ -2,27 +2,7 @@
 
 .crypto-list {
   width: 1100px;
-  .crypto-list_element {
-    &-name {
-      display: flex;
-      align-items: center;
-      padding: 14px;
-      &-value {
-        font-weight: 500;
-      }
-      &-short {
-        font-size: 0.8rem;
-        color: $text-neutral;
-      }
-      &-icon {
-        margin-right: 4px;
-        img {
-          width: auto;
-          height: 25px;
-        }
-      }
-    }
-  }
+  margin: 16px auto;
 }
 
 @media (max-width: 1100px) {

@@ -6,7 +6,7 @@ import "./cryptoList.scss";
 export const CryptoList: React.FC<CryptoListProps> = (props) => {
   return (
     <Table className="crypto-list">
-      <TableHeader className="crypto-list-head">
+      <TableHeader className="crypto-list-head" style={{ backgroundColor: "#f1f3f5" }}>
         <TableRow>
           <TableHeaderCell alignCenter className="th-rank">
             Rank
@@ -24,7 +24,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
         </TableRow>
       </TableHeader>
 
-      <TableBody>
+      <TableBody style={{ backgroundColor: "#f8f9fa" }}>
         <CryptoListElement
           rank={1}
           iconURL="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png"

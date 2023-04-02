@@ -1,4 +1,5 @@
 import { Button } from "../Button/Button";
+import { Cryptocurrency } from "../Cryptocurrency/Cryptocurrency";
 import { TableDataCell, TableRow } from "../Table/Table";
 import { CryptoListElementProps } from "./ICryptoList";
 
@@ -11,14 +12,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       </TableDataCell>
 
       <TableDataCell className="crypto-list_element-name">
-        <div className="crypto-list_element-name-icon">
-          <img src={iconURL} />
-        </div>
-
-        <div className="flex-col ais">
-          <div className="crypto-list_element-name-value">{name}</div>
-          <div className="crypto-list_element-name-short">{shortName}</div>
-        </div>
+        <Cryptocurrency name={name} logoURL={iconURL} shortName={shortName} />
       </TableDataCell>
 
       <TableDataCell alignCenter className="crypto-list_element-price">
@@ -39,7 +33,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       <TableDataCell alignCenter className="crypto-list_element-change">
         {changePercent}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-action">
+      <TableDataCell alignCenter className="crypto-list_element-action flex jcc">
         <Button variant="regular">+</Button>
       </TableDataCell>
     </TableRow>

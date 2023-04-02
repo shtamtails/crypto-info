@@ -2,7 +2,7 @@ export interface CryptoListProps {}
 
 export interface CryptoListElementProps {
   rank: number;
-  iconURL?: string;
+  iconURL: string;
   name: string;
   shortName: string;
   price: string;
