@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import { defaultProps } from "../../models/defaultProps";
 
 export interface InputProps extends defaultProps {
-  value: string;
-  setValue: (arg0: string) => void;
+  value?: string;
+  setValue?: (arg0: string) => void;
   label?: string;
   placeholder?: string;
   icon?: string | ReactNode;

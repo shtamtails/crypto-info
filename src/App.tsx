@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       {/* <PortfolioModal isVisible={modalVisible} setIsVisible={setModalVisible} /> */}
-      {/* <AddCryptoModal visible={modalVisible} setVisible={setModalVisible} /> */}
+      <AddCryptoModal visible={modalVisible} setVisible={setModalVisible} />
       <Header />
       <CryptoList />
       <CryptoInfo />

@@ -7,7 +7,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { value, setValue, label, placeholder, icon } = props;
 
   const handleChange = (value: string) => {
-    setValue(value);
+    setValue && setValue(value);
   };
 
   const defaultClassName = [];

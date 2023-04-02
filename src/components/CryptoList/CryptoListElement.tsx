@@ -1,5 +1,5 @@
 import { Button } from "../Button/Button";
-import { Cryptocurrency } from "../Cryptocurrency/CryptoCard";
+import { CryptoCard } from "../CryptoCard/CryptoCard";
 import { TableDataCell, TableRow } from "../Table/Table";
 import { CryptoListElementProps } from "./ICryptoList";
 
@@ -12,7 +12,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       </TableDataCell>
 
       <TableDataCell className="crypto-list_element-name">
-        <Cryptocurrency name={name} logoURL={iconURL} shortName={shortName} />
+        <CryptoCard name={name} logoURL={iconURL} shortName={shortName} />
       </TableDataCell>
 
       <TableDataCell alignCenter className="crypto-list_element-price">

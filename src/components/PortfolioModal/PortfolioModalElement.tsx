@@ -1,14 +1,14 @@
 import { AiOutlineEdit } from "react-icons/ai";
 import { Button } from "../Button/Button";
 import { TableRow, TableDataCell } from "../Table/Table";
-import { Cryptocurrency } from "../Cryptocurrency/CryptoCard";
+import { CryptoCard } from "../CryptoCard/CryptoCard";
 
 export const PortfolioModalElement = () => {
   return (
     <TableRow>
       <TableDataCell className="portfolio_modal_table_body-number">1</TableDataCell>
       <TableDataCell>
-        <Cryptocurrency
+        <CryptoCard
           name="Bitcoin"
           logoURL="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png"
           shortName="BTC"
