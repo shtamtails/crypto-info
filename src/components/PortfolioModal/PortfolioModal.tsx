@@ -1,8 +1,8 @@
-import { Table, TableBody, TableHeader, TableHeaderCell, TableRow } from "../Table/Table";
-import { PortfioModalProps } from "./IPortfolioModal";
-import "./portfolioModal.scss";
+import { Modal } from "../../reusable/Modal";
+import { Table, TableHeader, TableRow, TableHeaderCell, TableBody } from "../../reusable/Table";
 import { PortfolioModalElement } from "./PortfolioModalElement";
-import { Modal } from "../Modal/Modal";
+import { PortfioModalProps } from "./types";
+import "./portfolioModal.scss";
 
 export const PortfolioModal: React.FC<PortfioModalProps> = ({ isVisible, setIsVisible }) => {
   return (

@@ -1,8 +1,8 @@
 import { AiOutlineClose } from "react-icons/ai";
-import { Button } from "../Button/Button";
-import { ModalProps } from "./IModal";
-import "./modal.scss";
 import { getDefaultClassName } from "../../utils/getDefaultClassName";
+import { Button } from "../Button";
+import { ModalProps } from "./types";
+import "./modal.scss";
 
 export const Modal: React.FC<ModalProps> = (props) => {
   const { visible, setVisible, children, title } = props;

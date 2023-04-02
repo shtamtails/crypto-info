@@ -1,8 +1,7 @@
-import "./cryptoInfo.scss";
-import { Button } from "../Button/Button";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
+import "./cryptoInfo.scss";
 
 export const CryptoInfo: React.FC = () => {
   const [time, setTime] = useState<string[]>(["1", "1", "1", "1", "1", "1", "1"]);

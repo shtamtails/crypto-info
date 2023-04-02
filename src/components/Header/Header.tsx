@@ -1,7 +1,7 @@
-import { Button } from "../Button/Button";
+import { AiOutlineMenu } from "react-icons/ai";
+import { Button } from "../../reusable/Button";
 import { PortfolioElement } from "./PortfolioElement";
 import "./header.scss";
-import { AiOutlineMenu } from "react-icons/ai";
 
 export const Header: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import { TableProps } from "./ITable";
 import { getDefaultClassName } from "../../utils/getDefaultClassName";
+import { TableProps } from "./types";
 import "./table.scss";
 
 export default function createTableComponent(tag: keyof JSX.IntrinsicElements): React.FC<TableProps> {

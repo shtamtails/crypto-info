@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { CryptoList } from "./components/CryptoList/CryptoList";
-import { Header } from "./components/Header/Header";
-import { PortfolioModal } from "./components/PortfolioModal/PortfolioModal";
+import { AddCryptoModal } from "./components/AddCryptoModal";
+import { PortfolioModal } from "./components/PortfolioModal";
+import { CryptoInfo } from "./components/CryptoInfo";
+import { CryptoList } from "./components/CryptoList";
+import { Header } from "./components/Header";
 import "./style/App.scss";
 import "./style/utils.scss";
-import { AddCryptoModal } from "./components/AddCryptoModal/AddCryptoModal";
-import { CryptoInfo } from "./components/CryptoInfo/CryptoInfo";
 
 function App() {
   const [modalVisible, setModalVisible] = useState(true);
   return (
     <>
       {/* <PortfolioModal isVisible={modalVisible} setIsVisible={setModalVisible} /> */}
-      <AddCryptoModal visible={modalVisible} setVisible={setModalVisible} />
+      {/* <AddCryptoModal visible={modalVisible} setVisible={setModalVisible} /> */}
       <Header />
       <CryptoList />
       <CryptoInfo />

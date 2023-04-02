@@ -1,5 +1,5 @@
 import { getDefaultClassName } from "../../utils/getDefaultClassName";
-import { ButtonProps } from "./IButton";
+import { ButtonProps } from "./types";
 import "./button.scss";
 
 export const Button: React.FC<ButtonProps> = (props) => {

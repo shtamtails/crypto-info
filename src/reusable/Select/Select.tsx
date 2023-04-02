@@ -1,10 +1,7 @@
-import { ReactNode, forwardRef, useState } from "react";
-import { SelectProps } from "./ISelect";
+import { forwardRef } from "react";
 import { getDefaultClassName } from "../../utils/getDefaultClassName";
-import "../Input/input.scss";
+import { SelectProps } from "./types";
 import "./select.scss";
-
-export type dataType = { label: string; value: string };
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const { data, placeholder, value, setValue, label } = props;

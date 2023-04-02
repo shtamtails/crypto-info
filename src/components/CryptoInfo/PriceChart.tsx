@@ -11,14 +11,9 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { PriceChartProps } from "./types";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend);
-
-export interface PriceChartProps {
-  data: number[];
-  labels: string[];
-  isChangePositive: boolean;
-}
 
 export const PriceChart: React.FC<PriceChartProps> = (props) => {
   const { isChangePositive } = props;

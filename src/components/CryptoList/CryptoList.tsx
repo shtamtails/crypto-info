@@ -1,6 +1,6 @@
-import { Table, TableBody, TableHeader, TableHeaderCell, TableRow } from "../Table/Table";
+import { Table, TableHeader, TableRow, TableHeaderCell, TableBody } from "../../reusable/Table";
 import { CryptoListElement } from "./CryptoListElement";
-import { CryptoListProps } from "./ICryptoList";
+import { CryptoListProps } from "./types";
 import "./cryptoList.scss";
 
 export const CryptoList: React.FC<CryptoListProps> = (props) => {

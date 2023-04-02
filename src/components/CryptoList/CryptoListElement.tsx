@@ -1,7 +1,7 @@
-import { Button } from "../Button/Button";
-import { CryptoCard } from "../CryptoCard/CryptoCard";
-import { TableDataCell, TableRow } from "../Table/Table";
-import { CryptoListElementProps } from "./ICryptoList";
+import { Button } from "../../reusable/Button";
+import { CryptoCard } from "../../reusable/CryptoCard";
+import { TableRow, TableDataCell } from "../../reusable/Table";
+import { CryptoListElementProps } from "./types";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
   const { rank, iconURL, name, shortName, price, marketCap, vwap, supply, volume, changePercent } = props;

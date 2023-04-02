@@ -1,10 +1,10 @@
 import { useRef } from "react";
-import { Button } from "../Button/Button";
-import { Input } from "../Input/Input";
-import { Modal } from "../Modal/Modal";
-import { AddCryptoModalProps } from "./IAddCryptoModal";
+import { Button } from "../../reusable/Button";
+import { Input } from "../../reusable/Input";
+import { Modal } from "../../reusable/Modal";
+import { dataType, Select } from "../../reusable/Select";
+import { AddCryptoModalProps } from "./types";
 import "./addCryptoModal.scss";
-import { dataType, Select } from "../Select/Select";
 
 export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisible }) => {
   const amountRef = useRef<HTMLInputElement>(null);

@@ -1,4 +1,4 @@
-import { CryptoCardProps } from "./ICryptoCard";
+import { CryptoCardProps } from "./types";
 import "./cryptoCard.scss";
 
 export const CryptoCard: React.FC<CryptoCardProps> = (props) => {

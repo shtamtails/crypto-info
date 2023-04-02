@@ -1,7 +1,7 @@
 import { AiOutlineEdit } from "react-icons/ai";
-import { Button } from "../Button/Button";
-import { TableRow, TableDataCell } from "../Table/Table";
-import { CryptoCard } from "../CryptoCard/CryptoCard";
+import { Button } from "../../reusable/Button";
+import { CryptoCard } from "../../reusable/CryptoCard";
+import { TableRow, TableDataCell } from "../../reusable/Table";
 
 export const PortfolioModalElement = () => {
   return (

@@ -1,4 +1,4 @@
-import { PortfolioElementProps } from "./IHeader";
+import { PortfolioElementProps } from "./types";
 
 export const PortfolioElement: React.FC<PortfolioElementProps> = (props) => {
   return (

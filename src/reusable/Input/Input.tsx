@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import { InputProps } from "./IInput";
 import { getDefaultClassName } from "../../utils/getDefaultClassName";
+import { InputProps } from "./types";
 import "./input.scss";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
