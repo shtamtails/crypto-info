@@ -10,9 +10,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  &:active {
-    transform: translateY(-1px);
-  }
 }
 
 .button-regular {
