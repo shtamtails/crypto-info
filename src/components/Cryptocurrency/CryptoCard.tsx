@@ -1,7 +1,7 @@
-import { CryptocurrencyProps } from "./ICryptocurrency";
-import "./cryptocurrency.scss";
+import { CryptoCardProps } from "./ICryptoCard";
+import "./cryptoCard.scss";
 
-export const Cryptocurrency: React.FC<CryptocurrencyProps> = (props) => {
+export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
   const { logoURL, name, shortName } = props;
   return (
     <div className="cryptocurrency-component">

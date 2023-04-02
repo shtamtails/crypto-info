@@ -1,5 +1,5 @@
 import { Button } from "../Button/Button";
-import { Cryptocurrency } from "../Cryptocurrency/Cryptocurrency";
+import { Cryptocurrency } from "../Cryptocurrency/CryptoCard";
 import { TableDataCell, TableRow } from "../Table/Table";
 import { CryptoListElementProps } from "./ICryptoList";
 

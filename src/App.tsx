@@ -8,14 +8,14 @@ import { AddCryptoModal } from "./components/AddCryptoModal/AddCryptoModal";
 import { CryptoInfo } from "./components/CryptoInfo/CryptoInfo";
 
 function App() {
-  const [modalVisible, setModalVisible] = useState(true); // TODO Add redux to store this value in it.
+  const [modalVisible, setModalVisible] = useState(true);
   return (
     <>
       {/* <PortfolioModal isVisible={modalVisible} setIsVisible={setModalVisible} /> */}
       {/* <AddCryptoModal visible={modalVisible} setVisible={setModalVisible} /> */}
       <Header />
+      <CryptoList />
       <CryptoInfo />
-      {/* <CryptoList /> */}
     </>
   );
 }

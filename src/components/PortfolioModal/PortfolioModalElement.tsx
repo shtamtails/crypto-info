@@ -1,7 +1,7 @@
 import { AiOutlineEdit } from "react-icons/ai";
 import { Button } from "../Button/Button";
 import { TableRow, TableDataCell } from "../Table/Table";
-import { Cryptocurrency } from "../Cryptocurrency/Cryptocurrency";
+import { Cryptocurrency } from "../Cryptocurrency/CryptoCard";
 
 export const PortfolioModalElement = () => {
   return (
