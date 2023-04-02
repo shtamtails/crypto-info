@@ -1,0 +1,8 @@
+@import "../../style/colors.scss";
+
+.add-crypto-modal {
+  &-amount-input,
+  &-crypto {
+    margin: 8px 0;
+  }
+}
