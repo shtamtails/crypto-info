@@ -20,7 +20,7 @@
   &_content {
     width: 800px;
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -42,6 +42,38 @@
     }
     &_body {
       padding: 20px;
+      max-height: 500px;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio_modal_table_header-number,
+  .portfolio_modal_table_body-number {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio_modal_table_header-percent,
+  .portfolio_modal_table_body-percent {
+    display: none;
+  }
+  .portfolio-modal_content {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 450px) {
+  .portfolio_modal_table_header-actions,
+  .portfolio_modal_table_body-actions {
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  .portfolio_modal_table_header-price-change,
+  .portfolio_modal_table_body-price-change {
+    display: none;
   }
 }

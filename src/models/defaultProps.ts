@@ -1,5 +1,5 @@
 type sizes = "xs" | "sm" | "md" | "lg" | "xl";
-export interface Sizing {
+export interface defaultProps {
   pl?: sizes;
   pr?: sizes;
   pt?: sizes;
@@ -11,4 +11,6 @@ export interface Sizing {
   width?: number | string;
   height?: number | string;
   radius?: sizes;
+  fullWidth?: boolean;
+  style?: { [key: string]: string };
 }

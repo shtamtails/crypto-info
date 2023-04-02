@@ -1,6 +1,7 @@
 import { Button } from "../Button/Button";
 import { PortfolioElement } from "./PortfolioElement";
 import "./header.scss";
+import { AiOutlineMenu } from "react-icons/ai";
 
 export const Header: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ export const Header: React.FC = () => {
           My Portfolio
         </Button>
         <Button variant="regular" className="header_links-icon">
-          +
+          <AiOutlineMenu />
         </Button>
       </div>
     </header>

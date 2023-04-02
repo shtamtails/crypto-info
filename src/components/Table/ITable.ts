@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { Sizing } from "../../models/ISizing";
+import { defaultProps } from "../../models/defaultProps";
 
-export interface TableProps extends Sizing {
+export interface TableProps extends defaultProps {
   className?: string;
   children: ReactNode;
   alignLeft?: boolean;

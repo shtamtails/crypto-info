@@ -5,13 +5,13 @@ import "./table.scss";
 
 export default function createTableComponent(tag: keyof JSX.IntrinsicElements): React.FC<TableProps> {
   return (props) => {
-    const { children, alignLeft, alignRight, alignCenter } = props;
+    const { children, alignLeft, alignRight, alignCenter, style } = props;
     const tableClassnames: string[] = [];
     alignLeft && tableClassnames.push("text-left");
     alignRight && tableClassnames.push("text-right");
     alignCenter && tableClassnames.push("text-center");
     const className = getDefaultClassName(props, tableClassnames);
-    return React.createElement(tag, { className }, children);
+    return React.createElement(tag, { className, style }, children);
   };
 }
 
