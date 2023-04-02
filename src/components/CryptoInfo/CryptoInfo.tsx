@@ -1,52 +1,47 @@
 import { ResponsiveContainer, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Area } from "recharts";
 import "./cryptoInfo.scss";
 import { Button } from "../Button/Button";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const CryptoInfo: React.FC = () => {
-  const data = [
+  const defaultData = [
     {
       name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+      amt: 28458,
     },
     {
       name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
+      amt: 28455,
     },
     {
       name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
+      amt: 28445,
     },
     {
       name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
+      amt: 28436,
     },
     {
       name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
+      amt: 28431,
     },
     {
       name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
+      amt: 28413,
     },
     {
       name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+      amt: 28421,
     },
   ];
+  const [data, setData] = useState<{ name: string; amt: number }[]>(defaultData);
+
+  const chartFillPositiveColor = "#69db7c";
+  const chartStrokePositiveColor = "#40c057";
+  const chartFillNegativeColor = "#ff8787";
+  const chartStoreNegativeColor = "#fa5252";
+
   return (
     <div className="crypto-info">
       <div className="crypto-info_header">
@@ -91,26 +86,7 @@ export const CryptoInfo: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="crypto-info_body">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart
-            width={500}
-            height={400}
-            data={data}
-            margin={{
-              top: 10,
-              left: 0,
-              bottom: 0,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Area type="monotone" dataKey="uv" stroke="#40C057" fill="#69DB7C" />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+      <div className="crypto-info_body"></div>
     </div>
   );
 };
