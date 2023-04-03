@@ -49,3 +49,11 @@ body {
 .jcc {
   justify-content: center;
 }
+
+.color-positive {
+  color: $text-positive;
+}
+
+.color-negative {
+  color: $text-negative;
+}

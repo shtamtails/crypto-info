@@ -6,7 +6,7 @@ import { CryptoListElementProps } from "./types";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
   const { rank, iconURL, name, shortName, price, marketCap, vwap, supply, volume, changePercent } = props;
-
+  const isPercentPositive = +changePercent > 0;
   return (
     <TableRow className="crypto-list_element">
       <TableDataCell alignCenter className="crypto-list_element-rank">
@@ -30,7 +30,10 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       <TableDataCell alignCenter className="crypto-list_element-volume">
         ${abbreviateNumber(volume)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-change">
+      <TableDataCell
+        alignCenter
+        className={`crypto-list_element-change ${isPercentPositive ? "color-positive" : "color-negative"}`}
+      >
         {Number(changePercent).toFixed(2)}%
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-action flex jcc">
