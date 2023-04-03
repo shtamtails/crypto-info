@@ -10,7 +10,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
   const [assetsOffset, setAssetsOffset] = useState<number>(0);
   const [assets, setAssets] = useState<AssetData[]>([]);
   const [assetsLoading, setAssetsLoading] = useState<boolean>(false);
-  const assetsCount = 5;
+  const assetsPerLoad = 5;
 
   const loadAssets = async () => {
     setAssetsLoading(true);
@@ -63,7 +63,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
           ))}
         </TableBody>
       </Table>
-      <Button variant="regular" fullWidth onClick={() => setAssetsOffset((prev) => (prev += assetsCount))}>
+      <Button variant="regular" fullWidth onClick={() => setAssetsOffset((prev) => (prev += assetsPerLoad))}>
         {assetsLoading ? "Loading..." : "Load more"}
       </Button>
     </div>
