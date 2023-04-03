@@ -8,21 +8,20 @@ import { AssetData, fetchAssets } from "../../utils/API";
 
 export const CryptoList: React.FC<CryptoListProps> = (props) => {
   const [assetsOffset, setAssetsOffset] = useState<number>(0);
-  const [assets, setAssets] = useState<AssetData[] | []>([]);
+  const [assets, setAssets] = useState<AssetData[]>([]);
   const [assetsLoading, setAssetsLoading] = useState<boolean>(false);
+  const assetsCount = 5;
+
+  const loadAssets = async () => {
+    setAssetsLoading(true);
+    const assets = await fetchAssets(5, assetsOffset);
+    setAssets((prev) => [...prev, ...assets.data]);
+    setAssetsLoading(false);
+  };
 
   useEffect(() => {
-    (async () => {
-      setAssetsLoading(true);
-      const assets = await fetchAssets(5, assetsOffset);
-      setAssets((prev) => [...prev, ...assets.data]);
-      setAssetsLoading(false);
-    })();
+    loadAssets();
   }, [assetsOffset]);
-
-  const handleLoadMoreClick = () => {
-    setAssetsOffset((prev) => (prev += 5));
-  };
 
   return (
     <div className="crypto-list">
@@ -63,7 +62,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
           ))}
         </TableBody>
       </Table>
-      <Button variant="regular" fullWidth onClick={handleLoadMoreClick}>
+      <Button variant="regular" fullWidth onClick={() => setAssetsOffset((prev) => (prev += assetsCount))}>
         {assetsLoading ? "Loading..." : "Load more"}
       </Button>
     </div>
