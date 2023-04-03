@@ -3,31 +3,33 @@ import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
 import { fetchPriceHistory, timePeriods } from "../../utils/API";
-import { fetchAssetInfo } from "../../utils/API/api";
-import { AssetData } from "../../utils/API/types";
+import { fetchAssetInfo, getCryptoLogo } from "../../utils/API/api";
+import { AssetData, TimePeriods } from "../../utils/API/types";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { formatNumber } from "../../utils/formatNumber";
+import { useParams } from "react-router-dom";
 
 export const CryptoInfo: React.FC = () => {
+  const { crypto } = useParams();
   const [time, setTime] = useState<string[]>([""]);
   const [prices, setPrices] = useState<number[]>([0]);
-  const [selectedTimePeriod, setSelectedTimePeriod] = useState<timePeriods>("1d");
+  const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(TimePeriods.ONE_DAY);
   const [assetInfo, setAssetInfo] = useState<AssetData | null>(null);
 
-  const handleTimePeriodBntClick = (period: timePeriods) => {
+  const handleTimePeriodBntClick = (period: TimePeriods) => {
     setSelectedTimePeriod(period);
   };
 
-  const timePeriods: { label: string; value: timePeriods }[] = [
-    { label: "1D", value: "1d" },
-    { label: "1W", value: "1w" },
-    { label: "1M", value: "1m" },
-    { label: "3M", value: "3m" },
-    { label: "6M", value: "6m" },
-    { label: "1Y", value: "1y" },
+  const timePeriods: { label: string; value: TimePeriods }[] = [
+    { label: "1D", value: TimePeriods.ONE_DAY },
+    { label: "1W", value: TimePeriods.ONE_WEEK },
+    { label: "1M", value: TimePeriods.ONE_MONTH },
+    { label: "3M", value: TimePeriods.THREE_MONTHS },
+    { label: "6M", value: TimePeriods.SIX_MONTHS },
+    { label: "1Y", value: TimePeriods.ONE_YEAR },
   ];
 
-  const generateTimePeriodButton = (timePeriod: { label: string; value: timePeriods }) => {
+  const generateTimePeriodButton = (timePeriod: { label: string; value: TimePeriods }) => {
     const { label, value } = timePeriod;
     const variant = selectedTimePeriod === value ? "regular" : "outline";
     return (
@@ -61,14 +63,16 @@ export const CryptoInfo: React.FC = () => {
   };
 
   const loadAssetInfo = async () => {
-    const assetInfo = await fetchAssetInfo("bitcoin");
-    assetInfo.priceUsd = formatNumber(assetInfo.priceUsd);
-    assetInfo.changePercent24Hr = formatNumber(assetInfo.changePercent24Hr);
-    assetInfo.maxSupply = abbreviateNumber(assetInfo.maxSupply);
-    assetInfo.vwap24Hr = abbreviateNumber(assetInfo.vwap24Hr);
-    assetInfo.marketCapUsd = abbreviateNumber(assetInfo.marketCapUsd);
-    assetInfo.volumeUsd24Hr = abbreviateNumber(assetInfo.volumeUsd24Hr);
-    setAssetInfo(assetInfo);
+    if (crypto) {
+      const assetInfo = await fetchAssetInfo(crypto);
+      assetInfo.priceUsd = formatNumber(assetInfo.priceUsd);
+      assetInfo.changePercent24Hr = formatNumber(assetInfo.changePercent24Hr);
+      assetInfo.maxSupply = abbreviateNumber(assetInfo.maxSupply);
+      assetInfo.vwap24Hr = abbreviateNumber(assetInfo.vwap24Hr);
+      assetInfo.marketCapUsd = abbreviateNumber(assetInfo.marketCapUsd);
+      assetInfo.volumeUsd24Hr = abbreviateNumber(assetInfo.volumeUsd24Hr);
+      setAssetInfo(assetInfo);
+    }
   };
 
   useEffect(() => {
@@ -89,7 +93,7 @@ export const CryptoInfo: React.FC = () => {
       <div className="crypto-info_header">
         <div className="crypto-info_header-crypto">
           <div className="crypto-info_header-crypto-icon">
-            <img src="https://assets.coincap.io/assets/icons/btc@2x.png" />
+            <img src={getCryptoLogo(assetInfo?.symbol || "")} />
           </div>
           <div className="crypto-info_header-crypto-main">
             <div className="crypto-info_header-crypto-main-name">

@@ -10,5 +10,6 @@ export interface CryptoListElementProps {
   vwap: string;
   supply: string;
   volume: string;
+  id: string;
   changePercent: string;
 }

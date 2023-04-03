@@ -1,5 +1,6 @@
 import { CryptoCardProps } from "./types";
 import "./cryptoCard.scss";
+import { Link } from "react-router-dom";
 
 export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
   const { logoURL, name, shortName } = props;

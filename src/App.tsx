@@ -7,6 +7,7 @@ import { Header } from "./components/Header";
 import "./style/App.scss";
 import "./style/utils.scss";
 import { fetchAssets } from "./utils/API/api";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [modalVisible, setModalVisible] = useState(true);
@@ -18,8 +19,10 @@ function App() {
       {/* <PortfolioModal isVisible={modalVisible} setIsVisible={setModalVisible} /> */}
       {/* <AddCryptoModal visible={modalVisible} setVisible={setModalVisible} /> */}
       <Header />
-      <CryptoList />
-      <CryptoInfo />
+      <Routes>
+        <Route path="/" element={<CryptoList />} />
+        <Route path="/:crypto" element={<CryptoInfo />} />
+      </Routes>
     </>
   );
 }

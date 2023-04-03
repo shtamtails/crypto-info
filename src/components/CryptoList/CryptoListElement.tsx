@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../../reusable/Button";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import { TableRow, TableDataCell } from "../../reusable/Table";
@@ -5,7 +6,7 @@ import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { CryptoListElementProps } from "./types";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
-  const { rank, iconURL, name, shortName, price, marketCap, vwap, supply, volume, changePercent } = props;
+  const { rank, iconURL, name, shortName, price, marketCap, vwap, supply, volume, changePercent, id } = props;
   const isPercentPositive = +changePercent > 0;
   return (
     <TableRow className="crypto-list_element">
@@ -13,7 +14,9 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
         {rank}
       </TableDataCell>
       <TableDataCell className="crypto-list_element-name">
-        <CryptoCard name={name} logoURL={iconURL} shortName={shortName} />
+        <Link to={id}>
+          <CryptoCard name={name} logoURL={iconURL} shortName={shortName} />
+        </Link>
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-price">
         ${Number(price).toFixed(2)}

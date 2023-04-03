@@ -25,11 +25,16 @@ export interface IAssets {
 
 export type timePeriods = "1d" | "1w" | "1m" | "3m" | "6m" | "1y";
 
+export enum TimePeriods {
+  ONE_DAY = "1d",
+  ONE_WEEK = "1w",
+  ONE_MONTH = "1m",
+  THREE_MONTHS = "3m",
+  SIX_MONTHS = "6m",
+  ONE_YEAR = "1y",
+}
+
 export type PriceData = {
   priceUsd: string;
   time: number;
-};
-
-export type IPriceHistory = {
-  data: PriceData[];
 };

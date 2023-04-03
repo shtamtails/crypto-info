@@ -4,7 +4,7 @@ import { CryptoListProps } from "./types";
 import "./cryptoList.scss";
 import { useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
-import { AssetData, fetchAssets } from "../../utils/API";
+import { AssetData, fetchAssets, getCryptoLogo } from "../../utils/API";
 
 export const CryptoList: React.FC<CryptoListProps> = (props) => {
   const [assetsOffset, setAssetsOffset] = useState<number>(0);
@@ -49,7 +49,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
             <CryptoListElement
               key={asset.id}
               rank={asset.rank}
-              iconURL="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png"
+              iconURL={getCryptoLogo(asset.symbol)}
               name={asset.name}
               shortName={asset.symbol}
               price={asset.priceUsd}
@@ -58,6 +58,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
               supply={asset.supply}
               volume={asset.volumeUsd24Hr}
               changePercent={asset.changePercent24Hr}
+              id={asset.id}
             />
           ))}
         </TableBody>
