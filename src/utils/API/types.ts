@@ -13,6 +13,11 @@ export interface AssetData {
   vwap24Hr: string;
 }
 
+export interface IAsset {
+  data: AssetData;
+  timestamp: number;
+}
+
 export interface IAssets {
   data: AssetData[];
   timestamp: number;

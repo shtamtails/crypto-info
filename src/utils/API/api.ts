@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAssets, IPriceHistory, PriceData, timePeriods } from "./types";
+import { IAsset, IAssets, IPriceHistory, PriceData, timePeriods } from "./types";
 
 export const api = axios.create({
   baseURL: "https://api.coincap.io/v2",
@@ -8,6 +8,12 @@ export const api = axios.create({
 export const fetchAssets = async (limit: number, offset: number) => {
   const response = await api.get(`/assets?limit=${limit}&offset=${offset}`);
   const data: IAssets = response.data;
+  return data.data;
+};
+
+export const fetchAssetInfo = async (asset: string) => {
+  const response = await api.get(`/assets/${asset}`);
+  const data: IAsset = response.data;
   return data.data;
 };
 
