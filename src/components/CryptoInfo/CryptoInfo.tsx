@@ -41,8 +41,8 @@ export const CryptoInfo: React.FC = () => {
 
   const timePeriodButtons = timePeriods.map(generateTimePeriodButton);
 
-  const loadPriceHistory = async () => {
-    const priceData = await fetchPriceHistory("bitcoin", selectedTimePeriod);
+  const loadPriceHistory = async (id: string) => {
+    const priceData = await fetchPriceHistory(id, selectedTimePeriod);
     setTime(
       priceData.map((d) => {
         const date = new Date(d.time);
@@ -76,9 +76,12 @@ export const CryptoInfo: React.FC = () => {
   };
 
   useEffect(() => {
-    loadPriceHistory();
     loadAssetInfo();
   }, [selectedTimePeriod]);
+
+  useEffect(() => {
+    assetInfo && loadPriceHistory(assetInfo.id);
+  }, [assetInfo]);
 
   const getClassNameColor = (changePercent: string | undefined) => {
     if (changePercent) {
@@ -93,7 +96,7 @@ export const CryptoInfo: React.FC = () => {
       <div className="crypto-info_header">
         <div className="crypto-info_header-crypto">
           <div className="crypto-info_header-crypto-icon">
-            <img src={getCryptoLogo(assetInfo?.symbol || "")} />
+            <img src={assetInfo ? getCryptoLogo(assetInfo?.symbol) : ""} />
           </div>
           <div className="crypto-info_header-crypto-main">
             <div className="crypto-info_header-crypto-main-name">
