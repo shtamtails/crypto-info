@@ -124,7 +124,7 @@ export const CryptoInfo: React.FC = () => {
               <span>MARKET CAP</span> ${assetInfo?.marketCapUsd || "..."}
             </div>
             <div className="crypto-info_header-stats-col-row">
-              <span>VOLUME</span> (24HR) ${assetInfo?.volumeUsd24Hr || "..."}
+              <span>VOLUME (24HR)</span> ${assetInfo?.volumeUsd24Hr || "..."}
             </div>
           </div>
           <div className="crypto-info_header-stats-col crypto-info_add-button">
