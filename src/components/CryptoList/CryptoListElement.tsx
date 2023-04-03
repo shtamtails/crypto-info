@@ -5,6 +5,11 @@ import { CryptoListElementProps } from "./types";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
   const { rank, iconURL, name, shortName, price, marketCap, vwap, supply, volume, changePercent } = props;
+
+  const transformData = (data: string) => {
+    return Number(data).toFixed(2);
+  };
+
   return (
     <TableRow className="crypto-list_element">
       <TableDataCell alignCenter className="crypto-list_element-rank">
@@ -16,22 +21,22 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       </TableDataCell>
 
       <TableDataCell alignCenter className="crypto-list_element-price">
-        {price}
+        ${transformData(price)}
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-market-cap">
-        {marketCap}
+        ${transformData(marketCap)}
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-vwap">
-        {vwap}
+        ${transformData(vwap)}
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-supply">
-        {supply}
+        ${transformData(supply)}
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-volume">
-        {volume}
+        ${transformData(volume)}
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-change">
-        {changePercent}
+        {transformData(changePercent)}%
       </TableDataCell>
       <TableDataCell alignCenter className="crypto-list_element-action flex jcc">
         <Button variant="regular">+</Button>
