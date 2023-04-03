@@ -6,7 +6,7 @@ import { fetchPriceHistory, timePeriods } from "../../utils/API";
 import { fetchAssetInfo } from "../../utils/API/api";
 import { AssetData } from "../../utils/API/types";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
-import { formatNumber } from "../../utils/formatStringToNum";
+import { formatNumber } from "../../utils/formatNumber";
 
 export const CryptoInfo: React.FC = () => {
   const [time, setTime] = useState<string[]>([""]);
