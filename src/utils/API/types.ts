@@ -17,3 +17,14 @@ export interface IAssets {
   data: AssetData[];
   timestamp: number;
 }
+
+export type timePeriods = "1d" | "1w" | "1m" | "3m" | "6m" | "1y";
+
+export type PriceData = {
+  priceUsd: string;
+  time: number;
+};
+
+export type IPriceHistory = {
+  data: PriceData[];
+};

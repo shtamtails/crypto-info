@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
+import { fetchPriceHistory, timePeriods } from "../../utils/API";
 
 export const CryptoInfo: React.FC = () => {
-  const [time, setTime] = useState<string[]>(["1", "1", "1", "1", "1", "1", "1"]);
-  const [prices, setPrices] = useState<number[]>([1, 2, 3, 4, 5, 6, 7]);
+  const [time, setTime] = useState<string[]>([""]);
+  const [prices, setPrices] = useState<number[]>([0]);
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<timePeriods>("1d");
 
-  const handleTimePeriodBntClick = (periood: timePeriods) => {
-    setSelectedTimePeriod(periood);
+  const handleTimePeriodBntClick = (period: timePeriods) => {
+    setSelectedTimePeriod(period);
   };
 
-  type timePeriods = "1d" | "1w" | "1m" | "3m" | "6m" | "1y";
   const timePeriods: { label: string; value: timePeriods }[] = [
     { label: "1D", value: "1d" },
     { label: "1W", value: "1w" },
@@ -33,6 +33,27 @@ export const CryptoInfo: React.FC = () => {
   };
 
   const timePeriodButtons = timePeriods.map(generateTimePeriodButton);
+
+  const loadPriceHistory = async () => {
+    const priceData = await fetchPriceHistory("bitcoin", selectedTimePeriod);
+    setTime(
+      priceData.map((d) => {
+        const date = new Date(d.time);
+        const formattedDate = date.toLocaleDateString(undefined, {
+          day: "2-digit",
+          month: "2-digit",
+          year: "2-digit",
+        });
+        const formattedTime = date.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+        return `${formattedDate} ${formattedTime}`;
+      })
+    );
+    setPrices(priceData.map((d) => parseFloat(d.priceUsd)));
+  };
+
+  useEffect(() => {
+    loadPriceHistory();
+  }, [selectedTimePeriod]);
 
   return (
     <div className="crypto-info">

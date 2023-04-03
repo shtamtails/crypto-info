@@ -15,7 +15,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
   const loadAssets = async () => {
     setAssetsLoading(true);
     const assets = await fetchAssets(5, assetsOffset);
-    setAssets((prev) => [...prev, ...assets.data]);
+    setAssets((prev) => [...prev, ...assets]);
     setAssetsLoading(false);
   };
 
