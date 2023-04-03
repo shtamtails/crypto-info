@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
@@ -8,9 +8,11 @@ import { AssetData, TimePeriods } from "../../utils/API/types";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { formatNumber } from "../../utils/formatNumber";
 import { useParams } from "react-router-dom";
+import { ModalContext } from "../../context/modalContext";
 
 export const CryptoInfo: React.FC = () => {
   const { crypto } = useParams();
+  const { setAddCryptoModalOpened } = useContext(ModalContext);
   const [time, setTime] = useState<string[]>([""]);
   const [prices, setPrices] = useState<number[]>([0]);
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(TimePeriods.ONE_DAY);
@@ -131,7 +133,13 @@ export const CryptoInfo: React.FC = () => {
             </div>
           </div>
           <div className="crypto-info_header-stats-col crypto-info_add-button">
-            <Button height="100%" variant="regular">
+            <Button
+              height="100%"
+              variant="regular"
+              onClick={() => {
+                setAddCryptoModalOpened(true);
+              }}
+            >
               +
             </Button>
           </div>

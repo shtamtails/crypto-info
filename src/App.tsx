@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { AddCryptoModal } from "./components/AddCryptoModal";
 import { PortfolioModal } from "./components/PortfolioModal";
 import { CryptoInfo } from "./components/CryptoInfo";
@@ -8,16 +8,16 @@ import "./style/App.scss";
 import "./style/utils.scss";
 import { fetchAssets } from "./utils/API/api";
 import { Route, Routes } from "react-router-dom";
+import { ModalContext, ModalProvider } from "./context/modalContext";
 
 function App() {
-  const [modalVisible, setModalVisible] = useState(true);
-
-  useEffect(() => {}, []);
+  const { portfolioModalOpened, addCryptoModalOpened, setAddCryptoModalOpened, setPortfolioModalOpened } =
+    useContext(ModalContext);
 
   return (
     <>
-      {/* <PortfolioModal isVisible={modalVisible} setIsVisible={setModalVisible} /> */}
-      {/* <AddCryptoModal visible={modalVisible} setVisible={setModalVisible} /> */}
+      <PortfolioModal isVisible={portfolioModalOpened} setIsVisible={setPortfolioModalOpened} />
+      <AddCryptoModal visible={addCryptoModalOpened} setVisible={setAddCryptoModalOpened} />
       <Header />
       <Routes>
         <Route path="/" element={<CryptoList />} />
