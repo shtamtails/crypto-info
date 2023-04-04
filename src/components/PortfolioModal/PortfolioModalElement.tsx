@@ -17,6 +17,7 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (props)
   const [priceChange, setPriceChange] = useState<number>(0);
   const [newPrice, setNewPrice] = useState<number>(0);
   const [pricePercentChange, setPricePercentChange] = useState<number>(0);
+
   const [editCryptoModalOpened, setEditCryptoModalOpened] = useState<boolean>(false);
   const [editCryptoAmount, setEditCryptoAmount] = useState<string>(amount.toString());
 
@@ -32,7 +33,7 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (props)
 
   useEffect(() => {
     loadCurrentRates();
-  }, []);
+  }, [amount]);
 
   const handleEditSubmit = () => {
     const updatedPortfolio = portfolio?.map((el) => {
