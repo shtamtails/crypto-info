@@ -65,7 +65,14 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (props)
           <div className="portfolio_modal_table_body-crypto-card">
             <CryptoCard name={name} logoURL={getCryptoLogo(symbol)} shortName={symbol} />
           </div>
-          <div className="portfolio_modal_table_body-crypto-name">{name}</div>
+          <div
+            className="portfolio_modal_table_body-crypto-name"
+            onClick={() => {
+              setEditCryptoModalOpened(true);
+            }}
+          >
+            {name}
+          </div>
         </TableDataCell>
         <TableDataCell alignCenter className="portfolio_modal_table_body-amount">
           {amount}

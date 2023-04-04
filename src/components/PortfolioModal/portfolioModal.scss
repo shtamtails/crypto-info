@@ -30,16 +30,16 @@
 }
 
 @media (max-width: 550px) {
-  .portfolio_modal_table_header-actions,
-  .portfolio_modal_table_body-actions {
-    display: none !important;
+  .portfolio_modal_table_header-price-change,
+  .portfolio_modal_table_body-price-change {
+    display: none;
   }
 }
 
 @media (max-width: 450px) {
-  .portfolio_modal_table_header-price-change,
-  .portfolio_modal_table_body-price-change {
-    display: none;
+  .portfolio_modal_table_header-actions,
+  .portfolio_modal_table_body-actions {
+    display: none !important;
   }
 }
 
