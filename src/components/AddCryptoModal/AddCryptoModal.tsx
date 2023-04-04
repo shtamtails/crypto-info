@@ -12,7 +12,7 @@ import { DefaultContext, IPortfolio } from "../../context";
 export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisible }) => {
   const amountRef = useRef<HTMLInputElement>(null);
 
-  const { selectedCrypto, setPortfolio } = useContext(DefaultContext);
+  const { selectedCrypto, setPortfolio, setAddCryptoModalOpened } = useContext(DefaultContext);
 
   const handleAddCrypto = async () => {
     const amount = amountRef.current?.value;
@@ -53,6 +53,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisi
         setPortfolio(portfolio);
       }
     }
+    amount && setAddCryptoModalOpened(false);
   };
 
   return (
