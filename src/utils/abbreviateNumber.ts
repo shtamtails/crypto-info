@@ -1,3 +1,4 @@
+// Utility that transforms numbers like 1.000.000 to 1m 1.000.000.000 to 1b  etc.
 export const abbreviateNumber = (num: number | string): string => {
   let number = +num;
   const suffixes = ["", "k", "m", "b", "t"];

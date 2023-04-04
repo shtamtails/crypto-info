@@ -15,8 +15,8 @@ export const CryptoInfo: React.FC = () => {
   const { setAddCryptoModalOpened, setSelectedCrypto } = useContext(DefaultContext);
   const [time, setTime] = useState<string[]>([""]);
   const [prices, setPrices] = useState<number[]>([0]);
-  const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(TimePeriods.ONE_DAY);
-  const [assetInfo, setAssetInfo] = useState<AssetData | null>(null);
+  const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(TimePeriods.ONE_DAY); // Default time period in Chart
+  const [assetInfo, setAssetInfo] = useState<AssetData | null>(null); // Info about the crypto
 
   const handleTimePeriodBntClick = (period: TimePeriods) => {
     setSelectedTimePeriod(period);
