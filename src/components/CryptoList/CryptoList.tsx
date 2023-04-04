@@ -1,4 +1,10 @@
-import { Table, TableHeader, TableRow, TableHeaderCell, TableBody } from "../../reusable/Table";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+} from "../../reusable/Table";
 import { CryptoListElement } from "./CryptoListElement";
 import { CryptoListProps } from "./types";
 import "./cryptoList.scss";
@@ -26,7 +32,10 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
   return (
     <div className="crypto-list">
       <Table>
-        <TableHeader className="crypto-list-head" style={{ backgroundColor: "#f1f3f5" }}>
+        <TableHeader
+          className="crypto-list-head"
+          style={{ backgroundColor: "#f1f3f5" }}
+        >
           <TableRow>
             <TableHeaderCell alignCenter className="th-rank">
               Rank
@@ -35,11 +44,17 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
               Name
             </TableHeaderCell>
             <TableHeaderCell className="th-price">Price</TableHeaderCell>
-            <TableHeaderCell className="th-market-cap">Market Cap</TableHeaderCell>
+            <TableHeaderCell className="th-market-cap">
+              Market Cap
+            </TableHeaderCell>
             <TableHeaderCell className="th-vwap">VWAP (24Hr)</TableHeaderCell>
             <TableHeaderCell className="th-supply">Supply</TableHeaderCell>
-            <TableHeaderCell className="th-volume">Volume (24Hr)</TableHeaderCell>
-            <TableHeaderCell className="th-change">Change (24Hr)</TableHeaderCell>
+            <TableHeaderCell className="th-volume">
+              Volume (24Hr)
+            </TableHeaderCell>
+            <TableHeaderCell className="th-change">
+              Change (24Hr)
+            </TableHeaderCell>
             <TableHeaderCell className="th-action">Action</TableHeaderCell>
           </TableRow>
         </TableHeader>
@@ -63,7 +78,11 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
           ))}
         </TableBody>
       </Table>
-      <Button variant="regular" fullWidth onClick={() => setAssetsOffset((prev) => (prev += assetsPerLoad))}>
+      <Button
+        variant="regular"
+        fullWidth
+        onClick={() => setAssetsOffset((prev) => (prev += assetsPerLoad))}
+      >
         {assetsLoading ? "Loading..." : "Load more"}
       </Button>
     </div>

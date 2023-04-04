@@ -12,10 +12,13 @@ import { DefaultContext } from "../../context/context";
 
 export const CryptoInfo: React.FC = () => {
   const { crypto } = useParams();
-  const { setAddCryptoModalOpened, setSelectedCrypto } = useContext(DefaultContext);
+  const { setAddCryptoModalOpened, setSelectedCrypto } =
+    useContext(DefaultContext);
   const [time, setTime] = useState<string[]>([""]);
   const [prices, setPrices] = useState<number[]>([0]);
-  const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(TimePeriods.ONE_DAY); // Default time period in Chart
+  const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(
+    TimePeriods.ONE_DAY
+  ); // Default time period in Chart
   const [assetInfo, setAssetInfo] = useState<AssetData | null>(null); // Info about the crypto
 
   const handleTimePeriodBntClick = (period: TimePeriods) => {
@@ -31,11 +34,19 @@ export const CryptoInfo: React.FC = () => {
     { label: "1Y", value: TimePeriods.ONE_YEAR },
   ];
 
-  const generateTimePeriodButton = (timePeriod: { label: string; value: TimePeriods }) => {
+  const generateTimePeriodButton = (timePeriod: {
+    label: string;
+    value: TimePeriods;
+  }) => {
     const { label, value } = timePeriod;
     const variant = selectedTimePeriod === value ? "regular" : "outline";
     return (
-      <Button key={value} variant={variant} radius="xl" onClick={() => handleTimePeriodBntClick(value)}>
+      <Button
+        key={value}
+        variant={variant}
+        radius="xl"
+        onClick={() => handleTimePeriodBntClick(value)}
+      >
         {label}
       </Button>
     );
@@ -53,7 +64,10 @@ export const CryptoInfo: React.FC = () => {
           month: "2-digit",
           year: "2-digit",
         });
-        const formattedTime = date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+        const formattedTime = date.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
         if (selectedTimePeriod === "1d" || selectedTimePeriod === "1w") {
           return `${formattedTime}`;
         } else {
@@ -104,7 +118,9 @@ export const CryptoInfo: React.FC = () => {
             <div className="crypto-info_header-crypto-main-name">
               {assetInfo?.name || "..."} ({assetInfo?.symbol || "..."})
             </div>
-            <div className="crypto-info_header-crypto-main-date">02 April 2023</div>
+            <div className="crypto-info_header-crypto-main-date">
+              02 April 2023
+            </div>
           </div>
         </div>
         <div className="crypto-info_header-stats">
@@ -120,7 +136,11 @@ export const CryptoInfo: React.FC = () => {
             <div className="crypto-info_header-stats-col-row">
               <span>AVERAGE</span> ${assetInfo?.priceUsd || "..."}
             </div>
-            <div className={`crypto-info_header-stats-col-row ${getClassNameColor(assetInfo?.changePercent24Hr)}`}>
+            <div
+              className={`crypto-info_header-stats-col-row ${getClassNameColor(
+                assetInfo?.changePercent24Hr
+              )}`}
+            >
               <span>CHANGE</span> {assetInfo?.changePercent24Hr || "..."}%
             </div>
           </div>
@@ -138,7 +158,12 @@ export const CryptoInfo: React.FC = () => {
               variant="regular"
               onClick={() => {
                 setAddCryptoModalOpened(true);
-                assetInfo && setSelectedCrypto({ name: assetInfo.name, id: assetInfo.id, symbol: assetInfo.symbol });
+                assetInfo &&
+                  setSelectedCrypto({
+                    name: assetInfo.name,
+                    id: assetInfo.id,
+                    symbol: assetInfo.symbol,
+                  });
               }}
             >
               +

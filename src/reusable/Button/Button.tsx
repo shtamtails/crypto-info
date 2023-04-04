@@ -8,7 +8,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
   variant && buttonClassnames.push(`button-${variant}`);
   const className = getDefaultClassName(props, buttonClassnames);
   return (
-    <button className={className} style={{ width: width, height: height }} onClick={onClick}>
+    <button
+      className={className}
+      style={{ width: width, height: height }}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

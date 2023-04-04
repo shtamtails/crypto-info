@@ -9,10 +9,17 @@ import { getCryptoLogo } from "../../utils/API";
 import { fetchAssetInfo } from "../../utils/API/api";
 import { DefaultContext, IPortfolio, ISelectedCrypto } from "../../context";
 
-export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisible }) => {
+export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
+  visible,
+  setVisible,
+}) => {
   const amountRef = useRef<HTMLInputElement>(null);
 
-  const { selectedCrypto = {} as ISelectedCrypto, setPortfolio, setAddCryptoModalOpened } = useContext(DefaultContext);
+  const {
+    selectedCrypto = {} as ISelectedCrypto,
+    setPortfolio,
+    setAddCryptoModalOpened,
+  } = useContext(DefaultContext);
 
   const handleAddCrypto = async () => {
     const amount = amountRef.current?.value;
@@ -27,22 +34,40 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisi
       const selectedCryptoIndex = portfolio.findIndex(
         (crypto: IPortfolio) => crypto.name.toLowerCase() === name.toLowerCase()
       );
+
       const newPortfolio: IPortfolio[] =
         selectedCryptoIndex !== -1
           ? portfolio.map((crypto, index) =>
               index === selectedCryptoIndex
-                ? { ...crypto, ...{ name, id, symbol, amount: (crypto.amount += +amount), priceUsd: newPriceUsd } }
+                ? {
+                    ...crypto,
+                    ...{
+                      name,
+                      id,
+                      symbol,
+                      amount: (crypto.amount += +amount),
+                      priceUsd: newPriceUsd,
+                    },
+                  }
                 : crypto
             )
-          : [...portfolio, { name, id, symbol, amount: +amount, priceUsd: newPriceUsd }];
+          : [
+              ...portfolio,
+              { name, id, symbol, amount: +amount, priceUsd: newPriceUsd },
+            ];
       localStorage.setItem("portfolio", JSON.stringify(newPortfolio));
       setPortfolio(newPortfolio);
+      setAddCryptoModalOpened(false);
     }
-    amount && setAddCryptoModalOpened(false);
   };
 
   return (
-    <Modal visible={visible} setVisible={setVisible} title="Add crypto" className="add-crypto-modal">
+    <Modal
+      visible={visible}
+      setVisible={setVisible}
+      title="Add crypto"
+      className="add-crypto-modal"
+    >
       <CryptoCard
         logoURL={getCryptoLogo(selectedCrypto?.symbol || "")}
         name={selectedCrypto?.name || ""}

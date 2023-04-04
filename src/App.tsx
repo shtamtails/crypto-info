@@ -12,8 +12,13 @@ import { DefaultContext, IPortfolio } from "./context";
 import { Page404 } from "./components/Page404/Page404";
 
 function App() {
-  const { portfolioModalOpened, addCryptoModalOpened, setAddCryptoModalOpened, setPortfolioModalOpened, setPortfolio } =
-    useContext(DefaultContext);
+  const {
+    portfolioModalOpened,
+    addCryptoModalOpened,
+    setAddCryptoModalOpened,
+    setPortfolioModalOpened,
+    setPortfolio,
+  } = useContext(DefaultContext);
 
   const loadCurrentRates = async () => {
     const portfolioData = localStorage.getItem("portfolio") ?? "[]";
@@ -35,8 +40,14 @@ function App() {
 
   return (
     <>
-      <PortfolioModal isVisible={portfolioModalOpened} setIsVisible={setPortfolioModalOpened} />
-      <AddCryptoModal visible={addCryptoModalOpened} setVisible={setAddCryptoModalOpened} />
+      <PortfolioModal
+        isVisible={portfolioModalOpened}
+        setIsVisible={setPortfolioModalOpened}
+      />
+      <AddCryptoModal
+        visible={addCryptoModalOpened}
+        setVisible={setAddCryptoModalOpened}
+      />
       <Header />
       <Routes>
         <Route path="/" element={<CryptoList />} />

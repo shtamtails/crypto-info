@@ -8,8 +8,21 @@ import { useContext } from "react";
 import { DefaultContext } from "../../context/context";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
-  const { rank, iconURL, name, shortName, price, marketCap, vwap, supply, volume, changePercent, id } = props;
-  const { setAddCryptoModalOpened, setSelectedCrypto } = useContext(DefaultContext);
+  const {
+    rank,
+    iconURL,
+    name,
+    shortName,
+    price,
+    marketCap,
+    vwap,
+    supply,
+    volume,
+    changePercent,
+    id,
+  } = props;
+  const { setAddCryptoModalOpened, setSelectedCrypto } =
+    useContext(DefaultContext);
   const isPercentPositive = +changePercent > 0;
   return (
     <TableRow className="crypto-list_element">
@@ -38,11 +51,16 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       </TableDataCell>
       <TableDataCell
         alignCenter
-        className={`crypto-list_element-change ${isPercentPositive ? "color-positive" : "color-negative"}`}
+        className={`crypto-list_element-change ${
+          isPercentPositive ? "color-positive" : "color-negative"
+        }`}
       >
         {Number(changePercent).toFixed(2)}%
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-action flex jcc">
+      <TableDataCell
+        alignCenter
+        className="crypto-list_element-action flex jcc"
+      >
         <Button
           variant="regular"
           onClick={() => {

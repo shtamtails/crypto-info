@@ -13,7 +13,16 @@ import {
 import { Line } from "react-chartjs-2";
 import { PriceChartProps } from "./types";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend
+);
 
 export const PriceChart: React.FC<PriceChartProps> = (props) => {
   const { isChangePositive } = props;
@@ -37,8 +46,12 @@ export const PriceChart: React.FC<PriceChartProps> = (props) => {
         fill: true,
         label: "Price",
         data: props.data,
-        borderColor: `${isChangePositive ? chartStrokePositiveColor : chartStoreNegativeColor}`,
-        backgroundColor: `${isChangePositive ? chartFillPositiveColor : chartFillNegativeColor}`,
+        borderColor: `${
+          isChangePositive ? chartStrokePositiveColor : chartStoreNegativeColor
+        }`,
+        backgroundColor: `${
+          isChangePositive ? chartFillPositiveColor : chartFillNegativeColor
+        }`,
       },
     ],
   };

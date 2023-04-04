@@ -11,15 +11,20 @@ import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
 import { DefaultContext } from "../../context";
 
-export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (props) => {
+export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (
+  props
+) => {
   const { amount, name, priceUsd, id, symbol } = props;
   const { portfolio, setPortfolio } = useContext(DefaultContext);
   const [priceChange, setPriceChange] = useState<number>(0);
   const [newPrice, setNewPrice] = useState<number>(0);
   const [pricePercentChange, setPricePercentChange] = useState<number>(0);
 
-  const [editCryptoModalOpened, setEditCryptoModalOpened] = useState<boolean>(false);
-  const [editCryptoAmount, setEditCryptoAmount] = useState<string>(amount.toString());
+  const [editCryptoModalOpened, setEditCryptoModalOpened] =
+    useState<boolean>(false);
+  const [editCryptoAmount, setEditCryptoAmount] = useState<string>(
+    amount.toString()
+  );
 
   const loadCurrentRates = async () => {
     const rates = await fetchAssetInfo(id);
@@ -53,17 +58,32 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (props)
 
   return (
     <>
-      <Modal visible={editCryptoModalOpened} setVisible={setEditCryptoModalOpened} title="Edit crypto">
-        <Input fullWidth value={editCryptoAmount} setValue={setEditCryptoAmount} label="Edit amount" />
+      <Modal
+        visible={editCryptoModalOpened}
+        setVisible={setEditCryptoModalOpened}
+        title="Edit crypto"
+      >
+        <Input
+          fullWidth
+          value={editCryptoAmount}
+          setValue={setEditCryptoAmount}
+          label="Edit amount"
+        />
         <Button variant="regular" mt="lg" fullWidth onClick={handleEditSubmit}>
           Submit
         </Button>
       </Modal>
       <TableRow>
-        <TableDataCell className="portfolio_modal_table_body-number">1</TableDataCell>
+        <TableDataCell className="portfolio_modal_table_body-number">
+          1
+        </TableDataCell>
         <TableDataCell>
           <div className="portfolio_modal_table_body-crypto-card">
-            <CryptoCard name={name} logoURL={getCryptoLogo(symbol)} shortName={symbol} />
+            <CryptoCard
+              name={name}
+              logoURL={getCryptoLogo(symbol)}
+              shortName={symbol}
+            />
           </div>
           <div
             className="portfolio_modal_table_body-crypto-name"
@@ -74,11 +94,17 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (props)
             {name}
           </div>
         </TableDataCell>
-        <TableDataCell alignCenter className="portfolio_modal_table_body-amount">
+        <TableDataCell
+          alignCenter
+          className="portfolio_modal_table_body-amount"
+        >
           {amount}
         </TableDataCell>
         <TableDataCell alignCenter>{formatNumber(newPrice)}$</TableDataCell>
-        <TableDataCell alignCenter className="portfolio_modal_table_body-price-change">
+        <TableDataCell
+          alignCenter
+          className="portfolio_modal_table_body-price-change"
+        >
           {formatNumber(priceChange)}$
         </TableDataCell>
         <TableDataCell

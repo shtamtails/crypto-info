@@ -1,11 +1,21 @@
 import axios from "axios";
-import { IAssets, IAsset, PriceData, TimePeriods, AssetData, Rates } from "./types";
+import {
+  IAssets,
+  IAsset,
+  PriceData,
+  TimePeriods,
+  AssetData,
+  Rates,
+} from "./types";
 
 export const api = axios.create({
   baseURL: "https://api.coincap.io/v2",
 });
 
-export const fetchData = async <T>(endpoint: string, params?: Record<string, any>): Promise<T> => {
+export const fetchData = async <T>(
+  endpoint: string,
+  params?: Record<string, any>
+): Promise<T> => {
   const response = await api.get(endpoint, { params });
   return response.data.data;
 };
@@ -26,7 +36,10 @@ export const fetchRates = async (id: string) => {
   return data;
 };
 
-export const fetchPriceHistory = async (symbol: string, timePeriod: TimePeriods): Promise<PriceData[]> => {
+export const fetchPriceHistory = async (
+  symbol: string,
+  timePeriod: TimePeriods
+): Promise<PriceData[]> => {
   let interval = "h1";
   const now = new Date();
   const startDate = new Date();

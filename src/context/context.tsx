@@ -1,5 +1,10 @@
 import { createContext, useState } from "react";
-import { DefaultContextProps, ContextProviderProps, ISelectedCrypto, IPortfolio } from "./types";
+import {
+  DefaultContextProps,
+  ContextProviderProps,
+  ISelectedCrypto,
+  IPortfolio,
+} from "./types";
 
 export const DefaultContext = createContext<DefaultContextProps>({
   selectedCrypto: { name: "", id: "", symbol: "" },
@@ -12,11 +17,19 @@ export const DefaultContext = createContext<DefaultContextProps>({
   setPortfolio: () => {},
 });
 
-export const ContextProvider: React.FC<ContextProviderProps> = ({ children }) => {
-  const [portfolioModalOpened, setPortfolioModalOpened] = useState<boolean>(false);
-  const [addCryptoModalOpened, setAddCryptoModalOpened] = useState<boolean>(false);
+export const ContextProvider: React.FC<ContextProviderProps> = ({
+  children,
+}) => {
+  const [portfolioModalOpened, setPortfolioModalOpened] =
+    useState<boolean>(false);
+  const [addCryptoModalOpened, setAddCryptoModalOpened] =
+    useState<boolean>(false);
 
-  const [selectedCrypto, setSelectedCrypto] = useState<ISelectedCrypto>({ name: "", id: "", symbol: "" });
+  const [selectedCrypto, setSelectedCrypto] = useState<ISelectedCrypto>({
+    name: "",
+    id: "",
+    symbol: "",
+  });
   const [portfolio, setPortfolio] = useState<IPortfolio[] | null>(null);
 
   return (

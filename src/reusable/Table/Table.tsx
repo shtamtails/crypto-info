@@ -3,7 +3,9 @@ import { getDefaultClassName } from "../../utils/getDefaultClassName";
 import { TableProps } from "./types";
 import "./table.scss";
 
-export default function createTableComponent(tag: keyof JSX.IntrinsicElements): React.FC<TableProps> {
+export default function createTableComponent(
+  tag: keyof JSX.IntrinsicElements
+): React.FC<TableProps> {
   return (props) => {
     const { children, alignLeft, alignRight, alignCenter, style } = props;
     const tableClassnames: string[] = [];

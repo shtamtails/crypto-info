@@ -1,9 +1,9 @@
-export interface PortfioModalProps {
+export interface PortfolioModalProps {
   isVisible: boolean;
   setIsVisible: (arg0: boolean) => void;
 }
 
-export interface PortfioModalElementProps {
+export interface PortfolioModalElementProps {
   name: string;
   amount: string | number;
   priceUsd: string | number;

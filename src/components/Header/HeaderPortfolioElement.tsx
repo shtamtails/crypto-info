@@ -4,7 +4,9 @@ import { getCryptoLogo } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
 import { fetchAssetInfo } from "../../utils/API/api";
 
-export const HeaderPortfolioElement: React.FC<PortfolioElementProps> = (props) => {
+export const HeaderPortfolioElement: React.FC<PortfolioElementProps> = (
+  props
+) => {
   const { name, amount, priceUsd, symbol, id } = props;
   const [currentPrice, setCurrentPrice] = useState<number>(0);
   const [priceChange, setPriceChange] = useState<number>(0);
@@ -29,8 +31,12 @@ export const HeaderPortfolioElement: React.FC<PortfolioElementProps> = (props) =
         <img src={getCryptoLogo(symbol)} />
       </div>
       <div className="header_portfolio_element-name">{props.name}</div>
-      <div className="header_portfolio_element-value">{formatNumber(currentPrice)}$</div>
-      <div className="header_portfolio_element-price-change">{formatNumber(priceChange)}$</div>
+      <div className="header_portfolio_element-value">
+        {formatNumber(currentPrice)}$
+      </div>
+      <div className="header_portfolio_element-price-change">
+        {formatNumber(priceChange)}$
+      </div>
       <div
         className={`header_portfolio_element-percent-change ${
           pricePercentChange >= 0 ? "color-positive" : "color-negative"

@@ -1,12 +1,21 @@
 import { Modal } from "../../reusable/Modal";
-import { Table, TableHeader, TableRow, TableHeaderCell, TableBody } from "../../reusable/Table";
-import { PortfioModalProps } from "./types";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+} from "../../reusable/Table";
 import "./portfolioModal.scss";
 import { useContext } from "react";
 import { DefaultContext } from "../../context/context";
 import { PortfolioModalElement } from "./PortfolioModalElement";
+import { PortfolioModalProps } from "./types";
 
-export const PortfolioModal: React.FC<PortfioModalProps> = ({ isVisible, setIsVisible }) => {
+export const PortfolioModal: React.FC<PortfolioModalProps> = ({
+  isVisible,
+  setIsVisible,
+}) => {
   const { portfolio } = useContext(DefaultContext);
 
   return (
@@ -15,17 +24,29 @@ export const PortfolioModal: React.FC<PortfioModalProps> = ({ isVisible, setIsVi
         <Table fullWidth>
           <TableHeader>
             <TableRow>
-              <TableHeaderCell alignLeft className="portfolio_modal_table_header-number">
+              <TableHeaderCell
+                alignLeft
+                className="portfolio_modal_table_header-number"
+              >
                 №
               </TableHeaderCell>
               <TableHeaderCell alignLeft style={{ width: "200px" }}>
                 Name
               </TableHeaderCell>
-              <TableHeaderCell className="portfolio_modal_table_header-amount">Amount</TableHeaderCell>
+              <TableHeaderCell className="portfolio_modal_table_header-amount">
+                Amount
+              </TableHeaderCell>
               <TableHeaderCell>Price</TableHeaderCell>
-              <TableHeaderCell className="portfolio_modal_table_header-price-change">Price Change</TableHeaderCell>
-              <TableHeaderCell className="portfolio_modal_table_header-percent">Percent Change</TableHeaderCell>
-              <TableHeaderCell alignCenter className="portfolio_modal_table_header-actions">
+              <TableHeaderCell className="portfolio_modal_table_header-price-change">
+                Price Change
+              </TableHeaderCell>
+              <TableHeaderCell className="portfolio_modal_table_header-percent">
+                Percent Change
+              </TableHeaderCell>
+              <TableHeaderCell
+                alignCenter
+                className="portfolio_modal_table_header-actions"
+              >
                 Actions
               </TableHeaderCell>
             </TableRow>
