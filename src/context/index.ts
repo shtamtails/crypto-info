@@ -1,2 +1,7 @@
-export type { IPortfolio, ISelectedCrypto, DefaultContextProps, ContextProviderProps } from "./types";
-export { DefaultContext, ContextProvider } from "./context";
+export type {
+  IPortfolio,
+  ISelectedCrypto,
+  PortfolioContextProps,
+  ContextProviderProps,
+} from "./types";
+export { PortfolioContext, PortfolioContextProvider } from "./PortfolioContext";

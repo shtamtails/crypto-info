@@ -2,19 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
-import styles from "./cryptoInfo.module.scss";
 import { fetchPriceHistory } from "../../utils/API";
 import { fetchAssetInfo, getCryptoLogo } from "../../utils/API/api";
 import { AssetData, TimePeriods } from "../../utils/API/types";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { formatNumber } from "../../utils/formatNumber";
 import { useParams } from "react-router-dom";
-import { DefaultContext } from "../../context/context";
+import { PortfolioContext } from "../../context/PortfolioContext";
 
 export const CryptoInfo: React.FC = () => {
   const { crypto } = useParams();
   const { setAddCryptoModalOpened, setSelectedCrypto } =
-    useContext(DefaultContext);
+    useContext(PortfolioContext);
   const [time, setTime] = useState<string[]>([""]);
   const [prices, setPrices] = useState<number[]>([0]);
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(

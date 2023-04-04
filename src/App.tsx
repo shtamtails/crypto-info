@@ -8,7 +8,7 @@ import "./style/App.scss";
 import "./style/utils.scss";
 import { Route, Routes } from "react-router-dom";
 import { fetchAssetInfo } from "./utils/API/api";
-import { DefaultContext, IPortfolio } from "./context";
+import { PortfolioContext, IPortfolio } from "./context";
 import { Page404 } from "./components/Page404/Page404";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     setAddCryptoModalOpened,
     setPortfolioModalOpened,
     setPortfolio,
-  } = useContext(DefaultContext);
+  } = useContext(PortfolioContext);
 
   const loadCurrentRates = async () => {
     const portfolioData = localStorage.getItem("portfolio") ?? "[]";

@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ContextProvider } from "./context/context";
+import { PortfolioContextProvider } from "./context/PortfolioContext";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
-    <ContextProvider>
+    <PortfolioContextProvider>
       <App />
-    </ContextProvider>
+    </PortfolioContextProvider>
   </BrowserRouter>
 );

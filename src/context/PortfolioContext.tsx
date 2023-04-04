@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
 import {
-  DefaultContextProps,
+  PortfolioContextProps,
   ContextProviderProps,
   ISelectedCrypto,
   IPortfolio,
 } from "./types";
 
-export const DefaultContext = createContext<DefaultContextProps>({
+export const PortfolioContext = createContext<PortfolioContextProps>({
   selectedCrypto: { name: "", id: "", symbol: "" },
   portfolio: null,
   portfolioModalOpened: false,
@@ -17,7 +17,7 @@ export const DefaultContext = createContext<DefaultContextProps>({
   setPortfolio: () => {},
 });
 
-export const ContextProvider: React.FC<ContextProviderProps> = ({
+export const PortfolioContextProvider: React.FC<ContextProviderProps> = ({
   children,
 }) => {
   const [portfolioModalOpened, setPortfolioModalOpened] =
@@ -33,7 +33,7 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   const [portfolio, setPortfolio] = useState<IPortfolio[] | null>(null);
 
   return (
-    <DefaultContext.Provider
+    <PortfolioContext.Provider
       value={{
         selectedCrypto,
         portfolio,
@@ -46,7 +46,7 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
       }}
     >
       {children}
-    </DefaultContext.Provider>
+    </PortfolioContext.Provider>
   );
 };
 

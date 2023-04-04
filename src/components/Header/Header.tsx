@@ -3,11 +3,11 @@ import { Button } from "../../reusable/Button";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { DefaultContext } from "../../context/context";
+import { PortfolioContext } from "../../context/PortfolioContext";
 import { HeaderPortfolioElement } from "./HeaderPortfolioElement";
 
 export const Header: React.FC = () => {
-  const { setPortfolioModalOpened, portfolio } = useContext(DefaultContext);
+  const { setPortfolioModalOpened, portfolio } = useContext(PortfolioContext);
 
   return (
     <header className="header">

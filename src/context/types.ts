@@ -8,7 +8,7 @@ export type IPortfolio = {
 };
 export type ISelectedCrypto = { name: string; id: string; symbol: string };
 
-export interface DefaultContextProps {
+export interface PortfolioContextProps {
   selectedCrypto: ISelectedCrypto;
   portfolio: IPortfolio[] | null;
   portfolioModalOpened: boolean;

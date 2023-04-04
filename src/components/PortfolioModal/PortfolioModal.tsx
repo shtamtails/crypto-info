@@ -8,7 +8,7 @@ import {
 } from "../../reusable/Table";
 import "./portfolioModal.scss";
 import { useContext } from "react";
-import { DefaultContext } from "../../context/context";
+import { PortfolioContext } from "../../context/PortfolioContext";
 import { PortfolioModalElement } from "./PortfolioModalElement";
 import { PortfolioModalProps } from "./types";
 
@@ -16,7 +16,7 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
   isVisible,
   setIsVisible,
 }) => {
-  const { portfolio } = useContext(DefaultContext);
+  const { portfolio } = useContext(PortfolioContext);
 
   return (
     <>

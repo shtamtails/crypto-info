@@ -8,14 +8,14 @@ import { useContext, useEffect, useState } from "react";
 import { fetchAssetInfo } from "../../utils/API/api";
 import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
-import { DefaultContext } from "../../context";
+import { PortfolioContext } from "../../context";
 import { PortfolioModalElementProps } from "./types";
 
 export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   props
 ) => {
   const { amount, name, priceUsd, id, symbol } = props;
-  const { portfolio, setPortfolio } = useContext(DefaultContext);
+  const { portfolio, setPortfolio } = useContext(PortfolioContext);
   const [priceChange, setPriceChange] = useState<number>(0);
   const [newPrice, setNewPrice] = useState<number>(0);
   const [pricePercentChange, setPricePercentChange] = useState<number>(0);

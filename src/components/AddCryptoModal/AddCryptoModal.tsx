@@ -7,7 +7,7 @@ import "./addCryptoModal.scss";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import { getCryptoLogo } from "../../utils/API";
 import { fetchAssetInfo } from "../../utils/API/api";
-import { DefaultContext, IPortfolio, ISelectedCrypto } from "../../context";
+import { PortfolioContext, IPortfolio, ISelectedCrypto } from "../../context";
 
 export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
   visible,
@@ -19,7 +19,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
     selectedCrypto = {} as ISelectedCrypto,
     setPortfolio,
     setAddCryptoModalOpened,
-  } = useContext(DefaultContext);
+  } = useContext(PortfolioContext);
 
   const handleAddCrypto = async () => {
     const amount = amountRef.current?.value;

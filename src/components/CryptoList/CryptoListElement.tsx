@@ -5,7 +5,7 @@ import { TableRow, TableDataCell } from "../../reusable/Table";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { CryptoListElementProps } from "./types";
 import { useContext } from "react";
-import { DefaultContext } from "../../context/context";
+import { PortfolioContext } from "../../context/PortfolioContext";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
   const {
@@ -22,7 +22,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
     id,
   } = props;
   const { setAddCryptoModalOpened, setSelectedCrypto } =
-    useContext(DefaultContext);
+    useContext(PortfolioContext);
   const isPercentPositive = +changePercent > 0;
   return (
     <TableRow className="crypto-list__element">
