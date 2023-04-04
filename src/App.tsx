@@ -9,6 +9,7 @@ import "./style/utils.scss";
 import { Route, Routes } from "react-router-dom";
 import { fetchAssetInfo } from "./utils/API/api";
 import { DefaultContext, IPortfolio } from "./context";
+import { Page404 } from "./components/Page404/Page404";
 
 function App() {
   const { portfolioModalOpened, addCryptoModalOpened, setAddCryptoModalOpened, setPortfolioModalOpened, setPortfolio } =
@@ -42,6 +43,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CryptoList />} />
         <Route path="/:crypto" element={<CryptoInfo />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </>
   );
