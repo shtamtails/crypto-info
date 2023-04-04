@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
+import styles from "./cryptoInfo.module.scss";
 import { fetchPriceHistory } from "../../utils/API";
 import { fetchAssetInfo, getCryptoLogo } from "../../utils/API/api";
 import { AssetData, TimePeriods } from "../../utils/API/types";
@@ -124,7 +125,7 @@ export const CryptoInfo: React.FC = () => {
           </div>
         </div>
         <div className="crypto-info__header__stats">
-          <div className="crypto-info__header__stats__col crypto-info__header__stats__col--high-low">
+          <div className="crypto-info__header__stats__col crypto-info__header__stats__col--vWap-supply">
             <div className="crypto-info__header__stats__col__row ">
               <span>VWAP (24HR)</span> ${assetInfo?.vwap24Hr || "..."}
             </div>

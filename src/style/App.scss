@@ -1,10 +1,11 @@
-@import "./colors.scss";
+@use "./colors.scss" as *;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap");
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue",
+    "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.95rem;
 }
 
@@ -62,4 +63,8 @@ a {
 
 .color-negative {
   color: $text-negative;
+}
+
+.fullWidth {
+  width: 100%;
 }

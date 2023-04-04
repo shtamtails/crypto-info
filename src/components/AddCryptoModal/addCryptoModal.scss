@@ -1,7 +1,8 @@
-@import "../../style/colors.scss";
-
 .add-crypto-modal {
   &__amount-input {
-    margin: 8px 0;
+    margin: 8px 14px;
+  }
+  &__confirm-button {
+    margin: 8px 14px;
   }
 }
