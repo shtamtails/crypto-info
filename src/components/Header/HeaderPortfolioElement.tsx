@@ -26,19 +26,19 @@ export const HeaderPortfolioElement: React.FC<PortfolioElementProps> = (
   }, [name, amount]);
 
   return (
-    <div className="header_portfolio_element">
-      <div className="header_portfolio_element-logo">
+    <div className="header__portfolio__element">
+      <div className="header__portfolio__element__logo">
         <img src={getCryptoLogo(symbol)} />
       </div>
-      <div className="header_portfolio_element-name">{props.name}</div>
-      <div className="header_portfolio_element-value">
+      <div className="header__portfolio__element__name">{props.name}</div>
+      <div className="header__portfolio__element__value">
         {formatNumber(currentPrice)}$
       </div>
-      <div className="header_portfolio_element-price-change">
+      <div className="header__portfolio__element__price-change">
         {formatNumber(priceChange)}$
       </div>
       <div
-        className={`header_portfolio_element-percent-change ${
+        className={`header__portfolio__element__percent-change ${
           pricePercentChange >= 0 ? "color-positive" : "color-negative"
         }`}
       >

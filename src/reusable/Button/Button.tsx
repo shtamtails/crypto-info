@@ -5,7 +5,7 @@ import "./button.scss";
 export const Button: React.FC<ButtonProps> = (props) => {
   const { children, variant, width, height, onClick } = props;
   const buttonClassnames = [];
-  variant && buttonClassnames.push(`button-${variant}`);
+  variant && buttonClassnames.push(`button--${variant}`);
   const className = getDefaultClassName(props, buttonClassnames);
   return (
     <button

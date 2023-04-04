@@ -1,18 +1,19 @@
 import { CryptoCardProps } from "./types";
 import "./cryptoCard.scss";
-import { Link } from "react-router-dom";
 
 export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
   const { logoURL, name, shortName } = props;
   return (
     <div className="cryptocurrency-component">
-      <div className="cryptocurrency-component-name-icon">
+      <div className="cryptocurrency-component__icon">
         <img src={logoURL} />
       </div>
 
-      <div className="flex-col ais">
-        <div className="cryptocurrency-component-name-value">{name}</div>
-        <div className="cryptocurrency-component-name-short">{shortName}</div>
+      <div className="cryptocurrency-component__info">
+        <div className="cryptocurrency-component__info__name">{name}</div>
+        <div className="cryptocurrency-component__info__symbol">
+          {shortName}
+        </div>
       </div>
     </div>
   );

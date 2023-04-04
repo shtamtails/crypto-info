@@ -12,7 +12,7 @@ button {
   justify-content: center;
 }
 
-.button-regular {
+.button--regular {
   color: #228be6;
   background-color: $button-regular;
   &:hover {
@@ -20,7 +20,7 @@ button {
   }
 }
 
-.button-outline {
+.button--outline {
   color: #228be6;
   background-color: transparent;
   outline: 2px solid $button-outline;

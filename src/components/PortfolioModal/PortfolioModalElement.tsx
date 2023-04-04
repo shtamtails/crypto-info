@@ -2,7 +2,6 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { Button } from "../../reusable/Button";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import { TableRow, TableDataCell } from "../../reusable/Table";
-import { PortfioModalElementProps } from "./types";
 import { getCryptoLogo } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
 import { useContext, useEffect, useState } from "react";
@@ -10,8 +9,9 @@ import { fetchAssetInfo } from "../../utils/API/api";
 import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
 import { DefaultContext } from "../../context";
+import { PortfolioModalElementProps } from "./types";
 
-export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (
+export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   props
 ) => {
   const { amount, name, priceUsd, id, symbol } = props;
@@ -74,11 +74,11 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (
         </Button>
       </Modal>
       <TableRow>
-        <TableDataCell className="portfolio_modal_table_body-number">
+        <TableDataCell className="portfolio__modal__table__body__number">
           1
         </TableDataCell>
         <TableDataCell>
-          <div className="portfolio_modal_table_body-crypto-card">
+          <div className="portfolio__modal__table__body__crypto-card">
             <CryptoCard
               name={name}
               logoURL={getCryptoLogo(symbol)}
@@ -86,7 +86,7 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (
             />
           </div>
           <div
-            className="portfolio_modal_table_body-crypto-name"
+            className="portfolio__modal__table__body__crypto-name"
             onClick={() => {
               setEditCryptoModalOpened(true);
             }}
@@ -96,26 +96,26 @@ export const PortfolioModalElement: React.FC<PortfioModalElementProps> = (
         </TableDataCell>
         <TableDataCell
           alignCenter
-          className="portfolio_modal_table_body-amount"
+          className="portfolio__modal__table__body__amount"
         >
           {amount}
         </TableDataCell>
         <TableDataCell alignCenter>{formatNumber(newPrice)}$</TableDataCell>
         <TableDataCell
           alignCenter
-          className="portfolio_modal_table_body-price-change"
+          className="portfolio__modal__table__body__price-change"
         >
           {formatNumber(priceChange)}$
         </TableDataCell>
         <TableDataCell
           alignCenter
-          className={`portfolio_modal_table_body-percent ${
+          className={`portfolio__modal__table__body__percent ${
             pricePercentChange >= 0 ? "color-positive" : "color-negative"
           }`}
         >
           {formatNumber(pricePercentChange)}%
         </TableDataCell>
-        <TableDataCell className="portfolio_modal_table_body-actions flex jcc">
+        <TableDataCell className="portfolio__modal__table__body__actions">
           <Button
             variant="regular"
             onClick={() => {

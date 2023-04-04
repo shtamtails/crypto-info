@@ -1,6 +1,9 @@
-export const getDefaultClassName = (props: any, defaultClassname?: string[]) => {
+export const getDefaultClassName = (
+  props: any,
+  defaultClassName?: string[]
+) => {
   const classNames: string[] = [];
-  defaultClassname && Object.assign(classNames, defaultClassname);
+  defaultClassName && Object.assign(classNames, defaultClassName);
   props.className && classNames.push(props.className);
   props.pl && classNames.push(`padding-left-${props.pl}`);
   props.pr && classNames.push(`padding-right-${props.pr}`);
@@ -11,6 +14,6 @@ export const getDefaultClassName = (props: any, defaultClassname?: string[]) => 
   props.mt && classNames.push(`margin-top-${props.mt}`);
   props.mb && classNames.push(`margin-bottom-${props.mb}`);
   props.radius && classNames.push(`border-radius-${props.radius}`);
-  props.fullWidth && classNames.push(`fullwidth`);
+  props.fullWidth && classNames.push(`fullWidth`);
   return classNames.join(" ");
 };

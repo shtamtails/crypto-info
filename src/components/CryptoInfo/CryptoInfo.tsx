@@ -109,50 +109,50 @@ export const CryptoInfo: React.FC = () => {
 
   return (
     <div className="crypto-info">
-      <div className="crypto-info_header">
-        <div className="crypto-info_header-crypto">
-          <div className="crypto-info_header-crypto-icon">
+      <div className="crypto-info__header">
+        <div className="crypto-info__header__asset">
+          <div className="crypto-info__header__asset__icon">
             <img src={assetInfo ? getCryptoLogo(assetInfo?.symbol) : ""} />
           </div>
-          <div className="crypto-info_header-crypto-main">
-            <div className="crypto-info_header-crypto-main-name">
+          <div className="crypto-info__header__asset__main">
+            <div className="crypto-info__header__asset__main__name">
               {assetInfo?.name || "..."} ({assetInfo?.symbol || "..."})
             </div>
-            <div className="crypto-info_header-crypto-main-date">
+            <div className="crypto-info__header__asset__main__date">
               02 April 2023
             </div>
           </div>
         </div>
-        <div className="crypto-info_header-stats">
-          <div className="crypto-info_header-stats-col crypto-info_high-low">
-            <div className="crypto-info_header-stats-col-row ">
+        <div className="crypto-info__header__stats">
+          <div className="crypto-info__header__stats__col crypto-info__header__stats__col--high-low">
+            <div className="crypto-info__header__stats__col__row ">
               <span>VWAP (24HR)</span> ${assetInfo?.vwap24Hr || "..."}
             </div>
-            <div className="crypto-info_header-stats-col-row">
+            <div className="crypto-info__header__stats__col__row">
               <span>MAX SUPPLY</span> {assetInfo?.maxSupply || "..."}
             </div>
           </div>
-          <div className="crypto-info_header-stats-col">
-            <div className="crypto-info_header-stats-col-row">
+          <div className="crypto-info__header__stats__col">
+            <div className="crypto-info__header__stats__col__row">
               <span>AVERAGE</span> ${assetInfo?.priceUsd || "..."}
             </div>
             <div
-              className={`crypto-info_header-stats-col-row ${getClassNameColor(
+              className={`crypto-info__header__stats__col__row ${getClassNameColor(
                 assetInfo?.changePercent24Hr
               )}`}
             >
               <span>CHANGE</span> {assetInfo?.changePercent24Hr || "..."}%
             </div>
           </div>
-          <div className="crypto-info_header-stats-col crypto-info_marketcap-volume">
-            <div className="crypto-info_header-stats-col-row">
+          <div className="crypto-info__header__stats__col crypto-info__header__stats__col--market-cap-volume">
+            <div className="crypto-info__header__stats__col__row">
               <span>MARKET CAP</span> ${assetInfo?.marketCapUsd || "..."}
             </div>
-            <div className="crypto-info_header-stats-col-row">
+            <div className="crypto-info__header__stats__col__row">
               <span>VOLUME (24HR)</span> ${assetInfo?.volumeUsd24Hr || "..."}
             </div>
           </div>
-          <div className="crypto-info_header-stats-col crypto-info_add-button">
+          <div className="crypto-info__header__stats__col crypto-info__header__stats__col--add-button">
             <Button
               height="100%"
               variant="regular"
@@ -171,11 +171,11 @@ export const CryptoInfo: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="crypto-info_body">
-        <div className="crypto-info_body-pricechart">
+      <div className="crypto-info__body">
+        <div className="crypto-info__body__price-chart">
           <PriceChart labels={time} data={prices} isChangePositive={true} />
         </div>
-        <div className="crypto-info_body-controls">{timePeriodButtons}</div>
+        <div className="crypto-info__body__controls">{timePeriodButtons}</div>
       </div>
     </div>
   );

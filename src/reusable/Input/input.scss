@@ -1,14 +1,14 @@
 @import "../../style/colors.scss";
 
-.input_container {
-  &-label {
+.input__container {
+  &__label {
     font-size: 0.9rem;
     margin-bottom: 4px;
   }
 
-  .input {
+  &__base {
     position: relative;
-    &-icon {
+    &__icon {
       position: absolute;
       display: flex;
       justify-content: center;
@@ -21,7 +21,7 @@
       left: 12px;
       color: $input-placeholder;
     }
-    &-with-icon {
+    &--with-icon {
       padding-left: 36px;
     }
   }
@@ -42,7 +42,7 @@
     &::placeholder {
       color: $input-placeholder;
     }
-    &:focus + .input-icon {
+    &:focus + .input__container__base__icon {
       transition: all 0.3s ease;
 
       opacity: 0;

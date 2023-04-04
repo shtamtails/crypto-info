@@ -5,14 +5,14 @@
   background-color: $gray-0;
   padding: 36px;
   margin: 16px auto;
-  &_header {
+  &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    &-crypto {
+    &__asset {
       display: flex;
       align-items: center;
-      &-icon {
+      &__icon {
         display: flex;
         align-items: center;
         margin-right: 24px;
@@ -21,30 +21,26 @@
           width: auto;
         }
       }
-      &-main {
+      &__main {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         height: 50px;
-        &-name {
+        &__name {
         }
-        &-date {
+        &__date {
         }
-      }
-      &-main {
-        display: flex;
-        flex-direction: column;
       }
     }
-    &-stats {
+    &__stats {
       gap: 24px;
       display: flex;
-      &-col {
+      &__col {
         display: flex;
         flex-direction: column;
         height: 50px;
         justify-content: space-between;
-        &-row {
+        &__row {
           font-weight: 500;
           span {
             color: $dark-2;
@@ -54,13 +50,13 @@
       }
     }
   }
-  &_body {
+  &__body {
     margin-top: 50px;
     width: 100%;
-    &-pricechart {
+    &__price-chart {
       width: 100%;
     }
-    &-controls {
+    &__controls {
       margin-top: 16px;
       display: flex;
       gap: 24px;
@@ -75,7 +71,7 @@
 }
 
 @media (max-width: 850px) {
-  .crypto-info_marketcap-volume {
+  .crypto-info__header__stats__col--market-cap-volume {
     display: none;
   }
 }
@@ -87,38 +83,38 @@
 }
 
 @media (max-width: 600px) {
-  .crypto-info_high-low {
+  .crypto-info__header__stats__col--high-low {
     display: none;
   }
-  .crypto-info_body-controls {
+  .crypto-info__body__controls {
     display: flex;
     flex-direction: column;
   }
 }
 
 @media (max-width: 460px) {
-  .crypto-info_header {
+  .crypto-info__header {
     display: flex;
     flex-direction: column;
     align-items: start;
-    &-crypto {
+    &__asset {
       margin-bottom: 24px;
-      &-icon {
+      &__icon {
         display: flex;
       }
     }
   }
-  .crypto-info_header-stats {
+  .crypto-info__header__stats {
     flex-direction: column;
     width: 100%;
   }
-  .crypto-info_high-low {
+  .crypto-info__header__stats__col--high-low {
     display: flex;
   }
-  .crypto-info_marketcap-volume {
+  .crypto-info__header__stats__col--market-cap-volume {
     display: flex;
   }
-  .crypto-info_add-button {
+  .crypto-info__header__stats__col--add-button {
     width: 100%;
   }
 }

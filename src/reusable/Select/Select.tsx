@@ -10,9 +10,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const className = getDefaultClassName(props);
 
     return (
-      <div className="input_container">
-        <div className="input_container-label">{label}</div>
-        <div className="input select-input">
+      <div className="input__container">
+        <div className="input__container__label">{label}</div>
+        <div className="input input-select">
           <select
             ref={ref}
             className={className}

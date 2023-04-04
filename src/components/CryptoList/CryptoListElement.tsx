@@ -25,33 +25,33 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
     useContext(DefaultContext);
   const isPercentPositive = +changePercent > 0;
   return (
-    <TableRow className="crypto-list_element">
-      <TableDataCell alignCenter className="crypto-list_element-rank">
+    <TableRow className="crypto-list__element">
+      <TableDataCell alignCenter className="crypto-list__element__rank">
         {rank}
       </TableDataCell>
-      <TableDataCell className="crypto-list_element-name">
+      <TableDataCell className="crypto-list__element__name">
         <Link to={id}>
           <CryptoCard name={name} logoURL={iconURL} shortName={shortName} />
         </Link>
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-price">
+      <TableDataCell alignCenter className="crypto-list__element__price">
         ${Number(price).toFixed(2)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-market-cap">
+      <TableDataCell alignCenter className="crypto-list__element__market-cap">
         ${abbreviateNumber(marketCap)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-vwap">
+      <TableDataCell alignCenter className="crypto-list__element__vwap">
         ${abbreviateNumber(vwap)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-supply">
+      <TableDataCell alignCenter className="crypto-list__element__supply">
         {abbreviateNumber(supply)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list_element-volume">
+      <TableDataCell alignCenter className="crypto-list__element__volume">
         ${abbreviateNumber(volume)}
       </TableDataCell>
       <TableDataCell
         alignCenter
-        className={`crypto-list_element-change ${
+        className={`crypto-list__element__change ${
           isPercentPositive ? "color-positive" : "color-negative"
         }`}
       >
@@ -59,7 +59,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       </TableDataCell>
       <TableDataCell
         alignCenter
-        className="crypto-list_element-action flex jcc"
+        className="crypto-list__element__action flex jcc"
       >
         <Button
           variant="regular"

@@ -9,10 +9,10 @@
 }
 
 @media (max-width: 1100px) {
-  .crypto-list_element-vwap,
-  .crypto-list_element-supply,
-  .th-supply,
-  .th-vwap {
+  .crypto-list__element__vwap,
+  .crypto-list__element__supply,
+  .crypto-list__th__supply,
+  .crypto-list__th__vwap {
     display: none;
   }
   .crypto-list {
@@ -21,36 +21,36 @@
 }
 
 @media (max-width: 768px) {
-  .crypto-list_element-market-cap,
-  .crypto-list_element-volume,
-  .th-volume,
-  .th-market-cap {
+  .crypto-list__element__market-cap,
+  .crypto-list__element__volume,
+  .crypto-list__th__volume,
+  .crypto-list__th__market-cap {
     display: none;
   }
 
-  .crypto-list_element-change,
-  .th-change {
+  .crypto-list__element__change,
+  .crypto-list__th__change {
     text-align: right;
   }
 }
 
 @media (max-width: 600px) {
-  .crypto-list_element-rank,
-  .th-rank {
+  .crypto-list__element__rank,
+  .crypto-list__th__rank {
     display: none;
   }
 }
 
 @media (max-width: 375px) {
-  .crypto-list_element-change,
-  .th-change {
+  .crypto-list__element__change,
+  .crypto-list__th__change {
     display: none;
   }
 }
 
 @media (max-width: 320px) {
-  .crypto-list_element-action,
-  .th-action {
+  .crypto-list__element__action,
+  .crypto-list__th__action {
     display: none !important;
   }
 }

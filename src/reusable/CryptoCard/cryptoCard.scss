@@ -3,23 +3,23 @@
 .cryptocurrency-component {
   display: flex;
   align-items: center;
-  &-name {
-    display: flex;
-    align-items: center;
-    padding: 14px;
-    &-value {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  &__icon {
+    margin-right: 4px;
+    img {
+      width: auto;
+      height: 25px;
+    }
+  }
+  &__info {
+    &__name {
       font-weight: 500;
     }
-    &-short {
+    &__symbol {
       font-size: 0.8rem;
       color: $text-neutral;
-    }
-    &-icon {
-      margin-right: 4px;
-      img {
-        width: auto;
-        height: 25px;
-      }
     }
   }
 }

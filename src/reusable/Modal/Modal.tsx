@@ -16,17 +16,17 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   return visible ? (
     <div className={className}>
-      <div className="modal_overlay" onClick={handleClose} />
-      <div className="modal_content">
-        <div className="modal_content_header">
-          <div className="modal_content_header-title">{title}</div>
-          <div className="modal_content_header-close">
+      <div className="modal__overlay" onClick={handleClose} />
+      <div className="modal__content">
+        <div className="modal__content__header">
+          <div className="modal__content__header__title">{title}</div>
+          <div className="modal__content__header__close-button">
             <Button variant="regular" onClick={handleClose}>
               <AiOutlineClose />
             </Button>
           </div>
         </div>
-        <div className="modal_content_body">{children}</div>
+        <div className="modal___content__body">{children}</div>
       </div>
     </div>
   ) : null;

@@ -73,7 +73,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
         name={selectedCrypto?.name || ""}
         shortName={selectedCrypto?.symbol || ""}
       />
-      <div className="add-crypto-modal-amount-input">
+      <div className="add-crypto-modal__amount-input">
         <Input ref={amountRef} fullWidth label="Amount" placeholder="Amount" />
       </div>
       <Button fullWidth variant="regular" onClick={handleAddCrypto}>

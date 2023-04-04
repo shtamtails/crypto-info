@@ -6,11 +6,11 @@
   background-color: $header-bg-color;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  &_portfolio {
+  &__portfolio {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    &_element {
+    &__element {
       display: flex;
       align-items: center;
       margin: 4px 0px;
@@ -18,10 +18,10 @@
       > div {
         margin-right: 4px;
       }
-      &-name {
+      &__name {
         font-weight: 600;
       }
-      &-logo {
+      &__logo {
         display: flex;
         align-items: center;
         img {
@@ -31,7 +31,7 @@
       }
     }
   }
-  &_logo {
+  &__logo {
     img {
       height: 40px;
       width: auto;
@@ -40,40 +40,40 @@
     align-items: center;
     justify-content: center;
   }
-  &_links {
+  &__links {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    &-icon {
+    &__icon {
       display: none;
     }
   }
 }
 
 @media (max-width: 1024px) {
-  .header_portfolio_element-name {
+  .header__portfolio__element__name {
     display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .header_portfolio_element-percent-change {
+  .header__portfolio__element__percent-change {
     display: none;
   }
 }
 
 @media (max-width: 550px) {
-  .header_portfolio_element-price-change {
+  .header__portfolio__element__price-change {
     display: none;
   }
 }
 
 @media (max-width: 425px) {
-  .header_links {
-    &-button {
+  .header__links {
+    &__button {
       display: none;
     }
-    &-icon {
+    &__icon {
       display: flex !important;
     }
   }
@@ -82,7 +82,7 @@
 @media (max-width: 375px) {
   .header {
     grid-template-columns: 1fr 1fr;
-    &_logo {
+    &__logo {
       display: none;
     }
   }

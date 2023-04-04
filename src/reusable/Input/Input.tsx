@@ -11,12 +11,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   };
 
   const defaultClassName = [];
-  icon && defaultClassName.push("input-with-icon");
+  icon && defaultClassName.push("input__container__base--with-icon");
   const className = getDefaultClassName(props, defaultClassName);
   return (
-    <div className="input_container">
-      <div className="input_container-label">{label}</div>
-      <div className="input">
+    <div className="input__container">
+      <div className="input__container__label">{label}</div>
+      <div className="input__container__base">
         <input
           className={className}
           placeholder={placeholder}
@@ -26,7 +26,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             handleChange(e.target.value);
           }}
         />
-        {icon && <div className="input-icon">{icon}</div>}
+        {icon && <div className="input__container__base__icon">{icon}</div>}
       </div>
     </div>
   );

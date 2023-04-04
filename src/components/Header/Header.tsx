@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <div className="header_portfolio">
+      <div className="header__portfolio">
         {portfolio
           ?.sort((a, b) => b.priceUsd - a.priceUsd)
           .slice(0, 3)
@@ -26,15 +26,15 @@ export const Header: React.FC = () => {
             />
           ))}
       </div>
-      <div className="header_logo">
+      <div className="header__logo">
         <Link to="/">
           <img src="https://coincap.io/static/logos/black.svg" />
         </Link>
       </div>
-      <div className="header_links">
+      <div className="header__links">
         <Button
           variant="regular"
-          className="header_links-button"
+          className="header__links__button"
           onClick={() => {
             setPortfolioModalOpened(true);
           }}
@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
         </Button>
         <Button
           variant="regular"
-          className="header_links-icon"
+          className="header__links__icon"
           onClick={() => {
             setPortfolioModalOpened(true);
           }}

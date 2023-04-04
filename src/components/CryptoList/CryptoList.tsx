@@ -33,29 +33,37 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
     <div className="crypto-list">
       <Table>
         <TableHeader
-          className="crypto-list-head"
+          className="crypto-list__head"
           style={{ backgroundColor: "#f1f3f5" }}
         >
           <TableRow>
-            <TableHeaderCell alignCenter className="th-rank">
+            <TableHeaderCell alignCenter className="crypto-list__th__rank">
               Rank
             </TableHeaderCell>
-            <TableHeaderCell alignLeft className="th-name">
+            <TableHeaderCell alignLeft className="crypto-list__th__name">
               Name
             </TableHeaderCell>
-            <TableHeaderCell className="th-price">Price</TableHeaderCell>
-            <TableHeaderCell className="th-market-cap">
+            <TableHeaderCell className="crypto-list__th__price">
+              Price
+            </TableHeaderCell>
+            <TableHeaderCell className="crypto-list__th__market-cap">
               Market Cap
             </TableHeaderCell>
-            <TableHeaderCell className="th-vwap">VWAP (24Hr)</TableHeaderCell>
-            <TableHeaderCell className="th-supply">Supply</TableHeaderCell>
-            <TableHeaderCell className="th-volume">
+            <TableHeaderCell className="crypto-list__th__vwap">
+              VWAP (24Hr)
+            </TableHeaderCell>
+            <TableHeaderCell className="crypto-list__th__supply">
+              Supply
+            </TableHeaderCell>
+            <TableHeaderCell className="crypto-list__th__volume">
               Volume (24Hr)
             </TableHeaderCell>
-            <TableHeaderCell className="th-change">
+            <TableHeaderCell className="crypto-list__th__change">
               Change (24Hr)
             </TableHeaderCell>
-            <TableHeaderCell className="th-action">Action</TableHeaderCell>
+            <TableHeaderCell className="crypto-list__th__action">
+              Action
+            </TableHeaderCell>
           </TableRow>
         </TableHeader>
 
