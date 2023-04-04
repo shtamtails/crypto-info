@@ -2,17 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
-import { fetchPriceHistory, timePeriods } from "../../utils/API";
+import { fetchPriceHistory } from "../../utils/API";
 import { fetchAssetInfo, getCryptoLogo } from "../../utils/API/api";
 import { AssetData, TimePeriods } from "../../utils/API/types";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { formatNumber } from "../../utils/formatNumber";
 import { useParams } from "react-router-dom";
-import { ModalContext } from "../../context/modalContext";
+import { DefaultContext } from "../../context/context";
 
 export const CryptoInfo: React.FC = () => {
   const { crypto } = useParams();
-  const { setAddCryptoModalOpened } = useContext(ModalContext);
+  const { setAddCryptoModalOpened, setSelectedCrypto } = useContext(DefaultContext);
   const [time, setTime] = useState<string[]>([""]);
   const [prices, setPrices] = useState<number[]>([0]);
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<TimePeriods>(TimePeriods.ONE_DAY);
@@ -138,6 +138,7 @@ export const CryptoInfo: React.FC = () => {
               variant="regular"
               onClick={() => {
                 setAddCryptoModalOpened(true);
+                assetInfo && setSelectedCrypto({ name: assetInfo.name, id: assetInfo.id, symbol: assetInfo.symbol });
               }}
             >
               +

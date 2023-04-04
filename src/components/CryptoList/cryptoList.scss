@@ -42,15 +42,15 @@
 }
 
 @media (max-width: 375px) {
-  .crypto-list_element-action,
-  .th-action {
+  .crypto-list_element-change,
+  .th-change {
     display: none;
   }
 }
 
 @media (max-width: 320px) {
-  .crypto-list_element-change,
-  .th-change {
-    display: none;
+  .crypto-list_element-action,
+  .th-action {
+    display: none !important;
   }
 }

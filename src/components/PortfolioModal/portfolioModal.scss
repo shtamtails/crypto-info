@@ -1,13 +1,25 @@
 @import "../../style/colors.scss";
 
-@media (max-width: 768px) {
+.portfolio_modal_table_body-crypto-name {
+  display: none;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
   .portfolio_modal_table_header-number,
   .portfolio_modal_table_body-number {
     display: none;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .portfolio_modal_table_header-amount,
+  .portfolio_modal_table_body-amount {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
   .portfolio_modal_table_header-percent,
   .portfolio_modal_table_body-percent {
     display: none;
@@ -17,16 +29,25 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .portfolio_modal_table_header-actions,
   .portfolio_modal_table_body-actions {
+    display: none !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .portfolio_modal_table_header-price-change,
+  .portfolio_modal_table_body-price-change {
     display: none;
   }
 }
 
-@media (max-width: 320px) {
-  .portfolio_modal_table_header-price-change,
-  .portfolio_modal_table_body-price-change {
+@media (max-width: 375px) {
+  .portfolio_modal_table_body-crypto-card {
     display: none;
+  }
+  .portfolio_modal_table_body-crypto-name {
+    display: flex;
   }
 }

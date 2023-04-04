@@ -5,13 +5,12 @@ import { TableRow, TableDataCell } from "../../reusable/Table";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { CryptoListElementProps } from "./types";
 import { useContext } from "react";
-import { ModalContext } from "../../context/modalContext";
+import { DefaultContext } from "../../context/context";
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
   const { rank, iconURL, name, shortName, price, marketCap, vwap, supply, volume, changePercent, id } = props;
-  const { setAddCryptoModalOpened } = useContext(ModalContext);
+  const { setAddCryptoModalOpened, setSelectedCrypto } = useContext(DefaultContext);
   const isPercentPositive = +changePercent > 0;
-
   return (
     <TableRow className="crypto-list_element">
       <TableDataCell alignCenter className="crypto-list_element-rank">
@@ -48,6 +47,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
           variant="regular"
           onClick={() => {
             setAddCryptoModalOpened(true);
+            setSelectedCrypto({ name: name, id: id, symbol: shortName });
           }}
         >
           +

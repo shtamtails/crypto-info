@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAssets, IAsset, PriceData, TimePeriods, AssetData } from "./types";
+import { IAssets, IAsset, PriceData, TimePeriods, AssetData, Rates } from "./types";
 
 export const api = axios.create({
   baseURL: "https://api.coincap.io/v2",
@@ -15,8 +15,14 @@ export const fetchAssets = async (limit: number, offset: number) => {
   return data;
 };
 
-export const fetchAssetInfo = async (asset: string) => {
-  const data = await fetchData<AssetData>(`/assets/${asset}`);
+export const fetchAssetInfo = async (id: string) => {
+  const data = await fetchData<AssetData>(`/assets/${id}`);
+  return data;
+};
+
+// /rates/$id for some reason doesn't work for usd-coin, so we have to use /assets/$id
+export const fetchRates = async (id: string) => {
+  const data = await fetchData<Rates>(`/rates/${id}`);
   return data;
 };
 

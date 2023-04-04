@@ -23,6 +23,19 @@ export interface IAssets {
   timestamp: number;
 }
 
+export interface Rates {
+  id: string;
+  symbol: string;
+  currencySymbol: string;
+  type: string;
+  rateUsd: string;
+}
+
+export interface IRates {
+  data: Rates;
+  timestamp: number;
+}
+
 export type timePeriods = "1d" | "1w" | "1m" | "3m" | "6m" | "1y";
 
 export enum TimePeriods {

@@ -1,20 +1,30 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { Button } from "../../reusable/Button";
-import { PortfolioElement } from "./PortfolioElement";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { ModalContext } from "../../context/modalContext";
+import { DefaultContext } from "../../context/context";
+import { HeaderPortfolioElement } from "./HeaderPortfolioElement";
 
 export const Header: React.FC = () => {
-  const { setPortfolioModalOpened } = useContext(ModalContext);
+  const { setPortfolioModalOpened, portfolio } = useContext(DefaultContext);
 
   return (
     <header className="header">
       <div className="header_portfolio">
-        <PortfolioElement />
-        <PortfolioElement />
-        <PortfolioElement />
+        {portfolio
+          ?.sort((a, b) => b.priceUsd - a.priceUsd)
+          .slice(0, 3)
+          .map((el) => (
+            <HeaderPortfolioElement
+              key={el.id}
+              name={el.name}
+              amount={el.amount}
+              priceUsd={el.priceUsd}
+              symbol={el.symbol}
+              id={el.id}
+            />
+          ))}
       </div>
       <div className="header_logo">
         <Link to="/">

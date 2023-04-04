@@ -1,2 +1,2 @@
-export { api, fetchAssets, fetchPriceHistory, getCryptoLogo } from "./api";
-export type { AssetData, IAssets, timePeriods } from "./types";
+export { api, fetchAssets, fetchPriceHistory, getCryptoLogo, fetchRates } from "./api";
+export type { AssetData, IAssets, timePeriods, Rates, IRates } from "./types";

@@ -1,3 +1,3 @@
 export { Header } from "./Header";
-export { PortfolioElement } from "./PortfolioElement";
+export { HeaderPortfolioElement } from "./HeaderPortfolioElement";
 export type { PortfolioElementProps } from "./types";

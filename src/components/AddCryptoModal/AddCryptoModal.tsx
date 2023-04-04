@@ -1,44 +1,70 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { Button } from "../../reusable/Button";
 import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
-import { dataType, Select } from "../../reusable/Select";
 import { AddCryptoModalProps } from "./types";
 import "./addCryptoModal.scss";
+import { CryptoCard } from "../../reusable/CryptoCard";
+import { getCryptoLogo } from "../../utils/API";
+import { fetchAssetInfo } from "../../utils/API/api";
+import { DefaultContext, IPortfolio } from "../../context";
 
 export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({ visible, setVisible }) => {
   const amountRef = useRef<HTMLInputElement>(null);
-  const cryptoRef = useRef<HTMLSelectElement>(null);
 
-  const data: dataType[] = [
-    {
-      label: "1",
-      value: "1",
-    },
-    {
-      label: "2",
-      value: "2",
-    },
-    {
-      label: "3",
-      value: "3",
-    },
-  ];
+  const { selectedCrypto, setPortfolio } = useContext(DefaultContext);
 
-  const handleAddCrypto = () => {
+  const handleAddCrypto = async () => {
     const amount = amountRef.current?.value;
-    const crypto = cryptoRef.current?.value;
+    const { priceUsd } = await fetchAssetInfo(selectedCrypto?.id);
+    // const { rateUsd } = await fetchRates(selectedCrypto?.id);
+    const portfolioData = localStorage.getItem("portfolio");
+    if (amount) {
+      if (portfolioData) {
+        const portfolio: IPortfolio[] = JSON.parse(portfolioData);
+        const portfolioSelectedCrypto = portfolio.filter(
+          (crypto) => crypto.name.toLowerCase() === selectedCrypto?.name.toLowerCase()
+        )[0];
+        if (portfolioSelectedCrypto) {
+          portfolioSelectedCrypto.amount += +amount;
+          portfolioSelectedCrypto.priceUsd += +priceUsd * +amount;
+        } else {
+          portfolio.push({
+            name: selectedCrypto?.name || "",
+            id: selectedCrypto?.id || "",
+            symbol: selectedCrypto?.symbol || "",
+            amount: +amount,
+            priceUsd: +priceUsd * +amount,
+          });
+        }
+        localStorage.setItem("portfolio", JSON.stringify(portfolio));
+        setPortfolio(portfolio);
+      } else {
+        const portfolio = [
+          {
+            name: selectedCrypto?.name || "",
+            id: selectedCrypto?.id || "",
+            symbol: selectedCrypto?.symbol || "",
+            amount: +amount,
+            priceUsd: +priceUsd * +amount,
+          },
+        ];
+        localStorage.setItem("portfolio", JSON.stringify(portfolio));
+        setPortfolio(portfolio);
+      }
+    }
   };
 
   return (
     <Modal visible={visible} setVisible={setVisible} title="Add crypto" className="add-crypto-modal">
-      <div className="add-crypto-modal-select">
-        <Select ref={cryptoRef} data={data} label="Cryptocurrency" />
-      </div>
+      <CryptoCard
+        logoURL={getCryptoLogo(selectedCrypto?.symbol || "")}
+        name={selectedCrypto?.name || ""}
+        shortName={selectedCrypto?.symbol || ""}
+      />
       <div className="add-crypto-modal-amount-input">
-        <Input ref={amountRef} fullWidth label="Amount" placeholder="Amount" icon="$" />
+        <Input ref={amountRef} fullWidth label="Amount" placeholder="Amount" />
       </div>
-
       <Button fullWidth variant="regular" onClick={handleAddCrypto}>
         Add
       </Button>
