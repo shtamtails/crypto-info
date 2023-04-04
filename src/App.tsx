@@ -26,7 +26,6 @@ function App() {
           return el;
         })
       );
-      console.log(portfolio[0].priceUsd);
       localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
     }
   };
