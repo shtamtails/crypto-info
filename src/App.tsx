@@ -16,19 +16,17 @@ function App() {
     useContext(DefaultContext);
 
   const loadCurrentRates = async () => {
-    const portfolioData = localStorage.getItem("portfolio");
-    if (portfolioData) {
-      const portfolio: IPortfolio[] = JSON.parse(portfolioData);
-      setPortfolio(portfolio.sort((a, b) => b.priceUsd - a.priceUsd));
-      const updatedPortfolio = await Promise.all(
-        portfolio.map(async (el) => {
-          const rates = await fetchAssetInfo(el.id);
-          el.priceUsd = +rates.priceUsd * +el.amount;
-          return el;
-        })
-      );
-      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
-    }
+    const portfolioData = localStorage.getItem("portfolio") ?? "[]";
+    const portfolio: IPortfolio[] = JSON.parse(portfolioData);
+    setPortfolio(portfolio.sort((a, b) => b.priceUsd - a.priceUsd));
+    const updatedPortfolio = await Promise.all(
+      portfolio.map(async (el) => {
+        const rates = await fetchAssetInfo(el.id);
+        el.priceUsd = +rates.priceUsd * +el.amount;
+        return el;
+      })
+    );
+    localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
   };
 
   useEffect(() => {
