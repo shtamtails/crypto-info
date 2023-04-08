@@ -69,7 +69,6 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
             ];
       localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
       setPortfolio(updatedPortfolio);
-      console.log(updatedPortfolio);
       const newOverallSum =
         updatedPortfolio &&
         updatedPortfolio.reduce((sum, crypto) => sum + crypto.priceUsd, 0);

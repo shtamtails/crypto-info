@@ -28,11 +28,6 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   const priceChange = +priceUsd - oldPriceUsd;
   const pricePercentChange = ((+priceUsd - oldPriceUsd) / oldPriceUsd) * 100;
 
-  useEffect(() => {
-    console.log(priceUsd);
-    console.log(oldPriceUsd);
-  }, []);
-
   return (
     <TableRow>
       <TableDataCell className="portfolio__modal__table__body__number">
