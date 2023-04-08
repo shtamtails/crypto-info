@@ -5,4 +5,6 @@ export interface ModalProps extends defaultProps {
   setVisible: (argo0: boolean) => void;
   children: React.ReactNode;
   title: string;
+  zIndex?: number;
+  width?: number | string;
 }
