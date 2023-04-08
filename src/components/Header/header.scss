@@ -56,18 +56,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .header__portfolio__element__percent-change {
-    display: none;
-  }
-}
-
-@media (max-width: 550px) {
-  .header__portfolio__element__price-change {
-    display: none;
-  }
-}
-
 @media (max-width: 425px) {
   .header__links {
     &__button {
