@@ -60,14 +60,16 @@ export const Header: React.FC = () => {
         ))}
         <div className="header__portfolio__summary">
           Portfolio value: {formatNumber(portfolioValue)}$
-          <span
-            className={
-              priceDifference >= 0 ? "color-positive" : "color-negative"
-            }
-          >
-            {formatNumber(priceDifference)}$ (
-            {formatNumber(priceDifferencePercent)}%)
-          </span>
+          {portfolioValue > 0 && (
+            <span
+              className={
+                priceDifference >= 0 ? "color-positive" : "color-negative"
+              }
+            >
+              {formatNumber(priceDifference)}$ (
+              {formatNumber(priceDifferencePercent)}%)
+            </span>
+          )}
         </div>
       </div>
       <div className="header__logo">

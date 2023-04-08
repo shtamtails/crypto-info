@@ -1,5 +1,14 @@
 @use "../../style/colors.scss" as *;
 
+.portfolio__modal__empty {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  padding: 14px;
+}
+
 .portfolio__modal__table__body__actions {
   display: flex;
   justify-content: center;
