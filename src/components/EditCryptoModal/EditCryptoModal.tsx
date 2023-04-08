@@ -5,6 +5,7 @@ import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
 import { EditCryptoContext } from "../../context/EditCryptoContext";
 import "./editCryptoModal.scss";
+import { BiCoin } from "react-icons/bi";
 
 export const EditCryptoModal = () => {
   const { portfolio, setPortfolio } = useContext(PortfolioContext);
@@ -58,6 +59,7 @@ export const EditCryptoModal = () => {
     >
       <div className="edit-crypto-modal__container">
         <Input
+          icon={<BiCoin />}
           fullWidth
           value={editCryptoAmount}
           setValue={setEditCryptoAmount}

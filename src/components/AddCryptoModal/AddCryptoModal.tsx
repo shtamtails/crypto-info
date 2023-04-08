@@ -8,6 +8,7 @@ import { CryptoCard } from "../../reusable/CryptoCard";
 import { getCryptoLogo } from "../../utils/API";
 import { fetchAssetInfo } from "../../utils/API/api";
 import { PortfolioContext, IPortfolio, ISelectedCrypto } from "../../context";
+import { BiCoin } from "react-icons/bi";
 
 export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
   visible,
@@ -79,6 +80,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
       />
       <div className="add-crypto-modal__amount-input">
         <Input
+          icon={<BiCoin />}
           ref={amountRef}
           fullWidth
           label="Amount"

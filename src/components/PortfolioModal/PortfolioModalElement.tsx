@@ -12,7 +12,7 @@ import { PortfolioModalElementProps } from "./types";
 export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   props
 ) => {
-  const { amount, name, priceUsd, id, symbol } = props;
+  const { amount, name, priceUsd, id, symbol, number } = props;
   const [priceChange, setPriceChange] = useState<number>(0);
   const [newPrice, setNewPrice] = useState<number>(0);
   const [pricePercentChange, setPricePercentChange] = useState<number>(0);
@@ -42,7 +42,7 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   return (
     <TableRow>
       <TableDataCell className="portfolio__modal__table__body__number">
-        1 FIXME
+        {number}
       </TableDataCell>
       <TableDataCell>
         <div className="portfolio__modal__table__body__crypto-card">

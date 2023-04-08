@@ -9,4 +9,5 @@ export interface PortfolioModalElementProps {
   priceUsd: string | number;
   id: string;
   symbol: string;
+  number: number;
 }

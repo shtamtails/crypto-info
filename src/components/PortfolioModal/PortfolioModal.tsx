@@ -52,8 +52,9 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {portfolio?.map((el) => (
+            {portfolio?.map((el, i) => (
               <PortfolioModalElement
+                number={i + 1}
                 key={el.id}
                 amount={el.amount}
                 name={el.name}
