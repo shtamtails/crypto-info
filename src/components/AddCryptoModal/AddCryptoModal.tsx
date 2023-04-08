@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
@@ -79,6 +79,10 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
     }
   };
 
+  useEffect(() => {
+    setAmountError("");
+  }, []);
+
   return (
     <Modal
       visible={visible}
@@ -86,11 +90,14 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
       title="Add crypto"
       className="add-crypto-modal"
     >
-      <CryptoCard
-        logoURL={getCryptoLogo(selectedCrypto?.symbol || "")}
-        name={selectedCrypto?.name || ""}
-        shortName={selectedCrypto?.symbol || ""}
-      />
+      <div className="add-crypto-modal__crypto-card">
+        <CryptoCard
+          logoURL={getCryptoLogo(selectedCrypto?.symbol || "")}
+          name={selectedCrypto?.name || ""}
+          shortName={selectedCrypto?.symbol || ""}
+        />
+      </div>
+
       <div className="add-crypto-modal__amount-input">
         <Input
           icon={<BiCoin />}

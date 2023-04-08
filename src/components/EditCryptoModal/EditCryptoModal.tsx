@@ -1,15 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { IPortfolio, PortfolioContext } from "../../context";
 import { Button } from "../../reusable/Button";
 import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
 import { EditCryptoContext } from "../../context/EditCryptoContext";
-import "./editCryptoModal.scss";
 import { BiCoin } from "react-icons/bi";
-import { fetchAssetInfo } from "../../utils/API/api";
+import { fetchAssetInfo, getCryptoLogo } from "../../utils/API/api";
+import { CryptoCard } from "../../reusable/CryptoCard";
+import "./editCryptoModal.scss";
 
 export const EditCryptoModal = () => {
-  const { portfolio, setPortfolio, setNewPortfolioSum } =
+  const { portfolio, setPortfolio, setNewPortfolioSum, selectedCrypto } =
     useContext(PortfolioContext);
   const {
     editCryptoAmount,
@@ -68,6 +69,10 @@ export const EditCryptoModal = () => {
     }
   };
 
+  useEffect(() => {
+    setEditCryptoAmountError("");
+  }, []);
+
   return (
     <Modal
       width={500}
@@ -77,6 +82,14 @@ export const EditCryptoModal = () => {
       title="Edit crypto"
     >
       <div className="edit-crypto-modal__container">
+        <div className="edit-crypto-modal__container__crypto-card">
+          <CryptoCard
+            logoURL={getCryptoLogo(selectedCrypto.symbol)}
+            name={selectedCrypto.name}
+            shortName={selectedCrypto.symbol}
+          />
+        </div>
+
         <Input
           icon={<BiCoin />}
           fullWidth

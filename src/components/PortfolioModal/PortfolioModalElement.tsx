@@ -5,7 +5,7 @@ import { TableRow, TableDataCell } from "../../reusable/Table";
 import { getCryptoLogo } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
 import { useContext, useEffect, useState } from "react";
-import { EditCryptoContext } from "../../context";
+import { EditCryptoContext, PortfolioContext } from "../../context";
 import { PortfolioModalElementProps } from "./types";
 
 export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
@@ -19,10 +19,13 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
     setEditCryptoAmount,
   } = useContext(EditCryptoContext);
 
+  const { setSelectedCrypto } = useContext(PortfolioContext);
+
   const handleEditCryptoModalOpen = () => {
     setEditCryptoModalOpened(true);
     setEditCryptoAmountId(id);
     setEditCryptoAmount(amount.toString());
+    setSelectedCrypto({ name: name, id: id, symbol: symbol });
   };
 
   const priceChange = +priceUsd - oldPriceUsd;
