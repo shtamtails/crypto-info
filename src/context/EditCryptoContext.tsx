@@ -22,9 +22,6 @@ export const EditCryptoContextProvider: React.FC<ContextProviderProps> = ({
     useState<string>("");
   const [editCryptoAmountId, setEditCryptoAmountId] = useState<string>("");
 
-  useEffect(() => {
-    console.log(editCryptoModalOpened);
-  }, [editCryptoModalOpened]);
   return (
     <EditCryptoContext.Provider
       value={{
