@@ -25,6 +25,8 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   const [editCryptoAmount, setEditCryptoAmount] = useState<string>(
     amount.toString()
   );
+  const [editCryptoAmountError, setEditCryptoAmountError] =
+    useState<string>("");
 
   const loadCurrentRates = async () => {
     const rates = await fetchAssetInfo(id);
@@ -41,19 +43,22 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   }, [amount]);
 
   const handleEditSubmit = () => {
-    const updatedPortfolio = portfolio?.map((el) => {
-      if (el.id === id) {
-        return {
-          ...el,
-          amount: +editCryptoAmount,
-        };
-      }
-      return el;
-    });
-
-    localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
-    updatedPortfolio && setPortfolio(updatedPortfolio);
-    setEditCryptoModalOpened(false);
+    if (editCryptoAmount && +editCryptoAmount > 0) {
+      const updatedPortfolio = portfolio?.map((el) => {
+        if (el.id === id) {
+          return {
+            ...el,
+            amount: +editCryptoAmount,
+          };
+        }
+        return el;
+      });
+      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
+      updatedPortfolio && setPortfolio(updatedPortfolio);
+      setEditCryptoModalOpened(false);
+    } else {
+      setEditCryptoAmountError("Wrong coin amount!");
+    }
   };
 
   return (
@@ -63,15 +68,24 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
         setVisible={setEditCryptoModalOpened}
         title="Edit crypto"
       >
-        <Input
-          fullWidth
-          value={editCryptoAmount}
-          setValue={setEditCryptoAmount}
-          label="Edit amount"
-        />
-        <Button variant="regular" mt="lg" fullWidth onClick={handleEditSubmit}>
-          Submit
-        </Button>
+        <div className="edit-crypto-modal__container">
+          <Input
+            fullWidth
+            value={editCryptoAmount}
+            setValue={setEditCryptoAmount}
+            label="Edit amount"
+            type="number"
+            error={editCryptoAmountError}
+          />
+          <Button
+            variant="regular"
+            mt="lg"
+            fullWidth
+            onClick={handleEditSubmit}
+          >
+            Submit
+          </Button>
+        </div>
       </Modal>
       <TableRow>
         <TableDataCell className="portfolio__modal__table__body__number">
