@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
@@ -21,6 +21,8 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
     setAddCryptoModalOpened,
   } = useContext(PortfolioContext);
 
+  const [amountError, setAmountError] = useState<string>("");
+
   const handleAddCrypto = async () => {
     const amount = amountRef.current?.value;
     const { id = "", name = "", symbol = "" } = selectedCrypto;
@@ -29,7 +31,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
     const portfolioData = localStorage.getItem("portfolio") ?? "[]";
     const portfolio: IPortfolio[] = JSON.parse(portfolioData);
 
-    if (amount) {
+    if (amount && +amount > 0) {
       const newPriceUsd = +priceUsd * +amount;
       const selectedCryptoIndex = portfolio.findIndex(
         (crypto: IPortfolio) => crypto.name.toLowerCase() === name.toLowerCase()
@@ -58,6 +60,8 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
       localStorage.setItem("portfolio", JSON.stringify(newPortfolio));
       setPortfolio(newPortfolio);
       setAddCryptoModalOpened(false);
+    } else {
+      setAmountError("Wrong coin amount!");
     }
   };
 
@@ -74,7 +78,14 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
         shortName={selectedCrypto?.symbol || ""}
       />
       <div className="add-crypto-modal__amount-input">
-        <Input ref={amountRef} fullWidth label="Amount" placeholder="Amount" />
+        <Input
+          ref={amountRef}
+          fullWidth
+          label="Amount"
+          placeholder="Amount"
+          type="number"
+          error={amountError}
+        />
       </div>
       <div className="add-crypto-modal__confirm-button">
         <Button variant="regular" onClick={handleAddCrypto} fullWidth>
