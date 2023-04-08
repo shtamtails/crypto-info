@@ -28,9 +28,10 @@
       color: $input-placeholder;
     }
     &--with-icon {
-      padding-left: 36px;
+      padding-left: 36px !important;
     }
   }
+
   input,
   select {
     width: 100%;
@@ -43,14 +44,13 @@
       outline: none;
       transition: all 0.3s ease;
       border: 1px solid $input-focus-outline;
-      padding-left: 16px;
+      padding-left: 16px !important;
     }
     &::placeholder {
       color: $input-placeholder;
     }
     &:focus + .input__container__base__icon {
       transition: all 0.3s ease;
-
       opacity: 0;
       left: 0;
       transition: all 0.3s ease;
