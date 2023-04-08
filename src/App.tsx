@@ -19,19 +19,32 @@ function App() {
     setAddCryptoModalOpened,
     setPortfolioModalOpened,
     setPortfolio,
+    setNewPortfolioSum,
+    setPortfolioSum,
   } = useContext(PortfolioContext);
 
   const loadCurrentRates = async () => {
     const portfolioData = localStorage.getItem("portfolio") ?? "[]";
     const portfolio: IPortfolio[] = JSON.parse(portfolioData);
+    const overallSum = portfolio.reduce(
+      (sum, crypto) => sum + crypto.priceUsd,
+      0
+    );
     setPortfolio(portfolio.sort((a, b) => b.priceUsd - a.priceUsd));
     const updatedPortfolio = await Promise.all(
       portfolio.map(async (el) => {
         const rates = await fetchAssetInfo(el.id);
+        el.oldPriceUsd = el.priceUsd;
         el.priceUsd = +rates.priceUsd * +el.amount;
         return el;
       })
     );
+    const newOverallSum = portfolio.reduce(
+      (sum, crypto) => sum + crypto.priceUsd,
+      0
+    );
+    setPortfolioSum(overallSum);
+    setNewPortfolioSum(newOverallSum);
     localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
   };
 

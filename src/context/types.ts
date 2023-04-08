@@ -4,8 +4,9 @@ export type IPortfolio = {
   symbol: string;
   amount: number;
   priceUsd: number;
-  newPriceUsd?: number;
+  oldPriceUsd: number;
 };
+
 export type ISelectedCrypto = { name: string; id: string; symbol: string };
 
 export interface PortfolioContextProps {
@@ -13,6 +14,10 @@ export interface PortfolioContextProps {
   portfolio: IPortfolio[] | null;
   portfolioModalOpened: boolean;
   addCryptoModalOpened: boolean;
+  portfolioSum: number;
+  newPortfolioSum: number;
+  setPortfolioSum: (arg0: number) => void;
+  setNewPortfolioSum: (arg0: number) => void;
   setSelectedCrypto: (arg0: ISelectedCrypto) => void;
   setPortfolioModalOpened: (arg0: boolean) => void;
   setAddCryptoModalOpened: (arg0: boolean) => void;

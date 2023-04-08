@@ -5,27 +5,13 @@ import { TableRow, TableDataCell } from "../../reusable/Table";
 import { getCryptoLogo } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
 import { useContext, useEffect, useState } from "react";
-import { fetchAssetInfo } from "../../utils/API/api";
 import { EditCryptoContext } from "../../context";
 import { PortfolioModalElementProps } from "./types";
 
 export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   props
 ) => {
-  const { amount, name, priceUsd, id, symbol, number } = props;
-  const [priceChange, setPriceChange] = useState<number>(0);
-  const [newPrice, setNewPrice] = useState<number>(0);
-  const [pricePercentChange, setPricePercentChange] = useState<number>(0);
-
-  const loadCurrentRates = async () => {
-    const rates = await fetchAssetInfo(id);
-    const newPrice = +amount * +rates.priceUsd;
-    setNewPrice(newPrice);
-    const oldPrice = priceUsd;
-    setPriceChange(newPrice - +oldPrice);
-    const pricePercentChange = ((newPrice - +oldPrice) / +oldPrice) * 100;
-    setPricePercentChange(pricePercentChange);
-  };
+  const { amount, name, priceUsd, id, symbol, number, oldPriceUsd } = props;
 
   const { setEditCryptoModalOpened, setEditCryptoAmountId } =
     useContext(EditCryptoContext);
@@ -35,9 +21,13 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
     setEditCryptoAmountId(id);
   };
 
+  const priceChange = +priceUsd - oldPriceUsd;
+  const pricePercentChange = ((+priceUsd - oldPriceUsd) / oldPriceUsd) * 100;
+
   useEffect(() => {
-    loadCurrentRates();
-  }, [amount]);
+    console.log(priceUsd);
+    console.log(oldPriceUsd);
+  }, []);
 
   return (
     <TableRow>
@@ -65,10 +55,12 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
       >
         {amount}
       </TableDataCell>
-      <TableDataCell alignCenter>{formatNumber(newPrice)}$</TableDataCell>
+      <TableDataCell alignCenter>{formatNumber(priceUsd)}$</TableDataCell>
       <TableDataCell
         alignCenter
-        className="portfolio__modal__table__body__price-change"
+        className={`portfolio__modal__table__body__price-change ${
+          priceChange >= 0 ? "color-positive" : "color-negative"
+        } `}
       >
         {formatNumber(priceChange)}$
       </TableDataCell>

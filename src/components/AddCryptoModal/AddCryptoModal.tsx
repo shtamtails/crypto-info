@@ -20,6 +20,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
     selectedCrypto = {} as ISelectedCrypto,
     setPortfolio,
     setAddCryptoModalOpened,
+    setNewPortfolioSum,
   } = useContext(PortfolioContext);
 
   const [amountError, setAmountError] = useState<string>("");
@@ -33,12 +34,13 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
     const portfolio: IPortfolio[] = JSON.parse(portfolioData);
 
     if (amount && +amount > 0) {
-      const newPriceUsd = +priceUsd * +amount;
       const selectedCryptoIndex = portfolio.findIndex(
         (crypto: IPortfolio) => crypto.name.toLowerCase() === name.toLowerCase()
       );
+      const newPriceUsd =
+        +priceUsd * (+amount + (portfolio[selectedCryptoIndex]?.amount || 0));
 
-      const newPortfolio: IPortfolio[] =
+      const updatedPortfolio: IPortfolio[] =
         selectedCryptoIndex !== -1
           ? portfolio.map((crypto, index) =>
               index === selectedCryptoIndex
@@ -56,10 +58,22 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
             )
           : [
               ...portfolio,
-              { name, id, symbol, amount: +amount, priceUsd: newPriceUsd },
+              {
+                name,
+                id,
+                symbol,
+                amount: +amount,
+                priceUsd: newPriceUsd,
+                oldPriceUsd: newPriceUsd,
+              },
             ];
-      localStorage.setItem("portfolio", JSON.stringify(newPortfolio));
-      setPortfolio(newPortfolio);
+      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
+      setPortfolio(updatedPortfolio);
+      console.log(updatedPortfolio);
+      const newOverallSum =
+        updatedPortfolio &&
+        updatedPortfolio.reduce((sum, crypto) => sum + crypto.priceUsd, 0);
+      newOverallSum && setNewPortfolioSum(newOverallSum);
       setAddCryptoModalOpened(false);
     } else {
       setAmountError("Wrong coin amount!");

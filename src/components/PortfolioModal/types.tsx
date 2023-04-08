@@ -10,4 +10,5 @@ export interface PortfolioModalElementProps {
   id: string;
   symbol: string;
   number: number;
+  oldPriceUsd: number;
 }

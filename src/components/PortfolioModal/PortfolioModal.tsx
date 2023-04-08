@@ -58,6 +58,7 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
                 key={el.id}
                 amount={el.amount}
                 name={el.name}
+                oldPriceUsd={el.oldPriceUsd || 0}
                 priceUsd={el.priceUsd}
                 id={el.id}
                 symbol={el.symbol}

@@ -1,14 +1,16 @@
 import { useContext } from "react";
-import { PortfolioContext } from "../../context";
+import { IPortfolio, PortfolioContext } from "../../context";
 import { Button } from "../../reusable/Button";
 import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
 import { EditCryptoContext } from "../../context/EditCryptoContext";
 import "./editCryptoModal.scss";
 import { BiCoin } from "react-icons/bi";
+import { fetchAssetInfo } from "../../utils/API/api";
 
 export const EditCryptoModal = () => {
-  const { portfolio, setPortfolio } = useContext(PortfolioContext);
+  const { portfolio, setPortfolio, setNewPortfolioSum } =
+    useContext(PortfolioContext);
   const {
     editCryptoAmount,
     editCryptoAmountError,
@@ -19,19 +21,29 @@ export const EditCryptoModal = () => {
     editCryptoAmountId,
   } = useContext(EditCryptoContext);
 
-  const handleEditSubmit = () => {
-    if (editCryptoAmount && +editCryptoAmount > 0) {
-      const updatedPortfolio = portfolio?.map((el) => {
-        if (el.id === editCryptoAmountId) {
-          return {
-            ...el,
-            amount: +editCryptoAmount,
-          };
-        }
-        return el;
-      });
+  const handleEditSubmit = async () => {
+    const { priceUsd: currencyPriceUsd = 0 } = await fetchAssetInfo(
+      editCryptoAmountId
+    );
+    const newPriceUsd = +editCryptoAmount * +currencyPriceUsd;
+
+    if (editCryptoAmount && +editCryptoAmount > 0 && portfolio) {
+      const updatedPortfolio = portfolio?.map((el) =>
+        el.id === editCryptoAmountId
+          ? {
+              ...el,
+              amount: +editCryptoAmount,
+              priceUsd: newPriceUsd,
+            }
+          : el
+      );
       localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
       updatedPortfolio && setPortfolio(updatedPortfolio);
+      const newOverallSum = updatedPortfolio?.reduce(
+        (sum, { priceUsd = 0 }) => sum + priceUsd,
+        0
+      );
+      setNewPortfolioSum(newOverallSum || 0);
       setEditCryptoModalOpened(false);
     } else {
       setEditCryptoAmountError("Wrong coin amount!");
@@ -47,8 +59,15 @@ export const EditCryptoModal = () => {
       );
       localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
       updatedPortfolio && setPortfolio(updatedPortfolio);
+      const newOverallSum = updatedPortfolio?.reduce(
+        (sum, { priceUsd = 0 }) => sum + priceUsd,
+        0
+      );
+      setNewPortfolioSum(newOverallSum || 0);
+      setEditCryptoModalOpened(false);
     }
   };
+
   return (
     <Modal
       width={500}

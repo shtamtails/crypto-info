@@ -6,9 +6,12 @@ import { useContext, useEffect, useState } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { HeaderPortfolioElement } from "./HeaderPortfolioElement";
 import { AssetData, fetchAssets } from "../../utils/API";
+import { formatNumber } from "../../utils/formatNumber";
+import { abbreviateNumber } from "../../utils/abbreviateNumber";
 
 export const Header: React.FC = () => {
-  const { setPortfolioModalOpened } = useContext(PortfolioContext);
+  const { setPortfolioModalOpened, newPortfolioSum, portfolio } =
+    useContext(PortfolioContext);
   const [topAssets, setTopAssets] = useState<AssetData[]>([]);
 
   const loadTopAssets = async () => {
@@ -19,6 +22,30 @@ export const Header: React.FC = () => {
   useEffect(() => {
     loadTopAssets();
   }, []);
+
+  const [portfolioValue, setPortfolioValue] = useState<number>(0);
+  const [priceDifference, setPriceDifference] = useState<number>(0);
+  const [priceDifferencePercent, setPriceDifferencePercent] =
+    useState<number>(0);
+
+  useEffect(() => {
+    setPortfolioValue(newPortfolioSum);
+    if (portfolio) {
+      const newPriceSum = portfolio.reduce(
+        (sum, crypto) => sum + crypto.priceUsd,
+        0
+      );
+      const oldPriceSum = portfolio.reduce(
+        (sum, crypto) => sum + crypto.oldPriceUsd,
+        0
+      );
+      const priceDifference = newPriceSum - oldPriceSum;
+      setPriceDifference(priceDifference);
+      const priceDifferencePercent =
+        ((newPriceSum - oldPriceSum) / oldPriceSum) * 100;
+      setPriceDifferencePercent(priceDifferencePercent);
+    }
+  }, [newPortfolioSum, portfolio]);
 
   return (
     <header className="header">
@@ -31,6 +58,17 @@ export const Header: React.FC = () => {
             priceUsd={asset.priceUsd}
           />
         ))}
+        <div className="header__portfolio__summary">
+          Portfolio value: {formatNumber(portfolioValue)}$
+          <span
+            className={
+              priceDifference >= 0 ? "color-positive" : "color-negative"
+            }
+          >
+            {formatNumber(priceDifference)}$ (
+            {formatNumber(priceDifferencePercent)}%)
+          </span>
+        </div>
       </div>
       <div className="header__logo">
         <Link to="/">

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   PortfolioContextProps,
   ContextProviderProps,
@@ -11,10 +11,14 @@ export const PortfolioContext = createContext<PortfolioContextProps>({
   portfolio: null,
   portfolioModalOpened: false,
   addCryptoModalOpened: false,
+  portfolioSum: 0,
+  newPortfolioSum: 0,
   setSelectedCrypto: () => {},
   setPortfolioModalOpened: () => {},
   setAddCryptoModalOpened: () => {},
   setPortfolio: () => {},
+  setPortfolioSum: () => {},
+  setNewPortfolioSum: () => {},
 });
 
 export const PortfolioContextProvider: React.FC<ContextProviderProps> = ({
@@ -32,13 +36,20 @@ export const PortfolioContextProvider: React.FC<ContextProviderProps> = ({
   });
   const [portfolio, setPortfolio] = useState<IPortfolio[] | null>(null);
 
+  const [portfolioSum, setPortfolioSum] = useState<number>(0);
+  const [newPortfolioSum, setNewPortfolioSum] = useState<number>(0);
+
   return (
     <PortfolioContext.Provider
       value={{
+        portfolioSum,
+        newPortfolioSum,
         selectedCrypto,
         portfolio,
         portfolioModalOpened,
         addCryptoModalOpened,
+        setNewPortfolioSum,
+        setPortfolioSum,
         setSelectedCrypto,
         setAddCryptoModalOpened,
         setPortfolioModalOpened,
