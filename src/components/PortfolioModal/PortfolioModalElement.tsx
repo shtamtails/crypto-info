@@ -22,7 +22,7 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   const handleEditCryptoModalOpen = () => {
     setEditCryptoModalOpened(true);
     setEditCryptoAmountId(id);
-    setEditCryptoAmount(amount);
+    setEditCryptoAmount(amount.toString());
   };
 
   const priceChange = +priceUsd - oldPriceUsd;
