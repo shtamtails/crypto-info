@@ -4,7 +4,7 @@ import { InputProps } from "./types";
 import "./input.scss";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { value, setValue, label, placeholder, icon } = props;
+  const { value, setValue, label, placeholder, icon, type, error } = props;
 
   const handleChange = (value: string) => {
     setValue && setValue(value);
@@ -15,9 +15,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const className = getDefaultClassName(props, defaultClassName);
   return (
     <div className="input__container">
-      <div className="input__container__label">{label}</div>
+      {label && <div className="input__container__label">{label}</div>}
       <div className="input__container__base">
         <input
+          type={type}
           className={className}
           placeholder={placeholder}
           ref={ref}
@@ -28,6 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         />
         {icon && <div className="input__container__base__icon">{icon}</div>}
       </div>
+      {error && <div className="input__container__error">{error}</div>}
     </div>
   );
 });
