@@ -49,5 +49,3 @@ export const PortfolioContextProvider: React.FC<ContextProviderProps> = ({
     </PortfolioContext.Provider>
   );
 };
-
-// TODO REFACTOR IT TO HANDLE MULTIPLE DIFFERENT MODALS

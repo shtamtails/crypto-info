@@ -6,27 +6,16 @@ import { getCryptoLogo } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
 import { useContext, useEffect, useState } from "react";
 import { fetchAssetInfo } from "../../utils/API/api";
-import { Input } from "../../reusable/Input";
-import { Modal } from "../../reusable/Modal";
-import { PortfolioContext } from "../../context";
+import { EditCryptoContext } from "../../context";
 import { PortfolioModalElementProps } from "./types";
 
 export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   props
 ) => {
   const { amount, name, priceUsd, id, symbol } = props;
-  const { portfolio, setPortfolio } = useContext(PortfolioContext);
   const [priceChange, setPriceChange] = useState<number>(0);
   const [newPrice, setNewPrice] = useState<number>(0);
   const [pricePercentChange, setPricePercentChange] = useState<number>(0);
-
-  const [editCryptoModalOpened, setEditCryptoModalOpened] =
-    useState<boolean>(false);
-  const [editCryptoAmount, setEditCryptoAmount] = useState<string>(
-    amount.toString()
-  );
-  const [editCryptoAmountError, setEditCryptoAmountError] =
-    useState<string>("");
 
   const loadCurrentRates = async () => {
     const rates = await fetchAssetInfo(id);
@@ -38,127 +27,64 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
     setPricePercentChange(pricePercentChange);
   };
 
+  const { setEditCryptoModalOpened, setEditCryptoAmountId } =
+    useContext(EditCryptoContext);
+
+  const handleEditCryptoModalOpen = () => {
+    setEditCryptoModalOpened(true);
+    setEditCryptoAmountId(id);
+  };
+
   useEffect(() => {
     loadCurrentRates();
   }, [amount]);
 
-  const handleEditSubmit = () => {
-    if (editCryptoAmount && +editCryptoAmount > 0) {
-      const updatedPortfolio = portfolio?.map((el) => {
-        if (el.id === id) {
-          return {
-            ...el,
-            amount: +editCryptoAmount,
-          };
-        }
-        return el;
-      });
-      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
-      updatedPortfolio && setPortfolio(updatedPortfolio);
-      setEditCryptoModalOpened(false);
-    } else {
-      setEditCryptoAmountError("Wrong coin amount!");
-    }
-  };
-
-  const handleDeleteCrypto = () => {
-    if (
-      window.confirm("Are you sure you want to delete this cryptocurrency?")
-    ) {
-      const updatedPortfolio = portfolio?.filter((el) => el.id !== id);
-      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
-      updatedPortfolio && setPortfolio(updatedPortfolio);
-    }
-  };
-
   return (
-    <>
-      <Modal
-        visible={editCryptoModalOpened}
-        setVisible={setEditCryptoModalOpened}
-        title="Edit crypto"
-      >
-        <div className="edit-crypto-modal__container">
-          <Input
-            fullWidth
-            value={editCryptoAmount}
-            setValue={setEditCryptoAmount}
-            label="Edit amount"
-            type="number"
-            error={editCryptoAmountError}
+    <TableRow>
+      <TableDataCell className="portfolio__modal__table__body__number">
+        1 FIXME
+      </TableDataCell>
+      <TableDataCell>
+        <div className="portfolio__modal__table__body__crypto-card">
+          <CryptoCard
+            name={name}
+            logoURL={getCryptoLogo(symbol)}
+            shortName={symbol}
           />
-
-          <Button
-            variant="regular"
-            mt="lg"
-            fullWidth
-            onClick={handleEditSubmit}
-          >
-            Submit
-          </Button>
-          <Button
-            variant="danger"
-            mt="lg"
-            fullWidth
-            onClick={handleDeleteCrypto}
-          >
-            Delete from portfolio
-          </Button>
         </div>
-      </Modal>
-      <TableRow>
-        <TableDataCell className="portfolio__modal__table__body__number">
-          1
-        </TableDataCell>
-        <TableDataCell>
-          <div className="portfolio__modal__table__body__crypto-card">
-            <CryptoCard
-              name={name}
-              logoURL={getCryptoLogo(symbol)}
-              shortName={symbol}
-            />
-          </div>
-          <div
-            className="portfolio__modal__table__body__crypto-name"
-            onClick={() => {
-              setEditCryptoModalOpened(true);
-            }}
-          >
-            {name}
-          </div>
-        </TableDataCell>
-        <TableDataCell
-          alignCenter
-          className="portfolio__modal__table__body__amount"
+        <div
+          className="portfolio__modal__table__body__crypto-name"
+          onClick={handleEditCryptoModalOpen}
         >
-          {amount}
-        </TableDataCell>
-        <TableDataCell alignCenter>{formatNumber(newPrice)}$</TableDataCell>
-        <TableDataCell
-          alignCenter
-          className="portfolio__modal__table__body__price-change"
-        >
-          {formatNumber(priceChange)}$
-        </TableDataCell>
-        <TableDataCell
-          alignCenter
-          className={`portfolio__modal__table__body__percent ${
-            pricePercentChange >= 0 ? "color-positive" : "color-negative"
-          }`}
-        >
-          {formatNumber(pricePercentChange)}%
-        </TableDataCell>
-        <TableDataCell className="portfolio__modal__table__body__actions">
-          <Button
-            variant="regular"
-            onClick={() => {
-              setEditCryptoModalOpened(true);
-            }}
-          >
-            <AiOutlineEdit />
-          </Button>
-        </TableDataCell>
-      </TableRow>
-    </>
+          {name}
+        </div>
+      </TableDataCell>
+      <TableDataCell
+        alignCenter
+        className="portfolio__modal__table__body__amount"
+      >
+        {amount}
+      </TableDataCell>
+      <TableDataCell alignCenter>{formatNumber(newPrice)}$</TableDataCell>
+      <TableDataCell
+        alignCenter
+        className="portfolio__modal__table__body__price-change"
+      >
+        {formatNumber(priceChange)}$
+      </TableDataCell>
+      <TableDataCell
+        alignCenter
+        className={`portfolio__modal__table__body__percent ${
+          pricePercentChange >= 0 ? "color-positive" : "color-negative"
+        }`}
+      >
+        {formatNumber(pricePercentChange)}%
+      </TableDataCell>
+      <TableDataCell className="portfolio__modal__table__body__actions">
+        <Button variant="regular" onClick={handleEditCryptoModalOpen}>
+          <AiOutlineEdit />
+        </Button>
+      </TableDataCell>
+    </TableRow>
   );
 };

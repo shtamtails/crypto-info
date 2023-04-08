@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import { fetchAssetInfo } from "./utils/API/api";
 import { PortfolioContext, IPortfolio } from "./context";
 import { Page404 } from "./components/Page404/Page404";
+import { EditCryptoModal } from "./components/EditCryptoModal/EditCryptoModal";
 
 function App() {
   const {
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <>
+      <EditCryptoModal />
       <PortfolioModal
         isVisible={portfolioModalOpened}
         setIsVisible={setPortfolioModalOpened}

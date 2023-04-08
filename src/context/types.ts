@@ -22,3 +22,14 @@ export interface PortfolioContextProps {
 export interface ContextProviderProps {
   children: React.ReactNode;
 }
+
+export interface EditCryptoContextProps {
+  editCryptoModalOpened: boolean;
+  setEditCryptoModalOpened: (arg0: boolean) => void;
+  editCryptoAmount: string;
+  setEditCryptoAmount: (arg0: string) => void;
+  editCryptoAmountError: string;
+  setEditCryptoAmountError: (arg0: string) => void;
+  editCryptoAmountId: string;
+  setEditCryptoAmountId: (arg0: string) => void;
+}
