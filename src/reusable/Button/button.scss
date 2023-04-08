@@ -1,4 +1,4 @@
-@use "../../style/colors.scss" as *;
+@use "../../style/" as *;
 
 button {
   border: none;
@@ -15,6 +15,7 @@ button {
 .button--regular {
   color: #228be6;
   background-color: $button-regular;
+  outline: none;
   &:hover {
     background-color: $button-regular-hover;
   }
@@ -26,5 +27,14 @@ button {
   outline: 2px solid $button-outline;
   &:hover {
     background-color: $button-outline-hover;
+  }
+}
+
+.button--danger {
+  color: #ffffff;
+  background-color: $button-danger;
+  outline: none;
+  &:hover {
+    background-color: $button-danger-hover;
   }
 }
