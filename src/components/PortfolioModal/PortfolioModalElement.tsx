@@ -61,6 +61,16 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
     }
   };
 
+  const handleDeleteCrypto = () => {
+    if (
+      window.confirm("Are you sure you want to delete this cryptocurrency?")
+    ) {
+      const updatedPortfolio = portfolio?.filter((el) => el.id !== id);
+      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
+      updatedPortfolio && setPortfolio(updatedPortfolio);
+    }
+  };
+
   return (
     <>
       <Modal
@@ -77,6 +87,7 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
             type="number"
             error={editCryptoAmountError}
           />
+
           <Button
             variant="regular"
             mt="lg"
@@ -84,6 +95,14 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
             onClick={handleEditSubmit}
           >
             Submit
+          </Button>
+          <Button
+            variant="danger"
+            mt="lg"
+            fullWidth
+            onClick={handleDeleteCrypto}
+          >
+            Delete from portfolio
           </Button>
         </div>
       </Modal>
