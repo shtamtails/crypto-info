@@ -31,8 +31,8 @@ export interface ContextProviderProps {
 export interface EditCryptoContextProps {
   editCryptoModalOpened: boolean;
   setEditCryptoModalOpened: (arg0: boolean) => void;
-  editCryptoAmount: string;
-  setEditCryptoAmount: (arg0: string) => void;
+  editCryptoAmount: number;
+  setEditCryptoAmount: (arg0: number) => void;
   editCryptoAmountError: string;
   setEditCryptoAmountError: (arg0: string) => void;
   editCryptoAmountId: string;

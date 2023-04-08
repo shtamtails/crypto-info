@@ -13,12 +13,16 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
 ) => {
   const { amount, name, priceUsd, id, symbol, number, oldPriceUsd } = props;
 
-  const { setEditCryptoModalOpened, setEditCryptoAmountId } =
-    useContext(EditCryptoContext);
+  const {
+    setEditCryptoModalOpened,
+    setEditCryptoAmountId,
+    setEditCryptoAmount,
+  } = useContext(EditCryptoContext);
 
   const handleEditCryptoModalOpen = () => {
     setEditCryptoModalOpened(true);
     setEditCryptoAmountId(id);
+    setEditCryptoAmount(amount);
   };
 
   const priceChange = +priceUsd - oldPriceUsd;

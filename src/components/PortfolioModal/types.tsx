@@ -5,7 +5,7 @@ export interface PortfolioModalProps {
 
 export interface PortfolioModalElementProps {
   name: string;
-  amount: string | number;
+  amount: number;
   priceUsd: string | number;
   id: string;
   symbol: string;
