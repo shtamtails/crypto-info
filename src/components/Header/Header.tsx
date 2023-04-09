@@ -1,4 +1,5 @@
 import { AiOutlineMenu } from "react-icons/ai";
+import { FcBriefcase } from "react-icons/fc";
 import { Button } from "../../reusable/Button";
 import "./header.scss";
 import { Link } from "react-router-dom";
@@ -7,7 +8,6 @@ import { PortfolioContext } from "../../context/PortfolioContext";
 import { HeaderPortfolioElement } from "./HeaderPortfolioElement";
 import { AssetData, fetchAssets } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
-import { abbreviateNumber } from "../../utils/abbreviateNumber";
 
 export const Header: React.FC = () => {
   const { setPortfolioModalOpened, newPortfolioSum, portfolio } =
@@ -59,7 +59,13 @@ export const Header: React.FC = () => {
           />
         ))}
         <div className="header__portfolio__summary">
-          Portfolio value: {formatNumber(portfolioValue)}$
+          <div className="header__portfolio__element__logo">
+            <FcBriefcase size={20} />
+          </div>
+          <div className="header__portfolio__element__name">
+            Portfolio value:
+          </div>
+          {formatNumber(portfolioValue)}$
           {portfolioValue > 0 && (
             <span
               className={
