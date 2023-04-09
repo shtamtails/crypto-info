@@ -27,26 +27,26 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
               <TableRow>
                 <TableHeaderCell
                   alignLeft
-                  className="portfolio_modal_table_header-number"
+                  className="portfolio__modal__table__header__number"
                 >
                   №
                 </TableHeaderCell>
                 <TableHeaderCell alignLeft style={{ width: "200px" }}>
                   Name
                 </TableHeaderCell>
-                <TableHeaderCell className="portfolio_modal_table_header-amount">
+                <TableHeaderCell className="portfolio__modal__table__header__amount">
                   Amount
                 </TableHeaderCell>
                 <TableHeaderCell>Price</TableHeaderCell>
-                <TableHeaderCell className="portfolio_modal_table_header-price-change">
+                <TableHeaderCell className="portfolio__modal__table__header__price-change">
                   Price Change
                 </TableHeaderCell>
-                <TableHeaderCell className="portfolio_modal_table_header-percent">
+                <TableHeaderCell className="portfolio__modal__table__header__percent">
                   Percent Change
                 </TableHeaderCell>
                 <TableHeaderCell
                   alignCenter
-                  className="portfolio_modal_table_header-actions"
+                  className="portfolio__modal__table__header__actions"
                 >
                   Actions
                 </TableHeaderCell>
