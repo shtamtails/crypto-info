@@ -1,3 +1,5 @@
+@use "./colors" as *;
+
 $baseSpacingUnit: 8;
 $spacingScales: (
   xs: 0.25,
@@ -28,4 +30,53 @@ $spacingScales: (
       #{$prop}: calculate-spacing($multiplier);
     }
   }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.aic {
+  align-items: center;
+}
+
+.ais {
+  align-items: start;
+}
+
+.aie {
+  align-items: end;
+}
+
+.jcc {
+  justify-content: center;
+}
+
+.color-positive {
+  color: $text-positive;
+}
+
+.color-negative {
+  color: $text-negative;
+}
+
+.fullWidth {
+  width: 100%;
 }
