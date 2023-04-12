@@ -8,7 +8,8 @@ const meta: Meta<typeof CryptoCard> = {
   tags: ["autodocs"],
   argTypes: {
     logoURL: {
-      description: "URL to cryptocurrency image",
+      description:
+        "URL to cryptocurrency image. Use getCryptoLogo(symbol) to get logo",
     },
     name: {
       description: "Name of the cryptocurrency",
