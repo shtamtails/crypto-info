@@ -3,6 +3,6 @@ import { InputProps } from "../Input/types";
 
 export type dataType = { label: string; value: string };
 
-export interface SelectProps extends defaultProps, InputProps {
+export interface SelectProps extends defaultProps, Omit<InputProps, "icon"> {
   data: dataType[];
 }

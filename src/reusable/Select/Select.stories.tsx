@@ -17,9 +17,6 @@ const meta: Meta<typeof Select> = {
     setValue: {
       description: "A function that changes the state of component",
     },
-    icon: {
-      description: `Icon component. F.e. we can use react-icons package and pass FiCircle component as the value`,
-    },
     error: {
       description: "Text that displayed below the input with red text color",
     },
