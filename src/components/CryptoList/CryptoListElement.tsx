@@ -25,33 +25,42 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
     useContext(PortfolioContext);
   const isPercentPositive = +changePercent > 0;
   return (
-    <TableRow className="crypto-list__element">
-      <TableDataCell alignCenter className="crypto-list__element__rank">
+    <TableRow className="crypto-list__table__element">
+      <TableDataCell alignCenter className="crypto-list__table__element__rank">
         {rank}
       </TableDataCell>
-      <TableDataCell className="crypto-list__element__name">
+      <TableDataCell className="crypto-list__table__element__name">
         <Link to={id}>
           <CryptoCard name={name} logoURL={iconURL} shortName={shortName} />
         </Link>
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list__element__price">
+      <TableDataCell alignCenter className="crypto-list__table__element__price">
         ${Number(price).toFixed(2)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list__element__market-cap">
+      <TableDataCell
+        alignCenter
+        className="crypto-list__table__element__market-cap"
+      >
         ${abbreviateNumber(marketCap)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list__element__vwap">
+      <TableDataCell alignCenter className="crypto-list__table__element__vwap">
         ${abbreviateNumber(vwap)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list__element__supply">
+      <TableDataCell
+        alignCenter
+        className="crypto-list__table__element__supply"
+      >
         {abbreviateNumber(supply)}
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list__element__volume">
+      <TableDataCell
+        alignCenter
+        className="crypto-list__table__element__volume"
+      >
         ${abbreviateNumber(volume)}
       </TableDataCell>
       <TableDataCell
         alignCenter
-        className={`crypto-list__element__change ${
+        className={`crypto-list__table__element__change ${
           isPercentPositive ? "color-positive" : "color-negative"
         }`}
       >
@@ -59,10 +68,11 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       </TableDataCell>
       <TableDataCell
         alignCenter
-        className="crypto-list__element__action flex jcc"
+        className="crypto-list__table__element__action flex jcc"
       >
         <Button
           variant="regular"
+          className="crypto-list__table__element__action__button"
           onClick={() => {
             setAddCryptoModalOpened(true);
             setSelectedCrypto({ name: name, id: id, symbol: shortName });

@@ -20,7 +20,12 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
 
   return (
     <>
-      <Modal visible={isVisible} setVisible={setIsVisible} title="My portfolio">
+      <Modal
+        visible={isVisible}
+        setVisible={setIsVisible}
+        title="My portfolio"
+        className="portfolio-modal"
+      >
         {portfolio?.length ? (
           <Table fullWidth>
             <TableHeader>

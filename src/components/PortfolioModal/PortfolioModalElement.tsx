@@ -32,7 +32,7 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   const pricePercentChange = ((+priceUsd - oldPriceUsd) / oldPriceUsd) * 100;
 
   return (
-    <TableRow>
+    <TableRow className="portfolio__modal__table__body__row">
       <TableDataCell className="portfolio__modal__table__body__number">
         {number}
       </TableDataCell>
@@ -57,7 +57,12 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
       >
         {amount}
       </TableDataCell>
-      <TableDataCell alignCenter>{formatNumber(priceUsd)}$</TableDataCell>
+      <TableDataCell
+        alignCenter
+        className="portfolio__modal__table__body__price"
+      >
+        {formatNumber(priceUsd)}$
+      </TableDataCell>
       <TableDataCell
         alignCenter
         className={`portfolio__modal__table__body__price-change ${

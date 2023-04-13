@@ -65,7 +65,9 @@ export const Header: React.FC = () => {
           <div className="header__portfolio__element__name">
             Portfolio value:
           </div>
-          {formatNumber(portfolioValue)}$
+          <span className="header__portfolio__element__value">
+            {formatNumber(portfolioValue)}$
+          </span>
           {portfolioValue > 0 && (
             <span
               className={

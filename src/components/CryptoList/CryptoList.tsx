@@ -31,43 +31,49 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
 
   return (
     <div className="crypto-list">
-      <Table>
+      <Table className="crypto-list__table">
         <TableHeader
-          className="crypto-list__head"
+          className="crypto-list__table__head"
           style={{ backgroundColor: "#f1f3f5" }}
         >
           <TableRow>
-            <TableHeaderCell alignCenter className="crypto-list__th__rank">
+            <TableHeaderCell
+              alignCenter
+              className="crypto-list__table__th__rank"
+            >
               Rank
             </TableHeaderCell>
-            <TableHeaderCell alignLeft className="crypto-list__th__name">
+            <TableHeaderCell alignLeft className="crypto-list__table__th__name">
               Name
             </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__th__price">
+            <TableHeaderCell className="crypto-list__table__th__price">
               Price
             </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__th__market-cap">
+            <TableHeaderCell className="crypto-list__table__th__market-cap">
               Market Cap
             </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__th__vwap">
+            <TableHeaderCell className="crypto-list__table__th__vwap">
               VWAP (24Hr)
             </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__th__supply">
+            <TableHeaderCell className="crypto-list__table__th__supply">
               Supply
             </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__th__volume">
+            <TableHeaderCell className="crypto-list__table__th__volume">
               Volume (24Hr)
             </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__th__change">
+            <TableHeaderCell className="crypto-list__table__th__change">
               Change (24Hr)
             </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__th__action">
+            <TableHeaderCell className="crypto-list__table__th__action">
               Action
             </TableHeaderCell>
           </TableRow>
         </TableHeader>
 
-        <TableBody style={{ backgroundColor: "#f8f9fa" }}>
+        <TableBody
+          style={{ backgroundColor: "#f8f9fa" }}
+          className="crypto-list__table__body"
+        >
           {assets?.map((asset) => (
             <CryptoListElement
               key={asset.id}
