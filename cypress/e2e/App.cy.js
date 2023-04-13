@@ -16,32 +16,36 @@ describe("CryptoList (Main) E2E", () => {
 describe("CryptoInfo (Main) E2E", () => {
   it("CryptoInfo page should load", () => {
     cy.visit("/");
-    cy.get(".crypto-list__table__element__name") // Get the
+    cy.get(".crypto-list__table__element__name") // Get the first element from CryptoList list
       .first()
-      .find(".cryptocurrency-component__info__name")
-      .click()
+      .find(".cryptocurrency-component__info__name") // Get it's name
+      .click() // Click it
       .invoke("text")
       .then((text) => {
+        // check if crypto name is the same we're clicked on
         cy.get(".crypto-info__header__asset__main__name").should(
           "contain.text",
           text
         );
-        cy.url().should("include", text.toLowerCase());
+        cy.url().should("include", text.toLowerCase()); // check if URL is contains crypto we clicked
       });
   });
+
   it("Graph should load", () => {
     cy.visit("/bitcoin");
+    // check if graph is visible and exists
     cy.get(".crypto-info__body__price-chart").should("be.visible");
   });
+
   it("Add crypto button should work (modal should be opened)", () => {
     cy.visit("/bitcoin");
     cy.get(".crypto-info__header__asset__main__name").should(($element) => {
-      expect($element.text().toLowerCase()).to.contain("bitcoin");
+      expect($element.text().toLowerCase()).to.contain("bitcoin"); // check if name is equal to bitcoin
     });
-    cy.get(".crypto-info__header__stats__col--add-button button").click();
-    cy.get(".add-crypto-modal").should("be.visible");
-    cy.get(".modal__content__header__close-button button").click();
-    cy.get(".add-crypto-modal").should("not.exist");
+    cy.get(".crypto-info__header__stats__col--add-button button").click(); // open add crypto modal
+    cy.get(".add-crypto-modal").should("be.visible"); // check if its visible
+    cy.get(".modal__content__header__close-button button").click(); // click close
+    cy.get(".add-crypto-modal").should("not.exist"); // make sure it does not exist in DOM
   });
 });
 
