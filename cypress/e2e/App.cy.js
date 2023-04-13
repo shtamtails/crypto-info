@@ -4,12 +4,14 @@ describe("Crypto List", () => {
   });
   it("Crypto List should load", () => {
     cy.get(`.crypto-list__table__element`).should("have.length", 5); // Check if CryptoList list length is 5 (we load and display 5 elements from API)
+    cy.screenshot();
   });
   it("Should lore more cryptocurrencies", () => {
     cy.get(".crypto-list").within(() => {
       cy.contains("Load more").click(); // Click load more button in crypto list
       cy.get(`.crypto-list__table__element`).should("have.length", 10); // Check if CryptoList list length is at least 10 (we load and display 5 more elements from API)
     });
+    cy.screenshot();
   });
 });
 
@@ -29,12 +31,14 @@ describe("CryptoInfo Page", () => {
         );
         cy.url().should("include", text.toLowerCase()); // check if URL is contains crypto we clicked
       });
+    cy.screenshot();
   });
 
   it("Graph should load", () => {
     cy.visit("/bitcoin");
     // check if graph is visible and exists
     cy.get(".crypto-info__body__price-chart").should("be.visible");
+    cy.screenshot();
   });
 });
 
@@ -50,5 +54,6 @@ describe("Header Component", () => {
       const value = parseFloat($el.text().replace("$", ""));
       expect(value).to.be.greaterThan(0);
     });
+    cy.screenshot();
   });
 });

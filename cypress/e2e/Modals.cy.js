@@ -3,8 +3,10 @@ describe("Modals", () => {
     cy.visit("/");
     cy.get(".crypto-list__table__element__action__button").first().click(); // Click "+" button in CryptoList list to add crypto
     cy.get(".add-crypto-modal").should("be.visible"); // Check if modal is opened
+    cy.screenshot();
     cy.get(".modal__content__header__close-button button").click(); // Click modal close button
     cy.get(".add-crypto-modal").should("not.exist"); // Check if modal doesn't exist in DOM anymore
+    cy.screenshot();
   });
 
   it("Add Crypto Modal(CryptoInfo) should open and close", () => {
@@ -14,8 +16,20 @@ describe("Modals", () => {
     });
     cy.get(".crypto-info__header__stats__col--add-button button").click(); // open add crypto modal
     cy.get(".add-crypto-modal").should("be.visible"); // check if its visible
+    cy.screenshot();
     cy.get(".modal__content__header__close-button button").click(); // click close
     cy.get(".add-crypto-modal").should("not.exist"); // make sure it does not exist in DOM
+    cy.screenshot();
+  });
+
+  it("Portfolio Modal should open and close", () => {
+    cy.visit("/");
+    cy.get(".header__links__button").click(); // Click "My Portfolio" button in Header
+    cy.get(".portfolio-modal").should("be.visible"); // Check if portfolio is popped up
+    cy.screenshot();
+    cy.get(".modal__content__header__close-button button").click(); // Click modal close button
+    cy.get(".portfolio-modal").should("not.exist"); // Check if portfolio does not exist in DOM
+    cy.screenshot();
   });
 
   it("Add Crypto Modal should work with decimals", () => {
@@ -26,7 +40,7 @@ describe("Modals", () => {
     cy.get(".add-crypto-modal__amount-input input") // Get input and type decimal value (1.23)
       .type("1.23")
       .should("have.value", "1.23"); // Check if value is correct and equals to 1.23
-
+    cy.screenshot();
     cy.get(".add-crypto-modal__confirm-button button").click(); // Click "Add" button to add crypto
     cy.get(".add-crypto-modal").should("not.exist"); // Check if modal is closed
 
@@ -50,14 +64,7 @@ describe("Modals", () => {
         expect(portfolioValue).to.closeTo(cryptoPrice * 1.23, 100); // cryptoPrice * 1.23 should be equal to portfolioValue | +- 100
       });
     });
-  });
-
-  it("Portfolio Modal should open and close", () => {
-    cy.visit("/");
-    cy.get(".header__links__button").click(); // Click "My Portfolio" button in Header
-    cy.get(".portfolio-modal").should("be.visible"); // Check if portfolio is popped up
-    cy.get(".modal__content__header__close-button button").click(); // Click modal close button
-    cy.get(".portfolio-modal").should("not.exist"); // Check if portfolio does not exist in DOM
+    cy.screenshot();
   });
 
   it("Edit Crypto Modal should work fine (open, contains, delete, close)", () => {

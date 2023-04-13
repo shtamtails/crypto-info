@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test:cypress": "cypress open"
+    "test:cypress": "cypress run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
