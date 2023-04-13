@@ -16,7 +16,7 @@ describe("CryptoList (Main) E2E", () => {
 describe("CryptoInfo (Main) E2E", () => {
   it("CryptoInfo page should load", () => {
     cy.visit("/");
-    cy.get(".crypto-list__table__element__name")
+    cy.get(".crypto-list__table__element__name") // Get the
       .first()
       .find(".cryptocurrency-component__info__name")
       .click()
@@ -26,8 +26,8 @@ describe("CryptoInfo (Main) E2E", () => {
           "contain.text",
           text
         );
+        cy.url().should("include", text.toLowerCase());
       });
-    cy.url().should("include", "bitcoin");
   });
   it("Graph should load", () => {
     cy.visit("/bitcoin");
