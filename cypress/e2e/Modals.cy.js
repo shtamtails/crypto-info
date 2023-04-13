@@ -75,7 +75,7 @@ describe("Modals", () => {
     cy.get(".add-crypto-modal__amount-input input") // Get an amount input and type "1" as an amount
       .type("1")
       .should("have.value", "1"); // Check if input value is equals to "1"
-
+    cy.screenshot();
     cy.get(".add-crypto-modal__confirm-button button").click(); // Click "Add" button
     cy.get(".add-crypto-modal").should("not.exist"); // Portfolio should close. Check if portfolio does not exist in DOM.
 
@@ -90,6 +90,7 @@ describe("Modals", () => {
     cy.get(".header__links__button").click(); // Click "My Portfolio" button in Header
     cy.get(".portfolio-modal").should("be.visible"); // Check if portfolio is popped up
     cy.get(".portfolio__modal__table__body__row").should("have.length", 1); // Check the length of the rows (it should equal to 1, because we've added 1 element)
+    cy.screenshot();
 
     cy.get(".portfolio__modal__table__body__price") // Check if price in portfolio equals to price of cryptocurrency (it should equal because we've added amount of 1)
       .first()
@@ -103,12 +104,13 @@ describe("Modals", () => {
 
     cy.get(".portfolio__modal__table__body__actions").click(); // Click edit crypto button
     cy.get(".edit-crypto-modal").should("be.visible"); // Check if the edit crypto modal opens
-
+    cy.screenshot();
     cy.get(".edit-crypto-modal").within(() => {
       cy.contains("Delete from portfolio").click(); // Click delete from portfolio button in edit crypto modal
     });
 
     cy.get(".portfolio__modal__table__body__row").should("have.length", 0); // Check if cryptocurrency is deleted from portfolio (length 1 -> length 0)
+    cy.screenshot();
     cy.get(".modal__content__header__close-button button").click(); // close modal
     cy.get(".portfolio-modal").should("not.exist"); // check if its not exist in DOM anymore
   });
