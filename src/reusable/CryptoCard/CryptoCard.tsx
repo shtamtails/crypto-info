@@ -10,7 +10,12 @@ export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
       </div>
 
       <div className="cryptocurrency-component__info">
-        <div className="cryptocurrency-component__info__name">{name}</div>
+        <div
+          className="cryptocurrency-component__info__name"
+          data-testid="cryptocurrency-component_name"
+        >
+          {name}
+        </div>
         <div className="cryptocurrency-component__info__symbol">
           {shortName}
         </div>

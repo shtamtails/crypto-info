@@ -65,7 +65,10 @@ export const Header: React.FC = () => {
           <div className="header__portfolio__element__name">
             Portfolio value:
           </div>
-          <span className="header__portfolio__element__value">
+          <span
+            className="header__portfolio__element__value"
+            data-testid="header_portfolio-value"
+          >
             {formatNumber(portfolioValue)}$
           </span>
           {portfolioValue > 0 && (
@@ -89,6 +92,7 @@ export const Header: React.FC = () => {
         <Button
           variant="regular"
           className="header__links__button"
+          testId="header_portfolio-button"
           onClick={() => {
             setPortfolioModalOpened(true);
           }}

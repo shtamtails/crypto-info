@@ -81,6 +81,7 @@ export const EditCryptoModal = () => {
       setVisible={setEditCryptoModalOpened}
       title="Edit crypto"
       className="edit-crypto-modal"
+      testId="edit-crypto-modal"
     >
       <div className="edit-crypto-modal__container">
         <div className="edit-crypto-modal__container__crypto-card">

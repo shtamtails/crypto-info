@@ -6,4 +6,5 @@ export interface ButtonProps extends defaultProps {
   variant?: "regular" | "outline" | "danger";
   className?: string;
   onClick?: () => any;
+  testId?: string;
 }

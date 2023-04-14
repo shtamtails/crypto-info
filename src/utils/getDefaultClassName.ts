@@ -1,19 +1,19 @@
 export const getDefaultClassName = (
-  props: any,
+  attribute: any,
   defaultClassName?: string[]
 ) => {
   const classNames: string[] = [];
   defaultClassName && Object.assign(classNames, defaultClassName);
-  props.className && classNames.push(props.className);
-  props.pl && classNames.push(`padding-left-${props.pl}`);
-  props.pr && classNames.push(`padding-right-${props.pr}`);
-  props.pt && classNames.push(`padding-top-${props.pt}`);
-  props.pb && classNames.push(`padding-bottom-${props.pb}`);
-  props.ml && classNames.push(`margin-left-${props.ml}`);
-  props.mr && classNames.push(`margin-right-${props.mr}`);
-  props.mt && classNames.push(`margin-top-${props.mt}`);
-  props.mb && classNames.push(`margin-bottom-${props.mb}`);
-  props.radius && classNames.push(`border-radius-${props.radius}`);
-  props.fullWidth && classNames.push(`fullWidth`);
+  attribute.className && classNames.push(attribute.className);
+  attribute.pl && classNames.push(`padding-left-${attribute.pl}`);
+  attribute.pr && classNames.push(`padding-right-${attribute.pr}`);
+  attribute.pt && classNames.push(`padding-top-${attribute.pt}`);
+  attribute.pb && classNames.push(`padding-bottom-${attribute.pb}`);
+  attribute.ml && classNames.push(`margin-left-${attribute.ml}`);
+  attribute.mr && classNames.push(`margin-right-${attribute.mr}`);
+  attribute.mt && classNames.push(`margin-top-${attribute.mt}`);
+  attribute.mb && classNames.push(`margin-bottom-${attribute.mb}`);
+  attribute.radius && classNames.push(`border-radius-${attribute.radius}`);
+  attribute.fullWidth && classNames.push(`fullWidth`);
   return classNames.join(" ");
 };

@@ -25,16 +25,26 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
     useContext(PortfolioContext);
   const isPercentPositive = +changePercent > 0;
   return (
-    <TableRow className="crypto-list__table__element">
+    <TableRow
+      className="crypto-list__table__element"
+      testId="crypto-list-element"
+    >
       <TableDataCell alignCenter className="crypto-list__table__element__rank">
         {rank}
       </TableDataCell>
-      <TableDataCell className="crypto-list__table__element__name">
+      <TableDataCell
+        className="crypto-list__table__element__name"
+        testId="crypto-list_element_name"
+      >
         <Link to={id}>
           <CryptoCard name={name} logoURL={iconURL} shortName={shortName} />
         </Link>
       </TableDataCell>
-      <TableDataCell alignCenter className="crypto-list__table__element__price">
+      <TableDataCell
+        alignCenter
+        className="crypto-list__table__element__price"
+        testId="crypto-list_element_price"
+      >
         ${Number(price).toFixed(2)}
       </TableDataCell>
       <TableDataCell
@@ -71,6 +81,7 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
         className="crypto-list__table__element__action flex jcc"
       >
         <Button
+          testId="add-crypto-button"
           variant="regular"
           className="crypto-list__table__element__action__button"
           onClick={() => {

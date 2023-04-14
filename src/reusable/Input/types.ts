@@ -9,4 +9,5 @@ export interface InputProps extends defaultProps {
   icon?: string | ReactNode;
   type?: HTMLInputTypeAttribute;
   error?: string;
+  testId?: string;
 }

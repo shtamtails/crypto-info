@@ -115,7 +115,10 @@ export const CryptoInfo: React.FC = () => {
             <img src={assetInfo ? getCryptoLogo(assetInfo?.symbol) : ""} />
           </div>
           <div className="crypto-info__header__asset__main">
-            <div className="crypto-info__header__asset__main__name">
+            <div
+              className="crypto-info__header__asset__main__name"
+              data-testid="crypto-info_header_name"
+            >
               {assetInfo?.name || "..."} ({assetInfo?.symbol || "..."})
             </div>
             <div className="crypto-info__header__asset__main__date">
@@ -154,6 +157,7 @@ export const CryptoInfo: React.FC = () => {
           </div>
           <div className="crypto-info__header__stats__col crypto-info__header__stats__col--add-button">
             <Button
+              testId="crypto-info_add-crypto-button"
               height="100%"
               variant="regular"
               onClick={() => {
@@ -172,7 +176,10 @@ export const CryptoInfo: React.FC = () => {
         </div>
       </div>
       <div className="crypto-info__body">
-        <div className="crypto-info__body__price-chart">
+        <div
+          className="crypto-info__body__price-chart"
+          data-testid="crypto-info_price-chart"
+        >
           <PriceChart labels={time} data={prices} isChangePositive={true} />
         </div>
         <div className="crypto-info__body__controls">{timePeriodButtons}</div>

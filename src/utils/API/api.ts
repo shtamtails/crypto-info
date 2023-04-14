@@ -1,12 +1,5 @@
 import axios from "axios";
-import {
-  IAssets,
-  IAsset,
-  PriceData,
-  TimePeriods,
-  AssetData,
-  Rates,
-} from "./types";
+import { PriceData, TimePeriods, AssetData, Rates } from "./types";
 
 export const api = axios.create({
   baseURL: "https://api.coincap.io/v2",
@@ -16,7 +9,9 @@ export const fetchData = async <T>(
   endpoint: string,
   params?: Record<string, any>
 ): Promise<T> => {
-  const response = await api.get(endpoint, { params });
+  const response = await axios.get(`https://api.coincap.io/v2${endpoint}`, {
+    params,
+  });
   return response.data.data;
 };
 

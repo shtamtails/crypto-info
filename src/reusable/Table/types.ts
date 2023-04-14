@@ -6,4 +6,5 @@ export interface TableProps extends defaultProps {
   alignLeft?: boolean;
   alignRight?: boolean;
   alignCenter?: boolean;
+  testId?: string;
 }

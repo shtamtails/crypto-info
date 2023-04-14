@@ -4,7 +4,8 @@ import { InputProps } from "./types";
 import "./input.scss";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { value, setValue, label, placeholder, icon, type, error } = props;
+  const { value, setValue, label, placeholder, icon, type, error, testId } =
+    props;
 
   const handleChange = (value: string) => {
     setValue && setValue(value);
@@ -18,6 +19,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       {label && <div className="input__container__label">{label}</div>}
       <div className="input__container__base">
         <input
+          data-testid={testId}
           type={type}
           className={className}
           placeholder={placeholder}

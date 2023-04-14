@@ -7,13 +7,18 @@ export default function createTableComponent(
   tag: keyof JSX.IntrinsicElements
 ): React.FC<TableProps> {
   return (props) => {
-    const { children, alignLeft, alignRight, alignCenter, style } = props;
+    const { children, alignLeft, alignRight, alignCenter, style, testId } =
+      props;
     const tableClassnames: string[] = [];
     alignLeft && tableClassnames.push("text-left");
     alignRight && tableClassnames.push("text-right");
     alignCenter && tableClassnames.push("text-center");
     const className = getDefaultClassName(props, tableClassnames);
-    return React.createElement(tag, { className, style }, children);
+    return React.createElement(
+      tag,
+      { "data-testid": testId, className, style },
+      children
+    );
   };
 }
 

@@ -6,4 +6,5 @@ export interface ModalProps {
   zIndex?: number;
   width?: number | string;
   className?: string;
+  testId?: string;
 }

@@ -89,6 +89,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
       setVisible={setVisible}
       title="Add crypto"
       className="add-crypto-modal"
+      testId="add-crypto-modal"
     >
       <div className="add-crypto-modal__crypto-card">
         <CryptoCard
@@ -100,6 +101,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
 
       <div className="add-crypto-modal__amount-input">
         <Input
+          testId="add-crypto-modal_amount-input"
           icon={<BiCoin />}
           ref={amountRef}
           fullWidth
@@ -110,7 +112,12 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
         />
       </div>
       <div className="add-crypto-modal__confirm-button">
-        <Button variant="regular" onClick={handleAddCrypto} fullWidth>
+        <Button
+          variant="regular"
+          onClick={handleAddCrypto}
+          fullWidth
+          testId="add-crypto-modal_confirm"
+        >
           Add
         </Button>
       </div>

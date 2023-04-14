@@ -25,6 +25,7 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
         setVisible={setIsVisible}
         title="My portfolio"
         className="portfolio-modal"
+        testId="portfolio-modal"
       >
         {portfolio?.length ? (
           <Table fullWidth>
