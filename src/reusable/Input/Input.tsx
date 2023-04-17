@@ -29,7 +29,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             handleChange(e.target.value);
           }}
         />
-        {icon && <div className="input__container__base__icon">{icon}</div>}
+        {icon && (
+          <div
+            className="input__container__base__icon"
+            data-testid="input-icon"
+          >
+            {icon}
+          </div>
+        )}
       </div>
       {error && <div className="input__container__error">{error}</div>}
     </div>

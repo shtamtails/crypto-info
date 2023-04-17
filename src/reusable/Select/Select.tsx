@@ -5,7 +5,7 @@ import "./select.scss";
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (props, ref) => {
-    const { data, placeholder, value, setValue, label } = props;
+    const { data, placeholder, value, setValue, label, testId } = props;
 
     const className = getDefaultClassName(props);
 
@@ -14,6 +14,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         <div className="input__container__label">{label}</div>
         <div className="input input-select">
           <select
+            data-testid={testId}
             ref={ref}
             className={className}
             value={value}

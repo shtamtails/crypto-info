@@ -2,11 +2,11 @@ import { CryptoCardProps } from "./types";
 import "./cryptoCard.scss";
 
 export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
-  const { logoURL, name, shortName } = props;
+  const { logoURL, name, shortName, testId } = props;
   return (
-    <div className="cryptocurrency-component">
+    <div className="cryptocurrency-component" data-testid={testId}>
       <div className="cryptocurrency-component__icon">
-        <img src={logoURL} />
+        <img src={logoURL} alt={`${name} logo`} />
       </div>
 
       <div className="cryptocurrency-component__info">
