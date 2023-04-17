@@ -11,8 +11,18 @@ import { fetchAssetInfo } from "./utils/API/api";
 import { PortfolioContext, IPortfolio } from "./context";
 import { Page404 } from "./components/Page404/Page404";
 import { EditCryptoModal } from "./components/EditCryptoModal/EditCryptoModal";
+import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
+import { AppRouter } from "../server/src";
 
 function App() {
+  const client = createTRPCProxyClient<AppRouter>({
+    links: [
+      httpBatchLink({
+        url: "http://localhost:3002/trpc",
+      }),
+    ],
+  });
+
   const {
     portfolioModalOpened,
     addCryptoModalOpened,
