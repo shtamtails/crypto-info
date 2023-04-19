@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
-import { fetchPriceHistory } from "../../utils/API";
 import { getCryptoLogo } from "../../utils/API/api";
 import { AssetData, TimePeriods } from "../../utils/API/types";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
