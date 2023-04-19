@@ -1,10 +1,5 @@
 Netlify: https://main--marvelous-kashata-23b3f5.netlify.app/
 
-## tRPC Express Server
-
-<p><code>cd server</code></p>
-<code>npm run dev</code>
-
 ## Storybook
 
 <code>npm run storybook</code>
