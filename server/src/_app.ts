@@ -2,6 +2,7 @@ import { publicProcedure, router } from "./trpc";
 import { z } from "zod";
 import axios from "axios";
 import { AssetData, PriceData, Rates } from "./types";
+import { TRPCError } from "@trpc/server";
 
 export const fetchData = async <T>(
   endpoint: string,
@@ -17,23 +18,49 @@ export const appRouter = router({
   fetchAssets: publicProcedure
     .input(z.object({ limit: z.number(), offset: z.number() }))
     .query(async ({ input }) => {
-      const data = await fetchData<AssetData[]>("/assets", {
-        limit: input.limit,
-        offset: input.offset,
-      });
-      return data;
+      try {
+        const data = await fetchData<AssetData[]>("/assets", {
+          limit: input.limit,
+          offset: input.offset,
+        });
+        return data;
+      } catch (err) {
+        console.error(err);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Error fetching assets",
+        });
+      }
     }),
+
   fetchAssetInfo: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
-      const data = await fetchData<AssetData>(`/assets/${input.id}`);
-      return data;
+      try {
+        const data = await fetchData<AssetData>(`/assets/${input.id}`);
+        return data;
+      } catch (err) {
+        console.error("Error fetching Asset Info");
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Error fetching asset info",
+        });
+      }
     }),
+
   fetchRates: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
-      const data = await fetchData<Rates>(`/rates/${input.id}`);
-      return data;
+      try {
+        const data = await fetchData<Rates>(`/rates/${input.id}`);
+        return data;
+      } catch (err) {
+        console.error(err);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Error fetching rates",
+        });
+      }
     }),
   fetchPriceHistory: publicProcedure
     .input(
@@ -70,12 +97,26 @@ export const appRouter = router({
           startDate.setFullYear(now.getFullYear() - 1);
           break;
       }
-      const data = await fetchData<PriceData[]>(`/assets/${input.id}/history`, {
-        interval,
-        start: startDate.valueOf(),
-        end: now.valueOf(),
-      });
-      return data.map((item) => ({ priceUsd: item.priceUsd, time: item.time }));
+      try {
+        const data = await fetchData<PriceData[]>(
+          `/assets/${input.id}/history`,
+          {
+            interval,
+            start: startDate.valueOf(),
+            end: now.valueOf(),
+          }
+        );
+        return data.map((item) => ({
+          priceUsd: item.priceUsd,
+          time: item.time,
+        }));
+      } catch (err) {
+        console.error(err);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Error fetching rates",
+        });
+      }
     }),
   getCryptoLogo: publicProcedure
     .input(z.object({ symbol: z.string() }))

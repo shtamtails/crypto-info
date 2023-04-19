@@ -1,9 +1,9 @@
 export {
-  api,
-  fetchAssets,
-  fetchPriceHistory,
+  // api,
+  // fetchAssets,
+  // fetchPriceHistory,
+  // fetchRates,
+  // fetchData,
   getCryptoLogo,
-  fetchRates,
-  fetchData,
 } from "./api";
 export type { AssetData, IAssets, timePeriods, Rates, IRates } from "./types";

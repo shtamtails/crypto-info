@@ -6,9 +6,9 @@ import { AddCryptoModalProps } from "./types";
 import "./addCryptoModal.scss";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import { getCryptoLogo } from "../../utils/API";
-import { fetchAssetInfo } from "../../utils/API/api";
 import { PortfolioContext, IPortfolio, ISelectedCrypto } from "../../context";
 import { BiCoin } from "react-icons/bi";
+import { client } from "../../utils/tRPC";
 
 export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
   visible,
@@ -28,8 +28,7 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
   const handleAddCrypto = async () => {
     const amount = amountRef.current?.value;
     const { id = "", name = "", symbol = "" } = selectedCrypto;
-    const { priceUsd = 0 } = await fetchAssetInfo(id);
-
+    const { priceUsd = 0 } = await client.fetchAssetInfo.query({ id: id });
     const portfolioData = localStorage.getItem("portfolio") ?? "[]";
     const portfolio: IPortfolio[] = JSON.parse(portfolioData);
 

@@ -7,22 +7,12 @@ import { Header } from "./components/Header";
 import "./style/App.scss";
 import "./style/utils.scss";
 import { Route, Routes } from "react-router-dom";
-import { fetchAssetInfo } from "./utils/API/api";
 import { PortfolioContext, IPortfolio } from "./context";
 import { Page404 } from "./components/Page404/Page404";
 import { EditCryptoModal } from "./components/EditCryptoModal/EditCryptoModal";
-import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
-import { AppRouter } from "../server/src";
+import { client } from "./utils/tRPC";
 
 function App() {
-  const client = createTRPCProxyClient<AppRouter>({
-    links: [
-      httpBatchLink({
-        url: "http://localhost:3002/trpc",
-      }),
-    ],
-  });
-
   const {
     portfolioModalOpened,
     addCryptoModalOpened,
@@ -43,7 +33,8 @@ function App() {
     setPortfolio(portfolio.sort((a, b) => b.priceUsd - a.priceUsd));
     const updatedPortfolio = await Promise.all(
       portfolio.map(async (el) => {
-        const rates = await fetchAssetInfo(el.id);
+        const rates = await client.fetchAssetInfo.query({ id: el.id });
+        // const rates = await fetchAssetInfo(el.id);
         el.oldPriceUsd = el.priceUsd;
         el.priceUsd = +rates.priceUsd * +el.amount;
         return el;

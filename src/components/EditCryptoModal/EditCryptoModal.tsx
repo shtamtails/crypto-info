@@ -5,9 +5,10 @@ import { Input } from "../../reusable/Input";
 import { Modal } from "../../reusable/Modal";
 import { EditCryptoContext } from "../../context/EditCryptoContext";
 import { BiCoin } from "react-icons/bi";
-import { fetchAssetInfo, getCryptoLogo } from "../../utils/API/api";
+import { getCryptoLogo } from "../../utils/API/api";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import "./editCryptoModal.scss";
+import { client } from "../../utils/tRPC";
 
 export const EditCryptoModal = () => {
   const { portfolio, setPortfolio, setNewPortfolioSum, selectedCrypto } =
@@ -23,9 +24,11 @@ export const EditCryptoModal = () => {
   } = useContext(EditCryptoContext);
 
   const handleEditSubmit = async () => {
-    const { priceUsd: currencyPriceUsd = 0 } = await fetchAssetInfo(
-      editCryptoAmountId
-    );
+    const { priceUsd: currencyPriceUsd = 0 } =
+      await client.fetchAssetInfo.query({ id: editCryptoAmountId });
+    // const { priceUsd: currencyPriceUsd = 0 } = await fetchAssetInfo(
+    //   editCryptoAmountId
+    // );
     const newPriceUsd = +editCryptoAmount * +currencyPriceUsd;
 
     if (editCryptoAmount && +editCryptoAmount > 0 && portfolio) {

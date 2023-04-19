@@ -3,12 +3,13 @@ import { Button } from "../../reusable/Button";
 import { PriceChart } from "./PriceChart";
 import "./cryptoInfo.scss";
 import { fetchPriceHistory } from "../../utils/API";
-import { fetchAssetInfo, getCryptoLogo } from "../../utils/API/api";
+import { getCryptoLogo } from "../../utils/API/api";
 import { AssetData, TimePeriods } from "../../utils/API/types";
 import { abbreviateNumber } from "../../utils/abbreviateNumber";
 import { formatNumber } from "../../utils/formatNumber";
 import { useParams } from "react-router-dom";
 import { PortfolioContext } from "../../context/PortfolioContext";
+import { client } from "../../utils/tRPC";
 
 export const CryptoInfo: React.FC = () => {
   const { crypto } = useParams();
@@ -55,7 +56,10 @@ export const CryptoInfo: React.FC = () => {
   const timePeriodButtons = timePeriods.map(generateTimePeriodButton);
 
   const loadPriceHistory = async (id: string) => {
-    const priceData = await fetchPriceHistory(id, selectedTimePeriod);
+    const priceData = await client.fetchPriceHistory.query({
+      id: id,
+      timePeriod: selectedTimePeriod,
+    });
     setTime(
       priceData.map((d) => {
         const date = new Date(d.time);
@@ -80,7 +84,7 @@ export const CryptoInfo: React.FC = () => {
 
   const loadAssetInfo = async () => {
     if (crypto) {
-      const assetInfo = await fetchAssetInfo(crypto);
+      const assetInfo = await client.fetchAssetInfo.query({ id: crypto });
       assetInfo.priceUsd = formatNumber(assetInfo.priceUsd);
       assetInfo.changePercent24Hr = formatNumber(assetInfo.changePercent24Hr);
       assetInfo.maxSupply = abbreviateNumber(assetInfo.maxSupply);
