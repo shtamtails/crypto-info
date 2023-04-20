@@ -32,50 +32,51 @@ export const AddCryptoModal: React.FC<AddCryptoModalProps> = ({
     const portfolioData = localStorage.getItem("portfolio") ?? "[]";
     const portfolio: IPortfolio[] = JSON.parse(portfolioData);
 
-    if (amount && +amount > 0) {
-      const selectedCryptoIndex = portfolio.findIndex(
-        (crypto: IPortfolio) => crypto.name.toLowerCase() === name.toLowerCase()
-      );
-      const newPriceUsd =
-        +priceUsd * (+amount + (portfolio[selectedCryptoIndex]?.amount || 0));
-
-      const updatedPortfolio: IPortfolio[] =
-        selectedCryptoIndex !== -1
-          ? portfolio.map((crypto, index) =>
-              index === selectedCryptoIndex
-                ? {
-                    ...crypto,
-                    ...{
-                      name,
-                      id,
-                      symbol,
-                      amount: (crypto.amount += +amount),
-                      priceUsd: newPriceUsd,
-                    },
-                  }
-                : crypto
-            )
-          : [
-              ...portfolio,
-              {
-                name,
-                id,
-                symbol,
-                amount: +amount,
-                priceUsd: newPriceUsd,
-                oldPriceUsd: newPriceUsd,
-              },
-            ];
-      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
-      setPortfolio(updatedPortfolio);
-      const newOverallSum =
-        updatedPortfolio &&
-        updatedPortfolio.reduce((sum, crypto) => sum + crypto.priceUsd, 0);
-      newOverallSum && setNewPortfolioSum(newOverallSum);
-      setAddCryptoModalOpened(false);
-    } else {
+    if (!amount || +amount <= 0) {
       setAmountError("Wrong coin amount!");
+      return;
     }
+
+    const selectedCryptoIndex = portfolio.findIndex(
+      (crypto: IPortfolio) => crypto.name.toLowerCase() === name.toLowerCase()
+    );
+    const newPriceUsd =
+      +priceUsd * (+amount + (portfolio[selectedCryptoIndex]?.amount || 0));
+
+    const updatedPortfolio: IPortfolio[] =
+      selectedCryptoIndex !== -1
+        ? portfolio.map((crypto, index) =>
+            index === selectedCryptoIndex
+              ? {
+                  ...crypto,
+                  ...{
+                    name,
+                    id,
+                    symbol,
+                    amount: (crypto.amount += +amount),
+                    priceUsd: newPriceUsd,
+                  },
+                }
+              : crypto
+          )
+        : [
+            ...portfolio,
+            {
+              name,
+              id,
+              symbol,
+              amount: +amount,
+              priceUsd: newPriceUsd,
+              oldPriceUsd: newPriceUsd,
+            },
+          ];
+    localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
+    setPortfolio(updatedPortfolio);
+    const newOverallSum =
+      updatedPortfolio &&
+      updatedPortfolio.reduce((sum, crypto) => sum + crypto.priceUsd, 0);
+    newOverallSum && setNewPortfolioSum(newOverallSum);
+    setAddCryptoModalOpened(false);
   };
 
   useEffect(() => {
