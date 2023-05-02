@@ -14,53 +14,46 @@ export const EditCryptoModal = () => {
   const { portfolio, setPortfolio, setNewPortfolioSum, selectedCrypto } =
     useContext(PortfolioContext);
   const {
-    editCryptoAmount,
-    editCryptoAmountError,
-    editCryptoModalOpened,
-    setEditCryptoAmount,
-    setEditCryptoAmountError,
-    setEditCryptoModalOpened,
-    editCryptoAmountId,
+    editCryptoAmount: amount,
+    editCryptoAmountError: error,
+    editCryptoModalOpened: isVisible,
+    setEditCryptoAmount: setAmount,
+    setEditCryptoAmountError: setAmountError,
+    setEditCryptoModalOpened: setIsVisible,
+    editCryptoAmountId: id,
   } = useContext(EditCryptoContext);
 
   const handleEditSubmit = async () => {
-    const { priceUsd: currencyPriceUsd = 0 } =
-      await client.fetchAssetInfo.query({ id: editCryptoAmountId });
-    // const { priceUsd: currencyPriceUsd = 0 } = await fetchAssetInfo(
-    //   editCryptoAmountId
-    // );
-    const newPriceUsd = +editCryptoAmount * +currencyPriceUsd;
-
-    if (editCryptoAmount && +editCryptoAmount > 0 && portfolio) {
-      const updatedPortfolio = portfolio?.map((el) =>
-        el.id === editCryptoAmountId
-          ? {
-              ...el,
-              amount: +editCryptoAmount,
-              priceUsd: newPriceUsd,
-            }
-          : el
-      );
-      localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
-      updatedPortfolio && setPortfolio(updatedPortfolio);
-      const newOverallSum = updatedPortfolio?.reduce(
-        (sum, { priceUsd = 0 }) => sum + priceUsd,
-        0
-      );
-      setNewPortfolioSum(newOverallSum || 0);
-      setEditCryptoModalOpened(false);
-    } else {
-      setEditCryptoAmountError("Wrong coin amount!");
+    if (!amount || +amount < 0 || !portfolio) {
+      setAmountError("Wrong coin amount!");
+      return;
     }
+
+    const { priceUsd = 0 } = await client.fetchAssetInfo.query({ id }); // Get price in USD of 1 coin
+    const newPriceUsd = +amount * +priceUsd;
+
+    const selectedCryptoIndex = portfolio.findIndex(
+      (crypto: IPortfolio) => crypto.id === id
+    );
+
+    portfolio[selectedCryptoIndex].amount = +amount;
+    portfolio[selectedCryptoIndex].priceUsd = newPriceUsd;
+
+    localStorage.setItem("portfolio", JSON.stringify(portfolio));
+    setPortfolio(portfolio);
+
+    const newOverallSum =
+      portfolio && portfolio.reduce((sum, crypto) => sum + crypto.priceUsd, 0);
+    newOverallSum && setNewPortfolioSum(newOverallSum);
+
+    setIsVisible(false);
   };
 
   const handleDeleteCrypto = () => {
     if (
       window.confirm("Are you sure you want to delete this cryptocurrency?")
     ) {
-      const updatedPortfolio = portfolio?.filter(
-        (el) => el.id !== editCryptoAmountId
-      );
+      const updatedPortfolio = portfolio?.filter((el) => el.id !== id);
       localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
       updatedPortfolio && setPortfolio(updatedPortfolio);
       const newOverallSum = updatedPortfolio?.reduce(
@@ -68,20 +61,20 @@ export const EditCryptoModal = () => {
         0
       );
       setNewPortfolioSum(newOverallSum || 0);
-      setEditCryptoModalOpened(false);
+      setIsVisible(false);
     }
   };
 
   useEffect(() => {
-    setEditCryptoAmountError("");
+    setAmountError("");
   }, []);
 
   return (
     <Modal
       width={500}
       zIndex={10000}
-      visible={editCryptoModalOpened}
-      setVisible={setEditCryptoModalOpened}
+      visible={isVisible}
+      setVisible={setIsVisible}
       title="Edit crypto"
       className="edit-crypto-modal"
       testId="edit-crypto-modal"
@@ -98,11 +91,11 @@ export const EditCryptoModal = () => {
         <Input
           icon={<BiCoin />}
           fullWidth
-          value={editCryptoAmount}
-          setValue={setEditCryptoAmount}
+          value={amount}
+          setValue={setAmount}
           label="Edit amount"
           type="number"
-          error={editCryptoAmountError}
+          error={error}
         />
 
         <Button variant="regular" mt="lg" fullWidth onClick={handleEditSubmit}>

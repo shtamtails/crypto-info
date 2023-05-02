@@ -4,7 +4,7 @@ import { CryptoCard } from "../../reusable/CryptoCard";
 import { TableRow, TableDataCell } from "../../reusable/Table";
 import { getCryptoLogo } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { EditCryptoContext, PortfolioContext } from "../../context";
 import { PortfolioModalElementProps } from "./types";
 

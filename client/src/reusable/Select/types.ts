@@ -1,8 +1,8 @@
-import { defaultProps } from "../../models/defaultProps";
+import { DefaultProps } from "../../models/defaultProps";
 import { InputProps } from "../Input/types";
 
-export type dataType = { label: string; value: string };
+export type SelectDataType = { label: string; value: string };
 
-export interface SelectProps extends defaultProps, Omit<InputProps, "icon"> {
-  data: dataType[];
+export interface SelectProps extends DefaultProps, Omit<InputProps, "icon"> {
+  data: SelectDataType[];
 }

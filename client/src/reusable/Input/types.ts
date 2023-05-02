@@ -1,13 +1,12 @@
 import { HTMLInputTypeAttribute, ReactNode } from "react";
-import { defaultProps } from "../../models/defaultProps";
+import { DefaultProps } from "../../models/defaultProps";
 
-export interface InputProps extends defaultProps {
+export interface InputProps extends DefaultProps {
   value?: string;
   setValue?: (arg0: string) => void;
   label?: string;
   placeholder?: string;
-  icon?: string | ReactNode;
+  icon?: string | ReactNode | JSX.Element;
   type?: HTMLInputTypeAttribute;
   error?: string;
-  testId?: string;
 }

@@ -6,14 +6,13 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { HeaderPortfolioElement } from "./HeaderPortfolioElement";
-import { AssetData } from "../../utils/API";
 import { formatNumber } from "../../utils/formatNumber";
-import { client } from "../../utils/tRPC";
+import { RouterOutput, client } from "../../utils/tRPC";
 
 export const Header: React.FC = () => {
   const { setPortfolioModalOpened, newPortfolioSum, portfolio } =
     useContext(PortfolioContext);
-  const [topAssets, setTopAssets] = useState<AssetData[]>([]);
+  const [topAssets, setTopAssets] = useState<RouterOutput["fetchAssets"]>([]);
 
   const loadTopAssets = async () => {
     const assets = await client.fetchAssets.query({ limit: 3, offset: 0 });

@@ -57,8 +57,8 @@ function App() {
     <>
       <EditCryptoModal />
       <PortfolioModal
-        isVisible={portfolioModalOpened}
-        setIsVisible={setPortfolioModalOpened}
+        visible={portfolioModalOpened}
+        setVisible={setPortfolioModalOpened}
       />
       <AddCryptoModal
         visible={addCryptoModalOpened}

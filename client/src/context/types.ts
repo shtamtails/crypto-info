@@ -9,6 +9,8 @@ export type IPortfolio = {
 
 export type ISelectedCrypto = { name: string; id: string; symbol: string };
 
+type VoidFuncWithArg<T> = (arg0: T) => void;
+
 export interface PortfolioContextProps {
   selectedCrypto: ISelectedCrypto;
   portfolio: IPortfolio[] | null;
@@ -16,11 +18,11 @@ export interface PortfolioContextProps {
   addCryptoModalOpened: boolean;
   portfolioSum: number;
   newPortfolioSum: number;
-  setPortfolioSum: (arg0: number) => void;
-  setNewPortfolioSum: (arg0: number) => void;
+  setPortfolioSum: VoidFuncWithArg<number>;
+  setNewPortfolioSum: VoidFuncWithArg<number>;
+  setPortfolioModalOpened: VoidFuncWithArg<boolean>;
+  setAddCryptoModalOpened: VoidFuncWithArg<boolean>;
   setSelectedCrypto: (arg0: ISelectedCrypto) => void;
-  setPortfolioModalOpened: (arg0: boolean) => void;
-  setAddCryptoModalOpened: (arg0: boolean) => void;
   setPortfolio: (arg0: IPortfolio[]) => void;
 }
 
@@ -30,11 +32,11 @@ export interface ContextProviderProps {
 
 export interface EditCryptoContextProps {
   editCryptoModalOpened: boolean;
-  setEditCryptoModalOpened: (arg0: boolean) => void;
+  setEditCryptoModalOpened: VoidFuncWithArg<boolean>;
+  setEditCryptoAmount: VoidFuncWithArg<string>;
+  setEditCryptoAmountError: VoidFuncWithArg<string>;
+  setEditCryptoAmountId: VoidFuncWithArg<string>;
   editCryptoAmount: string;
-  setEditCryptoAmount: (arg0: string) => void;
   editCryptoAmountError: string;
-  setEditCryptoAmountError: (arg0: string) => void;
   editCryptoAmountId: string;
-  setEditCryptoAmountId: (arg0: string) => void;
 }

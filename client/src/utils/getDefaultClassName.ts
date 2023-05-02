@@ -1,5 +1,7 @@
+import { DefaultProps } from "../models/defaultProps";
+
 export const getDefaultClassName = (
-  attribute: any,
+  attribute: Omit<DefaultProps, "testId">,
   defaultClassName?: string[]
 ) => {
   const classNames: string[] = [];

@@ -1,5 +1,3 @@
-export interface CryptoListProps {}
-
 export interface CryptoListElementProps {
   rank: string;
   iconURL: string;

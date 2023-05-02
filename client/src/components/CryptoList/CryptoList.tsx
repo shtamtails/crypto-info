@@ -6,23 +6,23 @@ import {
   TableBody,
 } from "../../reusable/Table";
 import { CryptoListElement } from "./CryptoListElement";
-import { CryptoListProps } from "./types";
 import "./cryptoList.scss";
 import { useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
-import { AssetData, getCryptoLogo } from "../../utils/API";
-import { client } from "../../utils/tRPC";
+import { getCryptoLogo } from "../../utils/API";
+import { RouterOutput, client } from "../../utils/tRPC";
 
-export const CryptoList: React.FC<CryptoListProps> = (props) => {
+export const CryptoList: React.FC = () => {
   const [assetsOffset, setAssetsOffset] = useState<number>(0);
-  const [assets, setAssets] = useState<AssetData[]>([]);
+  const [assets, setAssets] = useState<RouterOutput["fetchAssets"]>([]);
   const [assetsLoading, setAssetsLoading] = useState<boolean>(false);
+
   const assetsPerLoad = 5;
 
   const loadAssets = async () => {
     setAssetsLoading(true);
     const assets = await client.fetchAssets.query({
-      limit: 5,
+      limit: assetsPerLoad,
       offset: assetsOffset,
     });
     setAssets((prev) => [...prev, ...assets]);
@@ -78,7 +78,7 @@ export const CryptoList: React.FC<CryptoListProps> = (props) => {
           style={{ backgroundColor: "#f8f9fa" }}
           className="crypto-list__table__body"
         >
-          {assets?.map((asset) => (
+          {assets.map((asset) => (
             <CryptoListElement
               key={asset.id}
               rank={asset.rank}

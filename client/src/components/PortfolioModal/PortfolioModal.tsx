@@ -10,19 +10,19 @@ import "./portfolioModal.scss";
 import { useContext } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { PortfolioModalElement } from "./PortfolioModalElement";
-import { PortfolioModalProps } from "./types";
+import { ModalDefaultProps } from "../../reusable/Modal/types";
 
-export const PortfolioModal: React.FC<PortfolioModalProps> = ({
-  isVisible,
-  setIsVisible,
+export const PortfolioModal: React.FC<ModalDefaultProps> = ({
+  visible,
+  setVisible,
 }) => {
   const { portfolio } = useContext(PortfolioContext);
 
   return (
     <>
       <Modal
-        visible={isVisible}
-        setVisible={setIsVisible}
+        visible={visible}
+        setVisible={setVisible}
         title="My portfolio"
         className="portfolio-modal"
         testId="portfolio-modal"

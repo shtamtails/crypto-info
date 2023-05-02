@@ -1,7 +1,12 @@
-export interface ModalProps {
+import { ReactNode } from "react";
+
+export interface ModalDefaultProps {
   visible: boolean;
-  setVisible: (argo0: boolean) => void;
-  children: React.ReactNode;
+  setVisible: (arg0: boolean) => void;
+}
+
+export interface ModalExtendedProps extends ModalDefaultProps {
+  children: ReactNode;
   title: string;
   zIndex?: number;
   width?: number | string;

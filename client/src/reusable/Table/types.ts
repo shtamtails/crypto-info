@@ -1,10 +1,9 @@
 import { ReactNode } from "react";
-import { defaultProps } from "../../models/defaultProps";
+import { DefaultProps } from "../../models/defaultProps";
 
-export interface TableProps extends defaultProps {
+export interface TableProps extends DefaultProps {
   children: ReactNode;
   alignLeft?: boolean;
   alignRight?: boolean;
   alignCenter?: boolean;
-  testId?: string;
 }

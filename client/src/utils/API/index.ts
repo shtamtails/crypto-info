@@ -6,4 +6,4 @@ export {
   // fetchData,
   getCryptoLogo,
 } from "./api";
-export type { AssetData, IAssets, timePeriods, Rates, IRates } from "./types";
+// export type { AssetData, IAssets, Rates, IRates } from "./types";

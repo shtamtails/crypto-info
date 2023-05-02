@@ -1,5 +1,5 @@
 export interface PortfolioElementProps {
-  name: string;
-  symbol: string;
-  priceUsd: string | number;
+  name?: string;
+  symbol?: string;
+  priceUsd?: string | number;
 }
