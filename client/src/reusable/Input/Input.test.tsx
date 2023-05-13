@@ -78,4 +78,10 @@ describe("Input", () => {
     expect(screen.getByTestId("input-test")).toHaveStyle("width: 200px");
     expect(screen.getByTestId("input-test")).toHaveStyle("height: 200px");
   });
+
+  it("should have margins and paddings when provided", () => {
+    render(<Input ml="xl" pl="xl" testId="input-test" />);
+    expect(screen.getByTestId("input-test")).toHaveClass("padding-left-xl");
+    expect(screen.getByTestId("input-test")).toHaveClass("margin-left-xl");
+  });
 });
