@@ -1,9 +1,13 @@
 @use "../../style/" as *;
 
-.input__container {
+.input-wrapper {
   &__label {
     font-size: 0.9rem;
     margin-bottom: 4px;
+    &--required {
+      margin-left: 4px;
+      color: #fa5252;
+    }
   }
   &__error {
     font-weight: 500;
@@ -12,7 +16,7 @@
     color: $text-negative;
   }
 
-  &__base {
+  &__container {
     position: relative;
     &__icon {
       position: absolute;
@@ -34,26 +38,21 @@
 
   input,
   select {
-    // width: 100%;
     padding: 8px 16px;
     border: 1px solid $gray-3;
     border-radius: 4px;
     transition: all 0.3s ease;
-
+    &:disabled {
+      background-color: $gray-2;
+      cursor: not-allowed;
+    }
     &:focus {
       outline: none;
       transition: all 0.3s ease;
       border: 1px solid $input-focus-outline;
-      padding-left: 16px !important;
     }
     &::placeholder {
       color: $input-placeholder;
-    }
-    &:focus + .input__container__base__icon {
-      transition: all 0.3s ease;
-      opacity: 0;
-      left: 0;
-      transition: all 0.3s ease;
     }
   }
 }

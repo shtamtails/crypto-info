@@ -1,21 +1,57 @@
-import { DefaultProps } from "../../models/defaultProps";
+import { SharedProps } from "../../models/defaultProps";
 
-export const getDefaultClassName = (
-  attribute: Omit<DefaultProps, "testId">,
-  defaultClassName?: string[]
-) => {
-  const classNames: string[] = [];
-  defaultClassName && Object.assign(classNames, defaultClassName);
-  attribute.className && classNames.push(attribute.className);
-  attribute.pl && classNames.push(`padding-left-${attribute.pl}`);
-  attribute.pr && classNames.push(`padding-right-${attribute.pr}`);
-  attribute.pt && classNames.push(`padding-top-${attribute.pt}`);
-  attribute.pb && classNames.push(`padding-bottom-${attribute.pb}`);
-  attribute.ml && classNames.push(`margin-left-${attribute.ml}`);
-  attribute.mr && classNames.push(`margin-right-${attribute.mr}`);
-  attribute.mt && classNames.push(`margin-top-${attribute.mt}`);
-  attribute.mb && classNames.push(`margin-bottom-${attribute.mb}`);
-  attribute.radius && classNames.push(`border-radius-${attribute.radius}`);
-  attribute.fullWidth && classNames.push(`fullWidth`);
-  return classNames.join(" ");
+export interface IGetDefaultClassName {
+  props: SharedProps;
+  defaultClassName?: string;
+  withIndents?: boolean;
+}
+
+export const getDefaultClassName = ({
+  defaultClassName = "",
+  withIndents = false,
+  props: {
+    className,
+    radius,
+    fullWidth,
+    disabled,
+    pl,
+    pr,
+    pt,
+    pb,
+    ml,
+    mr,
+    mt,
+    mb,
+  } = {},
+}: IGetDefaultClassName) => {
+  const classNames: string[] = [defaultClassName];
+
+  if (disabled) {
+    classNames.push("disabled");
+  }
+
+  if (className) {
+    classNames.push(className);
+  }
+
+  if (radius) {
+    radius && classNames.push(`border-radius-${radius}`);
+  }
+
+  if (fullWidth) {
+    fullWidth && classNames.push(`fullWidth`);
+  }
+
+  if (withIndents) {
+    if (pl) classNames.push(`padding-left-${pl}`);
+    if (pr) classNames.push(`padding-right-${pr}`);
+    if (pt) classNames.push(`padding-top-${pt}`);
+    if (pb) classNames.push(`padding-bottom-${pb}`);
+    if (ml) classNames.push(`margin-left-${ml}`);
+    if (mr) classNames.push(`margin-right-${mr}`);
+    if (mt) classNames.push(`margin-top-${mt}`);
+    if (mb) classNames.push(`margin-bottom-${mb}`);
+  }
+
+  return classNames.join(" ").trim();
 };

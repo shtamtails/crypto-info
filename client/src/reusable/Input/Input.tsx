@@ -1,37 +1,87 @@
 import { HTMLInputTypeAttribute, ReactNode, forwardRef } from "react";
-import { DefaultProps } from "../../models/defaultProps";
+import { SharedProps } from "../../models/defaultProps";
 import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
 import "./Input.styles.scss";
 
-export interface InputProps extends DefaultProps {
+export interface InputProps extends SharedProps {
   value?: string;
   setValue?: (arg0: string) => void;
   label?: string;
   placeholder?: string;
-  icon?: string | ReactNode | JSX.Element;
+  icon?: ReactNode;
   type?: HTMLInputTypeAttribute;
   error?: string;
+  required?: boolean;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { value, setValue, label, placeholder, icon, type, error, testId } =
-    props;
+  const {
+    width,
+    height,
+    className,
+    disabled,
+    style,
+    value,
+    setValue,
+    label,
+    placeholder,
+    icon,
+    type,
+    error,
+    required,
+    testId,
+  } = props;
 
   const handleChange = (value: string) => {
     setValue && setValue(value);
   };
 
-  const defaultClassName = [];
-  icon && defaultClassName.push("input__container__base--with-icon");
-  const className = getDefaultClassName(props, defaultClassName);
+  const getInputClassName = () => {
+    const inputClassName = [];
+
+    icon && inputClassName.push("input-wrapper__container--with-icon");
+    className && inputClassName.push(className);
+    disabled && inputClassName.push("input--disabled");
+
+    return inputClassName.join(" ").trim();
+  };
+
+  const inputClassName = getDefaultClassName({
+    props,
+    defaultClassName: getInputClassName(),
+    withIndents: true,
+  });
+
   return (
-    <div className="input__container">
-      {label && <div className="input__container__label">{label}</div>}
-      <div className="input__container__base">
+    <div className="input-wrapper" data-testid={`${testId}-wrapper`}>
+      {label && (
+        <label className="input-wrapper__label" data-testid={`${testId}-label`}>
+          {label}
+          {required && (
+            <div
+              className="input__wrapper__label--required"
+              data-testid={`${testId}-label-required`}
+            >
+              *
+            </div>
+          )}
+        </label>
+      )}
+      <div className="input-wrapper__container">
+        {icon && (
+          <div
+            className="input-wrapper__container__icon"
+            data-testid={`${testId}-icon`}
+          >
+            {icon}
+          </div>
+        )}
         <input
+          disabled={disabled}
+          style={{ width, height, ...style }}
           data-testid={testId}
           type={type}
-          className={className}
+          className={inputClassName}
           placeholder={placeholder}
           ref={ref}
           value={value}
@@ -39,16 +89,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             handleChange(e.target.value);
           }}
         />
-        {icon && (
-          <div
-            className="input__container__base__icon"
-            data-testid="input-icon"
-          >
-            {icon}
-          </div>
-        )}
       </div>
-      {error && <div className="input__container__error">{error}</div>}
+      {error && (
+        <div className="input-wrapper__error" data-testid={`${testId}-error`}>
+          {error}
+        </div>
+      )}
     </div>
   );
 });

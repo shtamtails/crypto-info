@@ -3,6 +3,12 @@ import { CSSProperties } from "react";
 type Size = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface DefaultProps {
+  className?: string;
+  testId?: string;
+  style?: CSSProperties;
+}
+
+export interface Indents {
   pl?: Size;
   pr?: Size;
   pt?: Size;
@@ -11,11 +17,12 @@ export interface DefaultProps {
   mr?: Size;
   mt?: Size;
   mb?: Size;
-  radius?: Size;
-  width?: number | string;
-  height?: number | string;
+}
+
+export interface SharedProps extends DefaultProps, Indents {
   fullWidth?: boolean;
-  style?: CSSProperties;
-  className?: string;
-  testId?: string;
+  radius?: Size;
+  width?: string | number;
+  height?: string | number;
+  disabled?: boolean;
 }
