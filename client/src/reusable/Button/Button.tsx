@@ -4,7 +4,7 @@ import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultC
 import "./Button.style.scss";
 
 export interface ButtonProps extends SharedProps {
-  children: string;
+  children: string | ReactNode;
   variant?: "regular" | "outline" | "danger";
   onClick?: () => void;
   type?: "button" | "submit";
