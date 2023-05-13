@@ -1,32 +1,46 @@
-import { DefaultProps } from "../../models/defaultProps";
+import { DefaultProps, Indents } from "../../models/defaultProps";
 import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
 import "./CryptoCard.style.scss";
 
-export interface CryptoCardProps extends DefaultProps {
+export interface CryptoCardProps extends DefaultProps, Indents {
   logoURL: string;
   name: string;
   shortName: string;
 }
 
 export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
-  const { logoURL, name, shortName, testId } = props;
+  const { logoURL, name, shortName, testId, className, style } = props;
 
-  const className = getDefaultClassName(props, ["cryptocurrency-component"]);
+  const getCryptoCardClassName = () => {
+    const cryptoCardClassName = ["crypto-card"];
+    className && cryptoCardClassName.push(className);
+    return cryptoCardClassName.join(" ").trim();
+  };
+
+  const cryptoCardClassName = getDefaultClassName({
+    props,
+    defaultClassName: getCryptoCardClassName(),
+    withIndents: true,
+  });
 
   return (
-    <div className={className} data-testid={testId}>
-      <div className="cryptocurrency-component__icon">
-        <img src={logoURL} alt={`${name} logo`} />
+    <div className={cryptoCardClassName} data-testid={testId} style={style}>
+      <div className="crypto-card__icon">
+        <img
+          src={logoURL}
+          alt={`${name} logo`}
+          data-testid={`${testId}-icon`}
+        />
       </div>
 
-      <div className="cryptocurrency-component__info">
-        <div
-          className="cryptocurrency-component__info__name"
-          data-testid="cryptocurrency-component_name"
-        >
+      <div className="crypto-card__info">
+        <div className="crypto-card__info__name" data-testid={`${testId}-name`}>
           {name}
         </div>
-        <div className="cryptocurrency-component__info__symbol">
+        <div
+          className="crypto-card__info__symbol"
+          data-testid={`${testId}-symbol`}
+        >
           {shortName}
         </div>
       </div>

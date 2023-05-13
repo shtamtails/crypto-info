@@ -3,26 +3,27 @@ import { render, screen } from "@testing-library/react";
 import { CryptoCard } from "./CryptoCard";
 
 describe("CryptoCard", () => {
-  const props = {
+  const defaultProps = {
     logoURL: "https://assets.coincap.io/assets/icons/BTC@2x.png",
     name: "Bitcoin",
     shortName: "BTC",
-    testId: "CryptoCard",
+    testId: "crypto-card",
   };
 
-  it("renders the cryptocurrency name and symbol", () => {
-    render(<CryptoCard {...props} />);
-    expect(
-      screen.getByTestId("cryptocurrency-component_name")
-    ).toHaveTextContent("Bitcoin");
-    expect(screen.getByText("BTC")).toBeInTheDocument();
-  });
-
-  it("renders the cryptocurrency logo", () => {
-    render(<CryptoCard {...props} />);
-    expect(screen.getByAltText("Bitcoin logo")).toHaveAttribute(
+  it("should render the component", () => {
+    render(<CryptoCard {...defaultProps} />);
+    expect(screen.getByTestId("crypto-card")).toBeInTheDocument();
+    expect(screen.getByTestId("crypto-card-name")).toHaveTextContent("Bitcoin");
+    expect(screen.getByTestId("crypto-card-symbol")).toHaveTextContent("BTC");
+    expect(screen.getByTestId("crypto-card-icon")).toHaveAttribute(
       "src",
       "https://assets.coincap.io/assets/icons/BTC@2x.png"
     );
+  });
+
+  it("should have margins/paddings", () => {
+    render(<CryptoCard {...defaultProps} ml="xl" pl="xl" />);
+    expect(screen.getByTestId("crypto-card")).toHaveClass("padding-left-xl");
+    expect(screen.getByTestId("crypto-card")).toHaveClass("margin-left-xl");
   });
 });
