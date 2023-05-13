@@ -26,4 +26,11 @@ describe("CryptoCard", () => {
     expect(screen.getByTestId("crypto-card")).toHaveClass("padding-left-xl");
     expect(screen.getByTestId("crypto-card")).toHaveClass("margin-left-xl");
   });
+
+  it("should change styles", () => {
+    render(<CryptoCard {...defaultProps} style={{ backgroundColor: "red" }} />);
+    expect(screen.getByTestId("crypto-card")).toHaveStyle(
+      "backgroundColor: red"
+    );
+  });
 });
