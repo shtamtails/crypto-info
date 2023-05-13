@@ -1,11 +1,13 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Button } from "./Button";
+import { vi } from "vitest";
 
 describe("Button", () => {
   const defaultProps = {
     children: "Click me!",
-    onClick: jest.fn(),
+    // onClick: jest.fn(),
+    onClick: vi.fn(),
     testId: "button",
   };
 

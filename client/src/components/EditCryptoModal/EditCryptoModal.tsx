@@ -7,8 +7,8 @@ import { EditCryptoContext } from "../../context/EditCryptoContext";
 import { BiCoin } from "react-icons/bi";
 import { getCryptoLogo } from "../../utils/API/api";
 import { CryptoCard } from "../../reusable/CryptoCard";
-import "./editCryptoModal.scss";
 import { client } from "../../utils/tRPC";
+import "./EditCryptoModal.styles.scss";
 
 export const EditCryptoModal = () => {
   const { portfolio, setPortfolio, setNewPortfolioSum, selectedCrypto } =

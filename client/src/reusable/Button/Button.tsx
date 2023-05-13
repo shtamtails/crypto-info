@@ -1,6 +1,14 @@
-import { getDefaultClassName } from "../../utils/getDefaultClassName";
-import { ButtonProps } from "./types";
-import "./button.scss";
+import { ReactNode } from "react";
+import { DefaultProps } from "../../models/defaultProps";
+import "./Button.style.scss";
+import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
+
+export interface ButtonProps extends DefaultProps {
+  children: ReactNode | JSX.Element | string;
+  fullWidth?: boolean;
+  variant?: "regular" | "outline" | "danger";
+  onClick?: () => void;
+}
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const { children, variant, width, height, onClick, testId } = props;

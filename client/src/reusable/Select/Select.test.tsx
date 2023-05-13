@@ -1,9 +1,11 @@
 import "@testing-library/jest-dom";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { Select } from "./Select";
+import { vi } from "vitest";
 
 describe("Select", () => {
-  const mockSetValue = jest.fn();
+  // const mockSetValue = jest.fn();
+  const mockSetValue = vi.fn();
 
   beforeEach(() => {
     mockSetValue.mockReset();

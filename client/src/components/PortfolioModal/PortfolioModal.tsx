@@ -1,4 +1,4 @@
-import { Modal } from "../../reusable/Modal";
+import { Modal, ModalDefaultProps } from "../../reusable/Modal";
 import {
   Table,
   TableHeader,
@@ -6,11 +6,20 @@ import {
   TableHeaderCell,
   TableBody,
 } from "../../reusable/Table";
-import "./portfolioModal.scss";
 import { useContext } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { PortfolioModalElement } from "./PortfolioModalElement";
-import { ModalDefaultProps } from "../../reusable/Modal/types";
+import "./PortfolioModal.styles.scss";
+
+export interface PortfolioModalElementProps {
+  name: string;
+  amount: number | string;
+  priceUsd: string | number;
+  id: string;
+  symbol: string;
+  number: number;
+  oldPriceUsd: number;
+}
 
 export const PortfolioModal: React.FC<ModalDefaultProps> = ({
   visible,

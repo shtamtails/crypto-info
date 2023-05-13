@@ -1,6 +1,12 @@
-import { CryptoCardProps } from "./types";
-import "./cryptoCard.scss";
-import { getDefaultClassName } from "../../utils/getDefaultClassName";
+import { DefaultProps } from "../../models/defaultProps";
+import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
+import "./CryptoCard.style.scss";
+
+export interface CryptoCardProps extends DefaultProps {
+  logoURL: string;
+  name: string;
+  shortName: string;
+}
 
 export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
   const { logoURL, name, shortName, testId } = props;

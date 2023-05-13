@@ -1,5 +1,15 @@
-import { createContext, useEffect, useState } from "react";
-import { ContextProviderProps, EditCryptoContextProps } from "./types";
+import { createContext, useState } from "react";
+
+export interface EditCryptoContextProps {
+  editCryptoModalOpened: boolean;
+  setEditCryptoModalOpened: (arg0: boolean) => void;
+  setEditCryptoAmount: (arg0: string) => void;
+  setEditCryptoAmountError: (arg0: string) => void;
+  setEditCryptoAmountId: (arg0: string) => void;
+  editCryptoAmount: string;
+  editCryptoAmountError: string;
+  editCryptoAmountId: string;
+}
 
 export const EditCryptoContext = createContext<EditCryptoContextProps>({
   editCryptoModalOpened: false,
@@ -12,9 +22,13 @@ export const EditCryptoContext = createContext<EditCryptoContextProps>({
   setEditCryptoAmountId: () => {},
 });
 
-export const EditCryptoContextProvider: React.FC<ContextProviderProps> = ({
-  children,
-}) => {
+interface EditCryptoContextProviderProps {
+  children: React.ReactNode;
+}
+
+export const EditCryptoContextProvider: React.FC<
+  EditCryptoContextProviderProps
+> = ({ children }) => {
   const [editCryptoModalOpened, setEditCryptoModalOpened] =
     useState<boolean>(false);
   const [editCryptoAmount, setEditCryptoAmount] = useState<string>("");

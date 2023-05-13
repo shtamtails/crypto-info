@@ -1,7 +1,14 @@
-import React from "react";
-import { getDefaultClassName } from "../../utils/getDefaultClassName";
-import { TableProps } from "./types";
-import "./table.scss";
+import React, { ReactNode } from "react";
+import { DefaultProps } from "../../models/defaultProps";
+import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
+import "./Table.styles.scss";
+
+export interface TableProps extends DefaultProps {
+  children: ReactNode;
+  alignLeft?: boolean;
+  alignRight?: boolean;
+  alignCenter?: boolean;
+}
 
 export default function createTableComponent(
   tag: keyof JSX.IntrinsicElements

@@ -1,10 +1,30 @@
-import { createContext, useEffect, useState } from "react";
-import {
-  PortfolioContextProps,
-  ContextProviderProps,
-  ISelectedCrypto,
-  IPortfolio,
-} from "./types";
+import { createContext, useState } from "react";
+
+export type IPortfolio = {
+  name: string;
+  id: string;
+  symbol: string;
+  amount: number;
+  priceUsd: number;
+  oldPriceUsd: number;
+};
+
+export type ISelectedCrypto = { name: string; id: string; symbol: string };
+
+export interface PortfolioContextProps {
+  selectedCrypto: ISelectedCrypto;
+  portfolio: IPortfolio[] | null;
+  portfolioModalOpened: boolean;
+  addCryptoModalOpened: boolean;
+  portfolioSum: number;
+  newPortfolioSum: number;
+  setPortfolioSum: (arg0: number) => void;
+  setNewPortfolioSum: (arg0: number) => void;
+  setPortfolioModalOpened: (arg0: boolean) => void;
+  setAddCryptoModalOpened: (arg0: boolean) => void;
+  setSelectedCrypto: (arg0: ISelectedCrypto) => void;
+  setPortfolio: (arg0: IPortfolio[]) => void;
+}
 
 export const PortfolioContext = createContext<PortfolioContextProps>({
   selectedCrypto: { name: "", id: "", symbol: "" },
@@ -21,9 +41,13 @@ export const PortfolioContext = createContext<PortfolioContextProps>({
   setNewPortfolioSum: () => {},
 });
 
-export const PortfolioContextProvider: React.FC<ContextProviderProps> = ({
-  children,
-}) => {
+interface PortfolioContextProviderProps {
+  children: React.ReactNode;
+}
+
+export const PortfolioContextProvider: React.FC<
+  PortfolioContextProviderProps
+> = ({ children }) => {
   const [portfolioModalOpened, setPortfolioModalOpened] =
     useState<boolean>(false);
   const [addCryptoModalOpened, setAddCryptoModalOpened] =

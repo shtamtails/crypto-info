@@ -3,10 +3,10 @@ import { Button } from "../../reusable/Button";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import { TableRow, TableDataCell } from "../../reusable/Table";
 import { getCryptoLogo } from "../../utils/API";
-import { formatNumber } from "../../utils/formatNumber";
 import { useContext } from "react";
 import { EditCryptoContext, PortfolioContext } from "../../context";
-import { PortfolioModalElementProps } from "./types";
+import { PortfolioModalElementProps } from "./PortfolioModal";
+import { formatNumber } from "../../utils/formatNumber/formatNumber";
 
 export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   props

@@ -1,3 +1,3 @@
 export { PriceChart } from "./PriceChart";
 export { CryptoInfo } from "./CryptoInfo";
-export type { PriceChartProps } from "./types";
+export type { PriceChartProps } from "./PriceChart";

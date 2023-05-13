@@ -1,7 +1,14 @@
 import { forwardRef } from "react";
-import { getDefaultClassName } from "../../utils/getDefaultClassName";
-import { SelectProps } from "./types";
-import "./select.scss";
+import { DefaultProps } from "../../models/defaultProps";
+import { InputProps } from "../Input/Input";
+import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
+import "./Select.stories.scss";
+
+export type SelectDataType = { label: string; value: string };
+
+export interface SelectProps extends DefaultProps, Omit<InputProps, "icon"> {
+  data: SelectDataType[];
+}
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (props, ref) => {

@@ -3,11 +3,13 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Input } from "./Input";
 import { FcAbout } from "react-icons/fc";
+import { vi } from "vitest";
 
 describe("Input", () => {
   const props = {
     value: "",
-    setValue: jest.fn(),
+    // setValue: jest.fn(),
+    setValue: vi.fn(),
     label: "Username",
     placeholder: "Enter your username",
     icon: <FcAbout />,

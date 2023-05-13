@@ -1,3 +1,3 @@
 export { CryptoList } from "./CryptoList";
 export { CryptoListElement } from "./CryptoListElement";
-export type { CryptoListElementProps } from "./types";
+export type { CryptoListElementProps } from "./CryptoListElement";

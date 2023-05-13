@@ -1,13 +1,19 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { FcBriefcase } from "react-icons/fc";
 import { Button } from "../../reusable/Button";
-import "./header.scss";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { HeaderPortfolioElement } from "./HeaderPortfolioElement";
-import { formatNumber } from "../../utils/formatNumber";
 import { RouterOutput, client } from "../../utils/tRPC";
+import "./Header.styles.scss";
+import { formatNumber } from "../../utils/formatNumber/formatNumber";
+
+export interface PortfolioElementProps {
+  name: string;
+  symbol: string;
+  priceUsd: string | number;
+}
 
 export const Header: React.FC = () => {
   const { setPortfolioModalOpened, newPortfolioSum, portfolio } =

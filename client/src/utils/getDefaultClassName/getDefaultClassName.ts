@@ -1,4 +1,4 @@
-import { DefaultProps } from "../models/defaultProps";
+import { DefaultProps } from "../../models/defaultProps";
 
 export const getDefaultClassName = (
   attribute: Omit<DefaultProps, "testId">,

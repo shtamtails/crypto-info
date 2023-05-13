@@ -1,7 +1,17 @@
-import { forwardRef } from "react";
-import { getDefaultClassName } from "../../utils/getDefaultClassName";
-import { InputProps } from "./types";
-import "./input.scss";
+import { HTMLInputTypeAttribute, ReactNode, forwardRef } from "react";
+import { DefaultProps } from "../../models/defaultProps";
+import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
+import "./Input.styles.scss";
+
+export interface InputProps extends DefaultProps {
+  value?: string;
+  setValue?: (arg0: string) => void;
+  label?: string;
+  placeholder?: string;
+  icon?: string | ReactNode | JSX.Element;
+  type?: HTMLInputTypeAttribute;
+  error?: string;
+}
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { value, setValue, label, placeholder, icon, type, error, testId } =

@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { Button } from "../../reusable/Button";
-import { PriceChart } from "./PriceChart";
-import "./cryptoInfo.scss";
+import { PriceChart, TimePeriod, TimePeriods } from "./PriceChart";
 import { getCryptoLogo } from "../../utils/API/api";
-import { abbreviateNumber } from "../../utils/abbreviateNumber";
-import { formatNumber } from "../../utils/formatNumber";
 import { useParams } from "react-router-dom";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { RouterOutput, client } from "../../utils/tRPC";
-import { TimePeriod, TimePeriods } from "./types";
+import "./CryptoInfo.styles.scss";
+import { abbreviateNumber } from "../../utils/abbreviateNumber/abbreviateNumber";
+import { formatNumber } from "../../utils/formatNumber/formatNumber";
 
 export const CryptoInfo: React.FC = () => {
   const { crypto } = useParams();

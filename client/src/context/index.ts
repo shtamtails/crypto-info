@@ -2,8 +2,8 @@ export type {
   IPortfolio,
   ISelectedCrypto,
   PortfolioContextProps,
-  ContextProviderProps,
-} from "./types";
+} from "./PortfolioContext";
+
 export { PortfolioContext, PortfolioContextProvider } from "./PortfolioContext";
 export {
   EditCryptoContextProvider,

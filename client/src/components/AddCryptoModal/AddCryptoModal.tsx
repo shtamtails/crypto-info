@@ -1,14 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "../../reusable/Button";
 import { Input } from "../../reusable/Input";
-import { Modal } from "../../reusable/Modal";
-import "./addCryptoModal.scss";
+import { Modal, ModalDefaultProps } from "../../reusable/Modal";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import { getCryptoLogo } from "../../utils/API";
 import { PortfolioContext, IPortfolio, ISelectedCrypto } from "../../context";
 import { BiCoin } from "react-icons/bi";
 import { client } from "../../utils/tRPC";
-import { ModalDefaultProps } from "../../reusable/Modal/types";
+import "./AddCryptoModal.styles.scss";
 
 export const AddCryptoModal: React.FC<ModalDefaultProps> = ({
   visible,

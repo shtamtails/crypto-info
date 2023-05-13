@@ -1,3 +1,6 @@
+# Test snapshots
+cypress/screenshots
+
 # Logs
 logs
 *.log

@@ -1,10 +1,11 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { Modal } from "./Modal";
+import { vi } from "vitest";
 
 describe("Modal", () => {
-  const mockOnClose = jest.fn();
+  // const mockOnClose = jest.fn();
+  const mockOnClose = vi.fn();
 
   beforeEach(() => {
     mockOnClose.mockReset();

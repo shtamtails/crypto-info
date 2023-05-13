@@ -2,10 +2,23 @@ import { Link } from "react-router-dom";
 import { Button } from "../../reusable/Button";
 import { CryptoCard } from "../../reusable/CryptoCard";
 import { TableRow, TableDataCell } from "../../reusable/Table";
-import { abbreviateNumber } from "../../utils/abbreviateNumber";
-import { CryptoListElementProps } from "./types";
 import { useContext } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
+import { abbreviateNumber } from "../../utils/abbreviateNumber/abbreviateNumber";
+
+export interface CryptoListElementProps {
+  rank: string;
+  iconURL: string;
+  name: string;
+  shortName: string;
+  price: string;
+  marketCap: string;
+  vwap: string;
+  supply: string;
+  volume: string;
+  id: string;
+  changePercent: string;
+}
 
 export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
   const { setAddCryptoModalOpened, setSelectedCrypto } =

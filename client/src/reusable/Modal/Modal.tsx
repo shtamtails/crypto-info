@@ -1,7 +1,21 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { Button } from "../Button";
-import "./modal.scss";
-import { ModalExtendedProps } from "./types";
+import { ReactNode } from "react";
+import "./Modal.styles.scss";
+
+export interface ModalDefaultProps {
+  visible: boolean;
+  setVisible: (arg0: boolean) => void;
+}
+
+export interface ModalExtendedProps extends ModalDefaultProps {
+  children: ReactNode;
+  title: string;
+  zIndex?: number;
+  width?: number | string;
+  className?: string;
+  testId?: string;
+}
 
 export const Modal: React.FC<ModalExtendedProps> = (props) => {
   const {
