@@ -9,30 +9,9 @@ export interface IGetDefaultClassName {
 export const getDefaultClassName = ({
   defaultClassName = "",
   withIndents = false,
-  props: {
-    className,
-    radius,
-    fullWidth,
-    disabled,
-    pl,
-    pr,
-    pt,
-    pb,
-    ml,
-    mr,
-    mt,
-    mb,
-  } = {},
+  props: { radius, fullWidth, pl, pr, pt, pb, ml, mr, mt, mb } = {},
 }: IGetDefaultClassName) => {
   const classNames: string[] = [defaultClassName];
-
-  if (disabled) {
-    classNames.push("disabled");
-  }
-
-  if (className) {
-    classNames.push(className);
-  }
 
   if (radius) {
     radius && classNames.push(`border-radius-${radius}`);

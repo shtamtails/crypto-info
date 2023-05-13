@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
-import "../../style/utils.scss";
 import { defaultArgs } from "../../../.storybook/argTypes";
+import { AiOutlineSearch } from "react-icons/ai";
+import "../../style/utils.scss";
 
 const meta: Meta<typeof Button> = {
   title: "UI/Button",
@@ -38,4 +39,15 @@ export const Danger: Story = {
     children: "Danger button",
     variant: "danger",
   },
+};
+
+export const WithIcon = () => {
+  return (
+    <div className="flex">
+      <Button leftIcon={<AiOutlineSearch />} mr="xl">
+        Search
+      </Button>
+      <Button rightIcon={<AiOutlineSearch />}>Search</Button>
+    </div>
+  );
 };

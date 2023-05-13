@@ -14,7 +14,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (props, ref) => {
     const { data, placeholder, value, setValue, label, testId } = props;
 
-    const className = getDefaultClassName(props);
+    const className = getDefaultClassName({ props: props, withIndents: true });
 
     return (
       <div className="input__container">

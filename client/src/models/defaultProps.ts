@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-type Size = "xs" | "sm" | "md" | "lg" | "xl";
+export type Size = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface DefaultProps {
   className?: string;
