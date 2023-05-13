@@ -36,6 +36,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     setValue && setValue(value);
   };
 
+  const wrapperClassName = getDefaultClassName({
+    props,
+    defaultClassName: "input-wrapper",
+    withIndents: true,
+  });
+
   const getInputClassName = () => {
     const inputClassName = [];
 
@@ -49,11 +55,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const inputClassName = getDefaultClassName({
     props,
     defaultClassName: getInputClassName(),
-    withIndents: true,
+    withIndents: false,
   });
 
   return (
-    <div className="input-wrapper" data-testid={`${testId}-wrapper`}>
+    <div className={wrapperClassName} data-testid={`${testId}-wrapper`}>
       {label && (
         <label className="input-wrapper__label" data-testid={`${testId}-label`}>
           {label}

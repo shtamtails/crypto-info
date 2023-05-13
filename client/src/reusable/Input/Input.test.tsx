@@ -81,7 +81,11 @@ describe("Input", () => {
 
   it("should have margins and paddings when provided", () => {
     render(<Input ml="xl" pl="xl" testId="input-test" />);
-    expect(screen.getByTestId("input-test")).toHaveClass("padding-left-xl");
-    expect(screen.getByTestId("input-test")).toHaveClass("margin-left-xl");
+    expect(screen.getByTestId("input-test-wrapper")).toHaveClass(
+      "padding-left-xl"
+    );
+    expect(screen.getByTestId("input-test-wrapper")).toHaveClass(
+      "margin-left-xl"
+    );
   });
 });

@@ -36,5 +36,6 @@ export const Default: Story = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
+    pl: "xl",
   },
 };
