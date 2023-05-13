@@ -1,6 +1,8 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { Button } from "../Button";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { DefaultProps } from "../../models/defaultProps";
+import { useClickOutside } from "../../hooks/useClickOutside/useClickOutside";
 import "./Modal.styles.scss";
 
 export interface ModalDefaultProps {
@@ -8,56 +10,81 @@ export interface ModalDefaultProps {
   setVisible: (arg0: boolean) => void;
 }
 
-export interface ModalExtendedProps extends ModalDefaultProps {
-  children: ReactNode;
+export interface ModalExtendedProps extends ModalDefaultProps, DefaultProps {
   title: string;
+  children: ReactNode;
+  width?: string | number;
   zIndex?: number;
-  width?: number | string;
-  className?: string;
-  testId?: string;
 }
 
 export const Modal: React.FC<ModalExtendedProps> = (props) => {
   const {
+    className,
+    style,
+    testId,
     visible,
     setVisible,
+    title = "Modal",
     children,
-    title,
-    zIndex,
     width,
-    className,
-    testId,
+    zIndex,
   } = props;
 
-  const handleClose = () => {
-    setVisible(false);
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    setOpacity(1);
+  }, []);
+
+  const handleOutsideClick = () => {
+    setOpacity(0);
   };
 
-  const classNames = ["modal"];
-  className && classNames.push(className);
+  const modalRef = useRef(null);
 
-  return visible ? (
-    <div
-      className={classNames.join(" ")}
-      style={{ zIndex: zIndex }}
-      data-testid={testId}
-    >
-      <div className="modal__overlay" onClick={handleClose} />
-      <div className="modal__content" style={{ width: width }}>
-        <div className="modal__content__header">
-          <div className="modal__content__header__title">{title}</div>
-          <div className="modal__content__header__close-button">
+  useClickOutside(modalRef, modalRef, handleOutsideClick);
+
+  const getModalContainerClassName = () => {
+    const modalContainerClassName = ["modal__inner__container"];
+    className && modalContainerClassName.push(className);
+
+    return modalContainerClassName.join(" ").trim();
+  };
+
+  return (
+    <div className="modal">
+      <div
+        className="modal__overlay"
+        data-testid={`${testId}-overlay`}
+        style={{ opacity }}
+        onTransitionEnd={() => {
+          opacity === 0 && visible && setVisible(false);
+        }}
+      />
+      <div className="modal__inner">
+        <div
+          className={getModalContainerClassName()}
+          data-testid={testId}
+          style={{ width, opacity, ...style, zIndex }}
+          ref={modalRef}
+        >
+          <div className="modal__inner__container__header">
+            {title}
             <Button
-              variant="regular"
-              onClick={handleClose}
-              testId="close-modal-button"
+              onClick={handleOutsideClick}
+              testId={`${testId}-close-button`}
             >
               <AiOutlineClose />
             </Button>
           </div>
+          <div
+            className="modal__inner__container__body"
+            data-testid={`${testId}-body`}
+          >
+            {children}
+          </div>
         </div>
-        <div className="modal___content__body">{children}</div>
       </div>
     </div>
-  ) : null;
+  );
 };

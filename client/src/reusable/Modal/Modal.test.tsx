@@ -1,54 +1,44 @@
-import "@testing-library/jest-dom";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Modal } from "./Modal";
 import { vi } from "vitest";
+import userEvent from "@testing-library/user-event";
 
-describe("Modal", () => {
-  // const mockOnClose = jest.fn();
-  const mockOnClose = vi.fn();
-
-  beforeEach(() => {
-    mockOnClose.mockReset();
-  });
+describe("Modal component", () => {
+  const onCloseMock = vi.fn();
 
   const defaultProps = {
-    visible: true,
-    setVisible: mockOnClose,
-    title: "Modal Title",
-    width: 400,
-    className: "test-modal",
-    testId: "test-modal",
+    setVisible: onCloseMock,
+    title: "Test Modal",
+    children: <div>Test Content</div>,
+    testId: "modal",
   };
 
-  it("modal should be rendered", () => {
-    render(<Modal {...defaultProps}>Modal</Modal>);
-    const modal = screen.getByTestId("test-modal");
-    expect(modal).toBeInTheDocument();
+  afterEach(() => {
+    onCloseMock.mockClear();
   });
 
-  it("modal should not be rendered when visible set to false", () => {
-    render(
-      <Modal {...defaultProps} visible={false}>
-        Modal
-      </Modal>
-    );
-    const modal = screen.queryByTestId("test-modal");
-    expect(modal).not.toBeInTheDocument();
+  test("renders modal content", () => {
+    render(<Modal visible={true} {...defaultProps} />);
+    expect(screen.getByTestId("modal")).toHaveStyle({ opacity: 1 });
+    expect(screen.getByText("Test Modal")).toBeInTheDocument();
+    expect(screen.getByText("Test Content")).toBeInTheDocument();
   });
 
-  it("renders Modal component with correct content and calls onClose function when close button is clicked", () => {
-    const content = "This is a test modal content";
-    render(<Modal {...defaultProps}>{content}</Modal>);
+  test("calls setIsOpened when close button is clicked", async () => {
+    render(<Modal visible={true} {...defaultProps} />);
+    const closeButton = screen.getByTestId("modal-close-button");
+    userEvent.click(closeButton);
+    await waitFor(() => {
+      expect(screen.getByTestId("modal")).toHaveStyle({ opacity: 0 });
+    });
+  });
 
-    const titleElement = screen.getByText("Modal Title");
-    const contentElement = screen.getByText(content);
-    const closeButton = screen.getByTestId("close-modal-button");
-
-    expect(titleElement).toBeInTheDocument();
-    expect(contentElement).toBeInTheDocument();
-    expect(closeButton).toBeInTheDocument();
-
-    fireEvent.click(closeButton);
-    expect(mockOnClose).toHaveBeenCalled();
+  test("closes modal when overlay is clicked", async () => {
+    render(<Modal visible {...defaultProps} />);
+    const overlay = screen.getByTestId("modal-overlay");
+    userEvent.click(overlay);
+    await waitFor(() => {
+      expect(screen.getByTestId("modal")).toHaveStyle({ opacity: 0 });
+    });
   });
 });
