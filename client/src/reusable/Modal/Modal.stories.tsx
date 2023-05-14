@@ -4,6 +4,7 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { useState } from "react";
 import "../../style/utils.scss";
+import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
 const meta: Meta<typeof Modal> = {
   title: "UI/Modal",
@@ -22,8 +23,14 @@ const ModalBody = () => {
   };
   return (
     <>
-      <Input mb="xl" label="Username" />
-      <Input error={error} mb="xl" label="Password" type="password" />
+      <Input icon={<AiOutlineUser />} mb="xl" label="Username" />
+      <Input
+        icon={<AiOutlineLock />}
+        error={error}
+        mb="xl"
+        label="Password"
+        type="password"
+      />
       <Button fullWidth variant="regular" onClick={handleClick}>
         Log in
       </Button>
