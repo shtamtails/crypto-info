@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Select } from "./Select";
-import "../../style/utils.scss";
 import { defaultArgs } from "../../../.storybook/argTypes";
-import "../Input/input.scss";
+import { AiOutlineSearch } from "react-icons/ai";
+import "../Input/Input.styles.scss";
+import "../../style/utils.scss";
 
 const meta: Meta<typeof Select> = {
   title: "UI/Select",
@@ -31,6 +32,7 @@ type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
   args: {
+    icon: <AiOutlineSearch />,
     label: "The best framework",
     fullWidth: true,
     data: [

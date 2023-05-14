@@ -9,7 +9,6 @@ import "./style/utils.scss";
 import { Route, Routes } from "react-router-dom";
 import { PortfolioContext, IPortfolio } from "./context";
 import { Page404 } from "./components/Page404/Page404";
-import { EditCryptoModal } from "./components/EditCryptoModal/EditCryptoModal";
 import { client } from "./utils/tRPC";
 
 function App() {
@@ -55,15 +54,24 @@ function App() {
 
   return (
     <>
-      <EditCryptoModal />
-      <PortfolioModal
-        visible={portfolioModalOpened}
-        setVisible={setPortfolioModalOpened}
-      />
-      <AddCryptoModal
-        visible={addCryptoModalOpened}
-        setVisible={setAddCryptoModalOpened}
-      />
+      {/* {editCryptoModalOpened && (
+        <EditCryptoModal
+          visible={editCryptoModalOpened}
+          setVisible={setEditCryptoModalOpened}
+        />
+      )} */}
+      {portfolioModalOpened && (
+        <PortfolioModal
+          visible={portfolioModalOpened}
+          setVisible={setPortfolioModalOpened}
+        />
+      )}
+      {addCryptoModalOpened && (
+        <AddCryptoModal
+          visible={addCryptoModalOpened}
+          setVisible={setAddCryptoModalOpened}
+        />
+      )}
       <Header />
       <Routes>
         <Route path="/" element={<CryptoList />} />
