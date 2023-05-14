@@ -1,0 +1,60 @@
+@use "../../style/" as *;
+
+button {
+  border: none;
+  padding: 0px 1.125rem;
+  height: 2.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.button {
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &--disabled {
+    color: $gray-5 !important;
+    background-color: $gray-3 !important;
+    outline: none !important;
+    cursor: not-allowed !important;
+  }
+
+  &--regular {
+    color: #228be6;
+    background-color: $button-regular;
+    outline: none;
+    &:hover {
+      background-color: $button-regular-hover;
+    }
+  }
+
+  &--outline {
+    color: #228be6;
+    background-color: transparent;
+    outline: 2px solid $button-outline;
+    &:hover {
+      background-color: $button-outline-hover;
+    }
+  }
+
+  &--danger {
+    color: #ffffff;
+    background-color: $button-danger;
+    outline: none;
+    &:hover {
+      background-color: $button-danger-hover;
+    }
+  }
+}

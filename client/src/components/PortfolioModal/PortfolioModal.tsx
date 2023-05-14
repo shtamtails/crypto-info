@@ -1,11 +1,11 @@
-import { Modal, ModalDefaultProps } from "../../reusable/Modal";
+import { Modal, ModalDefaultProps } from "../../UI/Modal";
 import {
   Table,
   TableHeader,
   TableRow,
   TableHeaderCell,
   TableBody,
-} from "../../reusable/Table";
+} from "../../UI/Table";
 import { useContext } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { PortfolioModalElement } from "./PortfolioModalElement";

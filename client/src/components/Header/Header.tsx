@@ -1,6 +1,6 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { FcBriefcase } from "react-icons/fc";
-import { Button } from "../../reusable/Button";
+import { Button } from "../../UI/Button";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";

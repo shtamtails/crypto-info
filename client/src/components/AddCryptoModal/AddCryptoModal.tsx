@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Button } from "../../reusable/Button";
-import { Input } from "../../reusable/Input";
-import { Modal, ModalDefaultProps } from "../../reusable/Modal";
-import { CryptoCard } from "../../reusable/CryptoCard";
+import { Button } from "../../UI/Button";
+import { Input } from "../../UI/Input";
+import { Modal, ModalDefaultProps } from "../../UI/Modal";
+import { CryptoCard } from "../../UI/CryptoCard";
 import { getCryptoLogo } from "../../utils/API";
 import { PortfolioContext, IPortfolio, ISelectedCrypto } from "../../context";
 import { BiCoin } from "react-icons/bi";

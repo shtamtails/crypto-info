@@ -4,11 +4,11 @@ import {
   TableRow,
   TableHeaderCell,
   TableBody,
-} from "../../reusable/Table";
+} from "../../UI/Table";
 import { CryptoListElement } from "./CryptoListElement";
 import "./cryptoList.scss";
 import { useEffect, useState } from "react";
-import { Button } from "../../reusable/Button";
+import { Button } from "../../UI/Button";
 import { getCryptoLogo } from "../../utils/API";
 import { RouterOutput, client } from "../../utils/tRPC";
 

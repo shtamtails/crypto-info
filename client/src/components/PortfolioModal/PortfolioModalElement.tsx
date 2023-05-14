@@ -1,7 +1,7 @@
 import { AiOutlineEdit } from "react-icons/ai";
-import { Button } from "../../reusable/Button";
-import { CryptoCard } from "../../reusable/CryptoCard";
-import { TableRow, TableDataCell } from "../../reusable/Table";
+import { Button } from "../../UI/Button";
+import { CryptoCard } from "../../UI/CryptoCard";
+import { TableRow, TableDataCell } from "../../UI/Table";
 import { getCryptoLogo } from "../../utils/API";
 import { useContext } from "react";
 import { EditCryptoContext, PortfolioContext } from "../../context";

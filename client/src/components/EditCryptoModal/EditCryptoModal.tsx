@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
 import { IPortfolio, PortfolioContext } from "../../context";
-import { Button } from "../../reusable/Button";
-import { Input } from "../../reusable/Input";
-import { Modal } from "../../reusable/Modal";
+import { Button } from "../../UI/Button";
+import { Input } from "../../UI/Input";
+import { Modal } from "../../UI/Modal";
 import { EditCryptoContext } from "../../context/EditCryptoContext";
 import { BiCoin } from "react-icons/bi";
 import { getCryptoLogo } from "../../utils/API/api";
-import { CryptoCard } from "../../reusable/CryptoCard";
+import { CryptoCard } from "../../UI/CryptoCard";
 import { client } from "../../utils/tRPC";
 import "./EditCryptoModal.styles.scss";
 

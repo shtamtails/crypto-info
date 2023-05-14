@@ -1,0 +1,54 @@
+@use "../../style/colors.scss" as *;
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  &__overlay {
+    transition-property: opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+
+    position: fixed;
+    inset: 0rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 200;
+  }
+  &__inner {
+    z-index: 201;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    max-height: 100%;
+    z-index: 201;
+    padding: 5vh 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    &__container {
+      transition-property: opacity;
+      transition-duration: 200ms;
+      transition-timing-function: ease;
+      max-width: 100%;
+      max-height: 90vh;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0.0625rem 0.1875rem,
+        rgba(0, 0, 0, 0.05) 0px 2.25rem 1.75rem -0.4375rem,
+        rgba(0, 0, 0, 0.04) 0px 1.0625rem 1.0625rem -0.4375rem;
+      border-radius: 0.25rem;
+      background-color: #ffffff;
+      color: #000000;
+      overflow: auto;
+
+      &__header {
+        padding: 1rem calc(0.6875rem) 1rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      &__body {
+        padding: 1rem;
+        padding-top: 0;
+      }
+    }
+  }
+}

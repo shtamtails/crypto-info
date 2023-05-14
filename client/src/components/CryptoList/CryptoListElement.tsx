@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Button } from "../../reusable/Button";
-import { CryptoCard } from "../../reusable/CryptoCard";
-import { TableRow, TableDataCell } from "../../reusable/Table";
+import { Button } from "../../UI/Button";
+import { CryptoCard } from "../../UI/CryptoCard";
+import { TableRow, TableDataCell } from "../../UI/Table";
 import { useContext } from "react";
 import { PortfolioContext } from "../../context/PortfolioContext";
 import { abbreviateNumber } from "../../utils/abbreviateNumber/abbreviateNumber";

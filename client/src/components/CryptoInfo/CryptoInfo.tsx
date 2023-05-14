@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button } from "../../reusable/Button";
+import { Button } from "../../UI/Button";
 import { PriceChart, TimePeriod, TimePeriods } from "./PriceChart";
 import { getCryptoLogo } from "../../utils/API/api";
 import { useParams } from "react-router-dom";
