@@ -33,6 +33,20 @@ export const Modal: React.FC<ModalExtendedProps> = (props) => {
   const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpacity(0);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [setVisible]);
+
+  useEffect(() => {
     setOpacity(1);
   }, []);
 
