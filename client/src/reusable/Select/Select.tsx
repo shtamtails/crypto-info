@@ -16,7 +16,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const getSelectClassName = () => {
       const selectClassName = [];
 
-      props.icon && selectClassName.push("input-wrapper__container--with-icon");
+      props.icon && selectClassName.push("input--with-icon");
       props.className && selectClassName.push(props.className);
       props.disabled && selectClassName.push("input--disabled");
 

@@ -12,7 +12,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const getInputClassName = () => {
     const inputClassName = [];
 
-    props.icon && inputClassName.push("input-wrapper__container--with-icon");
+    props.icon && inputClassName.push("input--with-icon");
     props.className && inputClassName.push(props.className);
     props.disabled && inputClassName.push("input--disabled");
 

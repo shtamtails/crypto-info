@@ -30,9 +30,7 @@ describe("Input", () => {
 
   it("should render icon", () => {
     render(<Input icon={<AiFillAlert />} testId="input-test" />);
-    expect(screen.getByTestId("input-test")).toHaveClass(
-      "input-wrapper__container--with-icon"
-    );
+    expect(screen.getByTestId("input-test")).toHaveClass("input--with-icon");
     expect(screen.getByTestId("input-test-icon")).toBeInTheDocument();
   });
 
