@@ -4,7 +4,6 @@ import { Select } from "./Select";
 import { vi } from "vitest";
 
 describe("Select", () => {
-  // const mockSetValue = jest.fn();
   const mockSetValue = vi.fn();
 
   beforeEach(() => {
@@ -25,7 +24,7 @@ describe("Select", () => {
     testId: "test-select",
   };
 
-  it("renders Select component with correct content and calls setValue function when an option is selected", () => {
+  it("should change the value when another option is clicked", () => {
     render(<Select {...defaultProps} />);
     const labelElement = screen.getByText("Select Label");
     const selectElement = screen.getByTestId("test-select");
