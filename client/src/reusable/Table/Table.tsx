@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
-import { DefaultProps } from "../../models/defaultProps";
+import { SharedProps } from "../../models/defaultProps";
 import { getDefaultClassName } from "../../utils/getDefaultClassName/getDefaultClassName";
 import "./Table.styles.scss";
 
-export interface TableProps extends DefaultProps {
+export interface TableProps extends SharedProps {
   children: ReactNode;
   alignLeft?: boolean;
   alignRight?: boolean;
@@ -16,11 +16,21 @@ export default function createTableComponent(
   return (props) => {
     const { children, alignLeft, alignRight, alignCenter, style, testId } =
       props;
-    const tableClassnames: string[] = [];
-    alignLeft && tableClassnames.push("text-left");
-    alignRight && tableClassnames.push("text-right");
-    alignCenter && tableClassnames.push("text-center");
-    const className = getDefaultClassName(props, tableClassnames);
+
+    const getTableClassName = () => {
+      const tableClassName: string[] = [];
+      alignLeft && tableClassName.push("text-left");
+      alignRight && tableClassName.push("text-right");
+      alignCenter && tableClassName.push("text-center");
+      return tableClassName.join(" ").trim();
+    };
+
+    const className = getDefaultClassName({
+      props,
+      defaultClassName: getTableClassName(),
+      withIndents: true,
+    });
+
     return React.createElement(
       tag,
       { "data-testid": testId, className, style },
