@@ -6,11 +6,11 @@ import {
   TableBody,
 } from "../../UI/Table";
 import { CryptoListElement } from "./CryptoListElement";
-import "./cryptoList.scss";
 import { useEffect, useState } from "react";
 import { Button } from "../../UI/Button";
 import { getCryptoLogo } from "../../utils/API";
 import { RouterOutput, client } from "../../utils/tRPC";
+import "./CryptoList.styles.scss";
 
 export const CryptoList: React.FC = () => {
   const [assetsOffset, setAssetsOffset] = useState<number>(0);
