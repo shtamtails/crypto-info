@@ -10,8 +10,8 @@ Technologies used: Express, tRPC-server
 
 Ports used: <code>8000</code> for React Application and <code>4000</code> for tRPC. Make sure this ports are free<br>
 OR<br>
-To change localhost port go to <code>./client/vite.config.ts</code><br>
-To change API server address go to <code>./client/utils/tRPC.ts</code><br>
+To change localhost port go to <code>./client/vite.config.ts</code> AND <code>./server/src/index.ts</code><br>
+To change API server address go to <code>./client/utils/tRPC.ts</code> AND <code>./server/src/index.ts</code><br>
 
 ## Client
 
