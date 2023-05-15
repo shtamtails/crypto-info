@@ -6,7 +6,7 @@ describe("CryptoCard", () => {
   const defaultProps = {
     logoURL: "https://assets.coincap.io/assets/icons/BTC@2x.png",
     name: "Bitcoin",
-    shortName: "BTC",
+    symbol: "BTC",
     testId: "crypto-card",
   };
 

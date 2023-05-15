@@ -1,65 +1,52 @@
 import { useContext, useEffect } from "react";
+import {
+  Portfolio,
+  PortfolioContext,
+} from "./context/PortfolioContext/PortfolioContext";
+import { updatePortfolioPrices } from "./utils/portfolio/updatePortfolioPrices";
+import { Routes, Route } from "react-router-dom";
 import { AddCryptoModal } from "./components/AddCryptoModal";
-import { PortfolioModal } from "./components/PortfolioModal";
 import { CryptoInfo } from "./components/CryptoInfo";
 import { CryptoList } from "./components/CryptoList";
 import { Header } from "./components/Header";
+import { Page404 } from "./components/Page404/Page404";
+import { PortfolioModal } from "./components/PortfolioModal";
+import { ModalContext } from "./context/ModalContext/ModalContext";
+import { EditCryptoModal } from "./components/EditCryptoModal/EditCryptoModal";
 import "./style/App.scss";
 import "./style/utils.scss";
-import { Route, Routes } from "react-router-dom";
-import { PortfolioContext, IPortfolio } from "./context";
-import { Page404 } from "./components/Page404/Page404";
-import { client } from "./utils/tRPC";
 
 function App() {
+  const { setPortfolio } = useContext(PortfolioContext);
   const {
-    portfolioModalOpened,
     addCryptoModalOpened,
     setAddCryptoModalOpened,
+    portfolioModalOpened,
     setPortfolioModalOpened,
-    setPortfolio,
-    setNewPortfolioSum,
-    setPortfolioSum,
-  } = useContext(PortfolioContext);
-
-  const loadCurrentRates = async () => {
-    const portfolioData = localStorage.getItem("portfolio") ?? "[]";
-    const portfolio: IPortfolio[] = JSON.parse(portfolioData);
-    const overallSum = portfolio.reduce(
-      (sum, crypto) => sum + crypto.priceUsd,
-      0
-    );
-    setPortfolio(portfolio.sort((a, b) => b.priceUsd - a.priceUsd));
-    const updatedPortfolio = await Promise.all(
-      portfolio.map(async (el) => {
-        const rates = await client.fetchAssetInfo.query({ id: el.id });
-        // const rates = await fetchAssetInfo(el.id);
-        el.oldPriceUsd = el.priceUsd;
-        el.priceUsd = +rates.priceUsd * +el.amount;
-        return el;
-      })
-    );
-    const newOverallSum = portfolio.reduce(
-      (sum, crypto) => sum + crypto.priceUsd,
-      0
-    );
-    setPortfolioSum(overallSum);
-    setNewPortfolioSum(newOverallSum);
-    localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
-  };
+    editCryptoModalOpened,
+    setEditCryptoModalOpened,
+  } = useContext(ModalContext);
 
   useEffect(() => {
-    loadCurrentRates();
-  }, []);
+    (async () => {
+      const portfolioData = localStorage.getItem("portfolio") ?? "[]";
+      const portfolio: Portfolio = JSON.parse(portfolioData);
+      if (portfolio.items) {
+        const updatedPortfolio = await updatePortfolioPrices(portfolio);
+        localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
+        setPortfolio(updatedPortfolio);
+      }
+    })();
+  }, [setPortfolio]);
 
   return (
     <>
-      {/* {editCryptoModalOpened && (
+      {editCryptoModalOpened && (
         <EditCryptoModal
           visible={editCryptoModalOpened}
           setVisible={setEditCryptoModalOpened}
         />
-      )} */}
+      )}
       {portfolioModalOpened && (
         <PortfolioModal
           visible={portfolioModalOpened}

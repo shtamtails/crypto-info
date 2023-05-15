@@ -17,6 +17,7 @@
         align-items: center;
         margin-right: 24px;
         img {
+          -webkit-user-drag: none;
           height: 50px;
           width: auto;
         }

@@ -1,6 +1,37 @@
 @use "../../style/colors.scss" as *;
 
-.portfolio__modal__empty {
+.portfolio-modal {
+  width: 60%;
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  &__table {
+    width: 100%;
+    &__header {
+      text-align: center;
+      &__number {
+        text-align: left;
+      }
+      &__name {
+        text-align: left;
+      }
+    }
+    &__body {
+      text-align: center;
+      &__number {
+        text-align: left;
+      }
+      &__name {
+        text-align: left;
+      }
+    }
+  }
+}
+
+.portfolio-modal__empty {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -9,59 +40,59 @@
   padding: 14px;
 }
 
-.portfolio__modal__table__body__actions {
+.portfolio-modal__table__body__actions {
   display: flex;
   justify-content: center;
 }
 
-.portfolio__modal__table__body__crypto-name {
+.portfolio-modal__table__body__crypto-name {
   display: none;
   font-weight: 600;
 }
 
 @media (max-width: 800px) {
-  .portfolio__modal__table__header__number,
-  .portfolio__modal__table__body__number {
+  .portfolio-modal__table__header__number,
+  .portfolio-modal__table__body__number {
     display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .portfolio__modal__table__header__amount,
-  .portfolio__modal__table__body__amount {
+  .portfolio-modal__table__header__amount,
+  .portfolio-modal__table__body__amount {
     display: none;
   }
 }
 
 @media (max-width: 650px) {
-  .portfolio__modal__table__header__percent,
-  .portfolio__modal__table__body__percent {
+  .portfolio-modal__table__header__percent,
+  .portfolio-modal__table__body__percent {
     display: none;
   }
-  .portfolio__modal__content {
+  .portfolio-modal__content {
     max-width: 95%;
   }
 }
 
 @media (max-width: 550px) {
-  .portfolio__modal__table__header__price-change,
-  .portfolio__modal__table__body__price-change {
+  .portfolio-modal__table__header__price-change,
+  .portfolio-modal__table__body__price-change {
     display: none;
   }
 }
 
 @media (max-width: 450px) {
-  .portfolio__modal__table__header__actions,
-  .portfolio__modal__table__body__actions {
+  .portfolio-modal__table__header__actions,
+  .portfolio-modal__table__body__actions {
     display: none !important;
   }
 }
 
 @media (max-width: 375px) {
-  .portfolio__modal__table__body__crypto-card {
+  .portfolio-modal__table__body__crypto-card {
     display: none;
   }
-  .portfolio__modal__table__body__crypto-name {
+  .portfolio-modal__table__body__crypto-name {
     display: flex;
   }
 }

@@ -3,22 +3,32 @@ import { SharedProps } from "../../models/defaultProps";
 export interface IGetDefaultClassName {
   props: SharedProps;
   defaultClassName?: string;
+
+  /** Whether to include indents in the class names. */
   withIndents?: boolean;
 }
+
+/**
+ * Generates a default set of class names based on the provided props.
+ *
+ * @param {IGetDefaultClassName} options - The options for generating the class names.
+ * @returns {string} A string containing the generated class names. Example output = "defaultClassName margin-left-sm fullWidth border-radius-sm"
+ *
+ */
 
 export const getDefaultClassName = ({
   defaultClassName = "",
   withIndents = false,
   props: { radius, fullWidth, pl, pr, pt, pb, ml, mr, mt, mb } = {},
-}: IGetDefaultClassName) => {
+}: IGetDefaultClassName): string => {
   const classNames: string[] = [defaultClassName];
 
   if (radius) {
-    radius && classNames.push(`border-radius-${radius}`);
+    classNames.push(`border-radius-${radius}`);
   }
 
   if (fullWidth) {
-    fullWidth && classNames.push(`fullWidth`);
+    classNames.push(`fullWidth`);
   }
 
   if (withIndents) {

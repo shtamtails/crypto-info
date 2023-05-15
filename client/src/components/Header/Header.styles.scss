@@ -31,6 +31,7 @@
         display: flex;
         align-items: center;
         img {
+          -webkit-user-drag: none;
           height: 20px;
           width: auto;
         }
@@ -39,6 +40,7 @@
   }
   &__logo {
     img {
+      -webkit-user-drag: none;
       height: 40px;
       width: auto;
     }

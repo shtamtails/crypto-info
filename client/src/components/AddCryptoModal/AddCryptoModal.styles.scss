@@ -1,11 +1,11 @@
 .add-crypto-modal {
-  &__crypto-card {
-    padding: 14px;
-  }
-  &__amount-input {
-    margin: 8px 14px;
-  }
-  &__confirm-button {
-    padding: 8px 14px;
+  width: 60%;
+  &__body {
+    &__info {
+      margin-bottom: 12px;
+    }
+    &__amount {
+      margin-bottom: 12px;
+    }
   }
 }

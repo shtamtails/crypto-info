@@ -1,10 +1,3 @@
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHeaderCell,
-  TableBody,
-} from "../../UI/Table";
 import { CryptoListElement } from "./CryptoListElement";
 import { useEffect, useState } from "react";
 import { Button } from "../../UI/Button";
@@ -19,62 +12,46 @@ export const CryptoList: React.FC = () => {
 
   const assetsPerLoad = 5;
 
-  const loadAssets = async () => {
-    setAssetsLoading(true);
-    const assets = await client.fetchAssets.query({
-      limit: assetsPerLoad,
-      offset: assetsOffset,
-    });
-    setAssets((prev) => [...prev, ...assets]);
-    setAssetsLoading(false);
-  };
-
   useEffect(() => {
+    const loadAssets = async () => {
+      setAssetsLoading(true);
+      const assets = await client.fetchAssets.query({
+        limit: assetsPerLoad,
+        offset: assetsOffset,
+      });
+      setAssets((prev) => [...prev, ...assets]);
+      setAssetsLoading(false);
+    };
     loadAssets();
   }, [assetsOffset]);
 
   return (
     <div className="crypto-list">
-      <Table className="crypto-list__table">
-        <TableHeader
-          className="crypto-list__table__head"
+      <table className="crypto-list__table">
+        <thead
+          className="crypto-list__table__header"
           style={{ backgroundColor: "#f1f3f5" }}
         >
-          <TableRow>
-            <TableHeaderCell
-              alignCenter
-              className="crypto-list__table__th__rank"
-            >
-              Rank
-            </TableHeaderCell>
-            <TableHeaderCell alignLeft className="crypto-list__table__th__name">
-              Name
-            </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__table__th__price">
-              Price
-            </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__table__th__market-cap">
+          <tr>
+            <th className="crypto-list__table__header__rank">Rank</th>
+            <th className="crypto-list__table__header__name">Name</th>
+            <th className="crypto-list__table__header__price">Price</th>
+            <th className="crypto-list__table__header__market-cap">
               Market Cap
-            </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__table__th__vwap">
-              VWAP (24Hr)
-            </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__table__th__supply">
-              Supply
-            </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__table__th__volume">
+            </th>
+            <th className="crypto-list__table__header__vwap">VWAP (24Hr)</th>
+            <th className="crypto-list__table__header__supply">Supply</th>
+            <th className="crypto-list__table__header__volume">
               Volume (24Hr)
-            </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__table__th__change">
+            </th>
+            <th className="crypto-list__table__header__change">
               Change (24Hr)
-            </TableHeaderCell>
-            <TableHeaderCell className="crypto-list__table__th__action">
-              Action
-            </TableHeaderCell>
-          </TableRow>
-        </TableHeader>
+            </th>
+            <th className="crypto-list__table__header__action">Action</th>
+          </tr>
+        </thead>
 
-        <TableBody
+        <tbody
           style={{ backgroundColor: "#f8f9fa" }}
           className="crypto-list__table__body"
         >
@@ -94,8 +71,8 @@ export const CryptoList: React.FC = () => {
               id={asset.id}
             />
           ))}
-        </TableBody>
-      </Table>
+        </tbody>
+      </table>
       <Button
         variant="regular"
         fullWidth

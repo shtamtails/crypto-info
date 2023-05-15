@@ -3,91 +3,73 @@ import { FcBriefcase } from "react-icons/fc";
 import { Button } from "../../UI/Button";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { PortfolioContext } from "../../context/PortfolioContext";
 import { HeaderPortfolioElement } from "./HeaderPortfolioElement";
 import { RouterOutput, client } from "../../utils/tRPC";
-import "./Header.styles.scss";
 import { formatNumber } from "../../utils/formatNumber/formatNumber";
-
-export interface PortfolioElementProps {
-  name: string;
-  symbol: string;
-  priceUsd: string | number;
-}
+import { ModalContext } from "../../context/ModalContext/ModalContext";
+import { PortfolioContext } from "../../context/PortfolioContext/PortfolioContext";
+import { getCryptoLogo } from "../../utils/API";
+import { BiBriefcase } from "react-icons/bi";
+import "./Header.styles.scss";
 
 export const Header: React.FC = () => {
-  const { setPortfolioModalOpened, newPortfolioSum, portfolio } =
-    useContext(PortfolioContext);
-  const [topAssets, setTopAssets] = useState<RouterOutput["fetchAssets"]>([]);
+  const { setPortfolioModalOpened } = useContext(ModalContext);
+  const { portfolio } = useContext(PortfolioContext);
 
-  const loadTopAssets = async () => {
-    const assets = await client.fetchAssets.query({ limit: 3, offset: 0 });
-    setTopAssets(assets);
-  };
+  const [popularAssets, setPopularAssets] = useState<
+    RouterOutput["fetchAssets"]
+  >([]);
 
   useEffect(() => {
-    loadTopAssets();
+    (async () => {
+      const fetchedPopularAssets = await client.fetchAssets.query({
+        limit: 3,
+        offset: 0,
+      });
+      setPopularAssets(fetchedPopularAssets);
+    })();
   }, []);
 
-  const [portfolioValue, setPortfolioValue] = useState<number>(0);
-  const [priceDifference, setPriceDifference] = useState<number>(0);
-  const [priceDifferencePercent, setPriceDifferencePercent] =
-    useState<number>(0);
-
-  useEffect(() => {
-    setPortfolioValue(newPortfolioSum);
-    if (portfolio) {
-      const newPriceSum = portfolio.reduce(
-        (sum, crypto) => sum + crypto.priceUsd,
-        0
-      );
-      const oldPriceSum = portfolio.reduce(
-        (sum, crypto) => sum + crypto.oldPriceUsd,
-        0
-      );
-      const priceDifference = newPriceSum - oldPriceSum;
-      setPriceDifference(priceDifference);
-      const priceDifferencePercent =
-        ((newPriceSum - oldPriceSum) / oldPriceSum) * 100;
-      setPriceDifferencePercent(priceDifferencePercent);
-    }
-  }, [newPortfolioSum, portfolio]);
+  const newPortfolioSum = portfolio?.newOverallSum || 0;
+  const oldPortfolioSum = portfolio?.oldOverallSum || 0;
+  const priceDifference = formatNumber(
+    newPortfolioSum - oldPortfolioSum,
+    "fixed"
+  );
+  const priceDifferencePercent = formatNumber(
+    ((newPortfolioSum - oldPortfolioSum) / oldPortfolioSum) * 100,
+    "fixed"
+  );
 
   return (
     <header className="header">
       <div className="header__portfolio">
-        {topAssets.map((asset) => (
+        {popularAssets.map((asset) => (
           <HeaderPortfolioElement
             key={asset.id}
             name={asset.name}
-            symbol={asset.symbol}
-            priceUsd={asset.priceUsd}
+            value={`${formatNumber(asset.priceUsd, "fixed")}$`}
+            logo={<img src={getCryptoLogo(asset.symbol) || ""} />}
           />
         ))}
-        <div className="header__portfolio__summary">
-          <div className="header__portfolio__element__logo">
-            <FcBriefcase size={20} />
-          </div>
-          <div className="header__portfolio__element__name">
-            Portfolio value:
-          </div>
-          <span
-            className="header__portfolio__element__value"
-            data-testid="header_portfolio-value"
-          >
-            {formatNumber(portfolioValue)}$
-          </span>
-          {portfolioValue > 0 && (
-            <span
-              className={
-                priceDifference >= 0 ? "color-positive" : "color-negative"
-              }
-            >
-              {formatNumber(priceDifference)}$ (
-              {formatNumber(priceDifferencePercent)}%)
-            </span>
-          )}
-        </div>
+        {portfolio && portfolio.items.length > 0 && (
+          <HeaderPortfolioElement
+            name="Portfolio value"
+            value={
+              <>
+                {formatNumber(newPortfolioSum, "fixed")}$
+                <span
+                  className={`margin-left-sm ${
+                    +priceDifference >= 0 ? "color-positive" : "color-negative"
+                  }`}
+                >
+                  {priceDifference}$ ({priceDifferencePercent}%)
+                </span>
+              </>
+            }
+            logo={<FcBriefcase size={20} />}
+          />
+        )}
       </div>
       <div className="header__logo">
         <Link to="/">
@@ -96,21 +78,18 @@ export const Header: React.FC = () => {
       </div>
       <div className="header__links">
         <Button
+          leftIcon={<BiBriefcase />}
           variant="regular"
           className="header__links__button"
           testId="header_portfolio-button"
-          onClick={() => {
-            setPortfolioModalOpened(true);
-          }}
+          onClick={() => setPortfolioModalOpened(true)}
         >
           My Portfolio
         </Button>
         <Button
           variant="regular"
           className="header__links__icon"
-          onClick={() => {
-            setPortfolioModalOpened(true);
-          }}
+          onClick={() => setPortfolioModalOpened(true)}
         >
           <AiOutlineMenu />
         </Button>

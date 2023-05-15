@@ -1,6 +1,11 @@
-.edit-crypto-modal__container {
-  margin: 8px 14px;
-  &__crypto-card {
-    margin: 14px 0px;
+.edit-crypto-modal {
+  width: 60%;
+  &__body {
+    &__info {
+      margin-bottom: 12px;
+    }
+    &__amount {
+      margin-bottom: 12px;
+    }
   }
 }

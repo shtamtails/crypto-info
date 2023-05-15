@@ -5,11 +5,11 @@ import "./CryptoCard.style.scss";
 export interface CryptoCardProps extends DefaultProps, Indents {
   logoURL: string;
   name: string;
-  shortName: string;
+  symbol: string;
 }
 
 export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
-  const { logoURL, name, shortName, testId, className, style } = props;
+  const { logoURL, name, symbol, testId, className, style } = props;
 
   const getCryptoCardClassName = () => {
     const cryptoCardClassName = ["crypto-card"];
@@ -29,19 +29,22 @@ export const CryptoCard: React.FC<CryptoCardProps> = (props) => {
         <img
           src={logoURL}
           alt={`${name} logo`}
-          data-testid={`${testId}-icon`}
+          data-testid={testId && `${testId}-icon`}
         />
       </div>
 
       <div className="crypto-card__info">
-        <div className="crypto-card__info__name" data-testid={`${testId}-name`}>
+        <div
+          className="crypto-card__info__name"
+          data-testid={testId && `${testId}-name`}
+        >
           {name}
         </div>
         <div
           className="crypto-card__info__symbol"
-          data-testid={`${testId}-symbol`}
+          data-testid={testId && `${testId}-symbol`}
         >
-          {shortName}
+          {symbol.toUpperCase()}
         </div>
       </div>
     </div>

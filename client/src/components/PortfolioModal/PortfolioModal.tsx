@@ -1,31 +1,27 @@
 import { Modal, ModalDefaultProps } from "../../UI/Modal";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHeaderCell,
-  TableBody,
-} from "../../UI/Table";
-import { useContext } from "react";
-import { PortfolioContext } from "../../context/PortfolioContext";
+import { useContext, useState } from "react";
 import { PortfolioModalElement } from "./PortfolioModalElement";
 import "./PortfolioModal.styles.scss";
-
-export interface PortfolioModalElementProps {
-  name: string;
-  amount: number | string;
-  priceUsd: string | number;
-  id: string;
-  symbol: string;
-  number: number;
-  oldPriceUsd: number;
-}
+import { PortfolioContext } from "../../context/PortfolioContext/PortfolioContext";
+import { Button } from "../../UI/Button";
+import { TbRefresh } from "react-icons/tb";
+import { updatePortfolioPrices } from "../../utils/portfolio/updatePortfolioPrices";
+import { formatNumber } from "../../utils/formatNumber/formatNumber";
 
 export const PortfolioModal: React.FC<ModalDefaultProps> = ({
   visible,
   setVisible,
 }) => {
-  const { portfolio } = useContext(PortfolioContext);
+  const { portfolio, setPortfolio } = useContext(PortfolioContext);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const handleUpdate = async () => {
+    setIsUpdating(true);
+    const updatedPortfolio = await updatePortfolioPrices(portfolio);
+    setPortfolio(updatedPortfolio);
+    localStorage.setItem("portfolio", JSON.stringify(updatedPortfolio));
+    setIsUpdating(false);
+  };
 
   return (
     <>
@@ -34,56 +30,64 @@ export const PortfolioModal: React.FC<ModalDefaultProps> = ({
         setVisible={setVisible}
         title="My portfolio"
         className="portfolio-modal"
-        testId="portfolio-modal"
       >
-        {portfolio?.length ? (
-          <Table fullWidth>
-            <TableHeader>
-              <TableRow>
-                <TableHeaderCell
-                  alignLeft
-                  className="portfolio__modal__table__header__number"
-                >
-                  №
-                </TableHeaderCell>
-                <TableHeaderCell alignLeft style={{ width: "200px" }}>
-                  Name
-                </TableHeaderCell>
-                <TableHeaderCell className="portfolio__modal__table__header__amount">
+        <div className="portfolio-modal__controls">
+          <div className="portfolio-modal__controls__sum">
+            Total amount:
+            <span className="bold margin-left-sm">
+              {formatNumber(portfolio.newOverallSum, "fixed")}$
+            </span>
+          </div>
+
+          <Button onClick={handleUpdate}>
+            {isUpdating ? (
+              <div className="spinner flex aic jcc">
+                <TbRefresh />
+              </div>
+            ) : (
+              <TbRefresh />
+            )}
+          </Button>
+        </div>
+
+        {portfolio?.items.length ? (
+          <table className="portfolio-modal__table">
+            <thead className="portfolio-modal__table__header">
+              <tr>
+                <th className="portfolio-modal__table__header__number">№</th>
+                <th className="portfolio-modal__table__header__name">Name</th>
+                <th className="portfolio-modal__table__header__amount">
                   Amount
-                </TableHeaderCell>
-                <TableHeaderCell>Price</TableHeaderCell>
-                <TableHeaderCell className="portfolio__modal__table__header__price-change">
+                </th>
+                <th className="portfolio-modal__table__header__price">Price</th>
+                <th className="portfolio-modal__table__header__price-change">
                   Price Change
-                </TableHeaderCell>
-                <TableHeaderCell className="portfolio__modal__table__header__percent">
+                </th>
+                <th className="portfolio-modal__table__header__percent-change">
                   Percent Change
-                </TableHeaderCell>
-                <TableHeaderCell
-                  alignCenter
-                  className="portfolio__modal__table__header__actions"
-                >
+                </th>
+                <th className="portfolio-modal__table__header__actions">
                   Actions
-                </TableHeaderCell>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {portfolio?.map((el, i) => (
+                </th>
+              </tr>
+            </thead>
+            <tbody className="portfolio-modal__table__body">
+              {portfolio?.items.map((el, i) => (
                 <PortfolioModalElement
                   number={i + 1}
                   key={el.id}
                   amount={el.amount}
                   name={el.name}
-                  oldPriceUsd={el.oldPriceUsd || 0}
-                  priceUsd={el.priceUsd}
+                  oldPriceUsd={el.oldPriceUSD}
+                  newPriceUsd={el.newPriceUSD}
                   id={el.id}
                   symbol={el.symbol}
                 />
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         ) : (
-          <div className="portfolio__modal__empty">Portfolio is empty!</div>
+          <div className="portfolio-modal__empty">Portfolio is empty!</div>
         )}
       </Modal>
     </>

@@ -14,7 +14,7 @@ const meta: Meta<typeof CryptoCard> = {
     name: {
       description: "Name of the cryptocurrency",
     },
-    shortName: {
+    symbol: {
       description:
         "Short name (symbol) of the cryptocurrency. F.e. - BTC (Bitcoin)",
     },
@@ -28,6 +28,6 @@ export const Default: Story = {
   args: {
     logoURL: "https://assets.coincap.io/assets/icons/btc@2x.png",
     name: "Bitcoin",
-    shortName: "BTC",
+    symbol: "BTC",
   },
 };

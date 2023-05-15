@@ -56,7 +56,7 @@ export const Modal: React.FC<ModalExtendedProps> = (props) => {
 
   const modalRef = useRef(null);
 
-  useClickOutside(modalRef, modalRef, handleOutsideClick);
+  useClickOutside(modalRef, handleOutsideClick);
 
   const getModalContainerClassName = () => {
     const modalContainerClassName = ["modal__inner__container"];

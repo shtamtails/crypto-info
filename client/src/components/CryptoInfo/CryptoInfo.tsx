@@ -3,16 +3,17 @@ import { Button } from "../../UI/Button";
 import { PriceChart, TimePeriod, TimePeriods } from "./PriceChart";
 import { getCryptoLogo } from "../../utils/API/api";
 import { useParams } from "react-router-dom";
-import { PortfolioContext } from "../../context/PortfolioContext";
 import { RouterOutput, client } from "../../utils/tRPC";
-import "./CryptoInfo.styles.scss";
-import { abbreviateNumber } from "../../utils/abbreviateNumber/abbreviateNumber";
 import { formatNumber } from "../../utils/formatNumber/formatNumber";
+import { ModalContext } from "../../context/ModalContext/ModalContext";
+import { PortfolioContext } from "../../context/PortfolioContext/PortfolioContext";
+import "./CryptoInfo.styles.scss";
 
 export const CryptoInfo: React.FC = () => {
   const { crypto } = useParams();
-  const { setAddCryptoModalOpened, setSelectedCrypto } =
-    useContext(PortfolioContext);
+
+  const { setAddCryptoModalOpened } = useContext(ModalContext);
+  const { setSelectedCrypto } = useContext(PortfolioContext);
 
   const [chartDates, setChartDates] = useState<string[]>([""]);
   const [chartPrices, setChartPrices] = useState<number[]>([0]);
@@ -89,12 +90,22 @@ export const CryptoInfo: React.FC = () => {
   const loadAssetInfo = async () => {
     if (crypto) {
       const assetInfo = await client.fetchAssetInfo.query({ id: crypto });
-      assetInfo.priceUsd = formatNumber(assetInfo.priceUsd);
-      assetInfo.changePercent24Hr = formatNumber(assetInfo.changePercent24Hr);
-      assetInfo.maxSupply = abbreviateNumber(assetInfo.maxSupply);
-      assetInfo.vwap24Hr = abbreviateNumber(assetInfo.vwap24Hr);
-      assetInfo.marketCapUsd = abbreviateNumber(assetInfo.marketCapUsd);
-      assetInfo.volumeUsd24Hr = abbreviateNumber(assetInfo.volumeUsd24Hr);
+
+      assetInfo.priceUsd = formatNumber(assetInfo.priceUsd, "fixed");
+      assetInfo.changePercent24Hr = formatNumber(
+        assetInfo.changePercent24Hr,
+        "fixed"
+      );
+      assetInfo.maxSupply = formatNumber(assetInfo.maxSupply, "abbreviate");
+      assetInfo.vwap24Hr = formatNumber(assetInfo.vwap24Hr, "abbreviate");
+      assetInfo.marketCapUsd = formatNumber(
+        assetInfo.marketCapUsd,
+        "abbreviate"
+      );
+      assetInfo.volumeUsd24Hr = formatNumber(
+        assetInfo.volumeUsd24Hr,
+        "abbreviate"
+      );
       setAssetInfo(assetInfo);
     }
   };
