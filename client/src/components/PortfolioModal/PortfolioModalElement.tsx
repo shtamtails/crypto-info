@@ -37,9 +37,9 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
   return (
     <>
       <tr>
-        <td className="portfolio-modal__table__body__number">{number}</td>
+        <td className="portfolio-modal__table__body__rank">{number}</td>
         <td className="portfolio-modal__table__body__name">
-          <div className="portfolio-modal__table__body__crypto-card">
+          <div className="portfolio-modal__table__body__name-card">
             <CryptoCard
               name={name}
               logoURL={getCryptoLogo(symbol)}
@@ -47,7 +47,7 @@ export const PortfolioModalElement: React.FC<PortfolioModalElementProps> = (
             />
           </div>
           <div
-            className="portfolio-modal__table__body__crypto-name"
+            className="portfolio-modal__table__body__name-short"
             onClick={handleEditCryptoModalOpen}
           >
             {name}

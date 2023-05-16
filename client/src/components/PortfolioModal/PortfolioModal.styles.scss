@@ -1,7 +1,8 @@
 @use "../../style/colors.scss" as *;
 
 .portfolio-modal {
-  width: 60%;
+  width: 800px;
+  position: relative;
   &__controls {
     display: flex;
     align-items: center;
@@ -26,6 +27,9 @@
       }
       &__name {
         text-align: left;
+        &-short {
+          font-weight: 600 !important;
+        }
       }
     }
   }
@@ -50,49 +54,45 @@
   font-weight: 600;
 }
 
-@media (max-width: 800px) {
-  .portfolio-modal__table__header__number,
-  .portfolio-modal__table__body__number {
-    display: none;
-  }
-}
-
 @media (max-width: 768px) {
-  .portfolio-modal__table__header__amount,
-  .portfolio-modal__table__body__amount {
+  .portfolio-modal__table__body__rank,
+  .portfolio-modal__table__header__rank,
+  .portfolio-modal__table__body__percent-change,
+  .portfolio-modal__table__header__percent-change {
     display: none;
-  }
-}
-
-@media (max-width: 650px) {
-  .portfolio-modal__table__header__percent,
-  .portfolio-modal__table__body__percent {
-    display: none;
-  }
-  .portfolio-modal__content {
-    max-width: 95%;
   }
 }
 
 @media (max-width: 550px) {
-  .portfolio-modal__table__header__price-change,
-  .portfolio-modal__table__body__price-change {
+  .portfolio-modal__table__body__price-change,
+  .portfolio-modal__table__header__price-change {
     display: none;
   }
 }
 
 @media (max-width: 450px) {
-  .portfolio-modal__table__header__actions,
-  .portfolio-modal__table__body__actions {
-    display: none !important;
+  .portfolio-modal__table__body__actions,
+  .portfolio-modal__table__header__actions {
+    display: none;
   }
 }
 
 @media (max-width: 375px) {
-  .portfolio-modal__table__body__crypto-card {
+  .portfolio-modal__table__body__amount,
+  .portfolio-modal__table__header__amount,
+  .portfolio-modal__controls__sum {
     display: none;
   }
-  .portfolio-modal__table__body__crypto-name {
-    display: flex;
+  .portfolio-modal__controls__update {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .portfolio-modal__table__body__name-card {
+    display: none;
+  }
+  .portfolio-modal__table__body__name-short {
+    display: flex !important;
   }
 }

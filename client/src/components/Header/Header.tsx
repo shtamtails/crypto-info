@@ -91,7 +91,7 @@ export const Header: React.FC = () => {
           className="header__links__icon"
           onClick={() => setPortfolioModalOpened(true)}
         >
-          <AiOutlineMenu />
+          <BiBriefcase />
         </Button>
       </div>
     </header>

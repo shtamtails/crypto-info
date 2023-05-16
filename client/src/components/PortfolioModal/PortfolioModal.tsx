@@ -39,7 +39,10 @@ export const PortfolioModal: React.FC<ModalDefaultProps> = ({
             </span>
           </div>
 
-          <Button onClick={handleUpdate}>
+          <Button
+            onClick={handleUpdate}
+            className="portfolio-modal__controls__update"
+          >
             {isUpdating ? (
               <div className="spinner flex aic jcc">
                 <TbRefresh />
@@ -54,7 +57,7 @@ export const PortfolioModal: React.FC<ModalDefaultProps> = ({
           <table className="portfolio-modal__table">
             <thead className="portfolio-modal__table__header">
               <tr>
-                <th className="portfolio-modal__table__header__number">№</th>
+                <th className="portfolio-modal__table__header__rank">№</th>
                 <th className="portfolio-modal__table__header__name">Name</th>
                 <th className="portfolio-modal__table__header__amount">
                   Amount
