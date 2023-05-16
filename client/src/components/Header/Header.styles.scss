@@ -24,6 +24,9 @@
       > div {
         margin-right: 4px;
       }
+      &__price-change {
+        margin-left: 4px;
+      }
       &__name {
         font-weight: 600;
       }
@@ -77,11 +80,28 @@
 
 @media (max-width: 1024px) {
   .header {
-    // grid-template-columns: 1fr 1fr;
     display: flex;
     justify-content: space-between;
     &__logo {
       display: none;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .header__portfolio__element__price-change {
+    display: none;
+  }
+}
+
+@media (max-width: 220px) {
+  .header {
+    flex-direction: column;
+    &__portfolio {
+      align-items: center;
+    }
+    &__links__icon {
+      width: 100%;
     }
   }
 }

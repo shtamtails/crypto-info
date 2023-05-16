@@ -59,7 +59,7 @@ export const Header: React.FC = () => {
               <>
                 {formatNumber(newPortfolioSum, "fixed")}$
                 <span
-                  className={`margin-left-sm ${
+                  className={`header__portfolio__element__price-change ${
                     +priceDifference >= 0 ? "color-positive" : "color-negative"
                   }`}
                 >
