@@ -32,10 +32,17 @@ export const CryptoListElement: React.FC<CryptoListElementProps> = (props) => {
       <td className="crypto-list__table__body__element__name">
         <Link to={props.id}>
           <CryptoCard
+            className="crypto-list__table__body__element__name-card"
             name={props.name}
             logoURL={props.iconURL}
             symbol={props.shortName}
           />
+          <div
+            className="crypto-list__table__body__element__name-short"
+            onClick={() => setAddCryptoModalOpened(true)}
+          >
+            {props.name}
+          </div>
         </Link>
       </td>
       <td className="crypto-list__table__body__element__price">

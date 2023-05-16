@@ -19,6 +19,114 @@
         text-align: center;
         &__name {
           text-align: left;
+          &-card {
+          }
+          &-short {
+            display: none;
+            font-weight: 600;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .crypto-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .crypto-list__table__header {
+    &__volume {
+      display: none;
+    }
+  }
+  .crypto-list__table__body {
+    &__element {
+      &__volume {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .crypto-list__table__header {
+    &__market-cap {
+      display: none;
+    }
+    &__vwap {
+      display: none;
+    }
+  }
+  .crypto-list__table__body {
+    &__element {
+      &__market-cap {
+        display: none;
+      }
+      &__vwap {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .crypto-list__table__header {
+    &__rank {
+      display: none;
+    }
+    &__change {
+      display: none;
+    }
+  }
+  .crypto-list__table__body {
+    &__element {
+      &__rank {
+        display: none;
+      }
+      &__change {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .crypto-list__table__header {
+    &__supply {
+      display: none;
+    }
+  }
+  .crypto-list__table__body {
+    &__element {
+      &__supply {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .crypto-list__table__header {
+    &__action {
+      display: none !important;
+    }
+  }
+  .crypto-list__table__body {
+    &__element {
+      &__action {
+        display: none !important;
+      }
+      &__name {
+        &-card {
+          display: none;
+        }
+        &-short {
+          display: flex;
         }
       }
     }
